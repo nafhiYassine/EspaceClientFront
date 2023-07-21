@@ -1,0 +1,88 @@
+<div class="p-gutter container">
+  <!-- <div @fadeInUp class="card p-16"> -->
+    <div class="grid grid-cols-2">
+      <div>
+        <img class="h-40" src="assets/img/demo/logo.svg">
+
+        <div class="mt-12">
+          <h4 class="body-2 text-secondary mt-0">Destinataire</h4>
+          <h3 class="title m-0">Dubeau Pauline</h3>
+          <div class="text-secondary">
+            <p class="m-0">712 Clarkson </p>
+            <p class="m-0">Paris</p>
+            <p class="m-0">11203, FRANCE</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-right body-1 flex flex-col items-end">
+        <h1 class="display-2 m-0">Invoice</h1>
+
+        <table class="mt-6">
+          <tbody>
+          <tr>
+            <td class="text-secondary body-2">INVOICE NO.</td>
+            <td class="text-left pl-4">2019/0592</td>
+          </tr>
+          <tr>
+            <td class="text-secondary body-2">INVOICE DATE</td>
+            <td class="text-left pl-4">10/04/2019</td>
+          </tr>
+          <tr>
+            <td class="text-secondary body-2">PROJECT NO.</td>
+            <td class="text-left pl-4">D-23-44</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div class="mt-12">
+          <h4 class="body-2 text-secondary mt-0">Company</h4>
+          <h3 class="title m-0">IceCold Tech Ltd.</h3>
+          <div class="text-secondary">
+            <p class="m-0">907 Eastern Pkwy</p>
+            <p class="m-0">Brooklyn, NY</p>
+            <p class="m-0">11213, USA</p>
+
+            <p class="m-0 mt-3">
+              <mat-icon class="mr-2 icon-sm" svgIcon="mat:mail"></mat-icon>
+              <span>hello@example.com</span>
+            </p>
+
+            <p class="m-0">
+              <mat-icon class="mr-2 icon-sm" svgIcon="mat:phone"></mat-icon>
+              <span>+1 (961) 400-3535</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table w-full mt-24">
+      <thead>
+      <tr>
+        <td class="body-2 text-secondary">Label</td>
+        <td class="body-2 text-secondary">Prix</td>
+        <!-- <td class="body-2 text-secondary">UNIT</td>
+        <td class="body-2 text-secondary">QUANTITY</td>
+        <td class="body-2 text-secondary text-right">TOTAL</td> -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="py-6 border-b">New Dashboard Prototype, Design & Code</td>
+        <td class="py-6 border-b">{{guide.amount}}</td>
+        <!-- <td class="py-6 border-b">Hour</td>
+        <td class="py-6 border-b">40</td>
+        <td class="py-6 border-b font-medium text-right">$1,400.00</td> -->
+      </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <div class="flex items-center justify-end gap-2">
+      <button mat-button type="button">Annuler</button>
+      <button color="primary" mat-raised-button type="button">Payer</button>
+    </div>
+  <!-- </div> -->
+</div>
