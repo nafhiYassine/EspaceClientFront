@@ -75,8 +75,8 @@ const routes: VexRoutes = [
             loadChildren: () => import('./pages/apps/aio-table/aio-table.module').then(m => m.AioTableModule),
           },
           {
-            path: 'help-center',
-            loadChildren: () => import('./pages/apps/help-center/help-center.module').then(m => m.HelpCenterModule),
+            path: 'home',
+            loadChildren: () => import('./pages/apps/home/home.module').then(m => m.HomeModule),
           },
           {
             path: 'scrumboard',

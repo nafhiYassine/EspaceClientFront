@@ -26,22 +26,7 @@ export class AuthService {
 		private tokenStorageService: TokenStorageService,
 		private router: Router,
 		private http: HttpClient
-	) { }
-
-	//   public getBibBySouscripteur(souscripteur: any) {
-	// 	const apiEndpoint = API_HOST+'/api/auth/bib';
-
-	// 	this.http.post(apiEndpoint, souscripteur, { responseType: 'text' }).subscribe(
-	// 		(response: string) => {
-	// 		  // Handle the retrieved string data
-	// 		  this.envir = response;
-	// 		  console.log('Retrieved string:', this.envir);
-	// 		},
-	// 		(error: any) => {
-	// 		  console.error('Error retrieving data from the backend:', error);
-	// 		}
-	// 	  )
-	//   }
+	) {}
 
 	public getBibBySouscripteur(souscripteur: any): Observable<string> {
 		const apiEndpoint = API_HOST + '/api/auth/bib';
@@ -50,7 +35,6 @@ export class AuthService {
 		  tap((response: string) => {
 			// Handle the retrieved string data
 			this.envir = response;
-			console.log('Retrieved string:', this.envir);
 		  }),
 		  catchError((error: any) => {
 			console.error('Error retrieving data from the backend:', error);
@@ -61,7 +45,6 @@ export class AuthService {
 
 	  public async authenticate(souscripteur: User) {
 		await this.getBibBySouscripteur(souscripteur).toPromise(); // Convert the Observable to a Promise
-		console.log(this.envir);
 		const headers = new HttpHeaders().set('X-TenantID', this.envir);
 		return this.http.post(API_HOST + '/api/auth/login', souscripteur, { headers, observe: 'response' })
 		  .pipe(

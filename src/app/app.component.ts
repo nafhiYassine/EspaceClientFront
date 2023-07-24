@@ -83,7 +83,6 @@ export class AppComponent {
      */
     this.route.queryParamMap.subscribe(queryParamMap => {
       if (queryParamMap.has('layout')) {
-        console.log("Layout : ")
         this.configService.setConfig(queryParamMap.get('layout') as VexConfigName);
       }
 
@@ -119,26 +118,58 @@ export class AppComponent {
      * Add your own routes here
      */
     this.navigationService.items = [
+      // {
+      //   type: 'subheading',
+      //   label: 'Dashboards',
+      //   children: [
+      //     {
+      //       type: 'link',
+      //       label: 'Analytics',
+      //       route: '/',
+      //       icon: 'mat:insights',
+      //       routerLinkActiveOptions: { exact: true }
+      //     },
+      //     /*
+      //     {
+      //       type: 'link',
+      //       label: 'Finance',
+      //       route: '/',
+      //       icon: icLayers,
+      //       routerLinkActiveOptions: { exact: true }
+      //     },
+      //      */
+      //   ]
+      // },
       {
-        type: 'subheading',
-        label: 'Dashboards',
+        type: 'dropdown',
+        label: 'Home',
+        icon: 'mat:explore',
         children: [
           {
             type: 'link',
-            label: 'Analytics',
-            route: '/',
-            icon: 'mat:insights',
-            routerLinkActiveOptions: { exact: true }
+            label: 'Mon contrat',
+            route: '/apps/home/mon-contrat'
           },
-          /*
           {
             type: 'link',
-            label: 'Finance',
-            route: '/',
-            icon: icLayers,
-            routerLinkActiveOptions: { exact: true }
+            label: 'Ma carte de tiers payant',
+            route: '/apps/home/pricing'
           },
-           */
+          {
+            type: 'link',
+            label: 'Mes documents',
+            route: '/apps/home/guides'
+          },
+          {
+            type: 'link',
+            label: 'Mes remoboursements',
+            route: '/apps/home/faq'
+          },
+          {
+            type: 'link',
+            label: 'Mes prises en charge',
+            route: '/apps/home/pec'
+          }
         ]
       },
       {
@@ -150,38 +181,6 @@ export class AppComponent {
             label: 'All-In-One Table',
             route: '/apps/aio-table',
             icon: 'mat:assignment'
-          },
-          {
-            type: 'dropdown',
-            label: 'Home',
-            icon: 'mat:explore',
-            children: [
-              {
-                type: 'link',
-                label: 'Mon contrat',
-                route: '/apps/help-center/mon-contrat'
-              },
-              {
-                type: 'link',
-                label: 'Ma carte de tiers payant',
-                route: '/apps/help-center/pricing'
-              },
-              {
-                type: 'link',
-                label: 'Mes documents',
-                route: '/apps/help-center/guides'
-              },
-              {
-                type: 'link',
-                label: 'Mes remoboursements',
-                route: '/apps/help-center/faq'
-              },
-              {
-                type: 'link',
-                label: 'Mes prises en charge',
-                route: '/apps/help-center/pec'
-              }
-            ]
           },
           {
             type: 'link',

@@ -1,31 +1,45 @@
 import { Component, OnInit } from '@angular/core';
+import { trackById } from '../../../../../@vex/utils/track-by';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  HomeGuidesGuideComponent
-} from '../../apps/home/home-guides/home-guides-guide/home-guides-guide.component';
-import { Guide, GuideCategory } from '../../apps/home/home-guides/home-guides.component';
-import { trackById } from '../../../../@vex/utils/track-by';
-import { stagger60ms } from '../../../../@vex/animations/stagger.animation';
-import { fadeInUp400ms } from '../../../../@vex/animations/fade-in-up.animation';
+import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
+
+export enum GuideCategory {
+  firstSteps,
+  accountSettings,
+  apiHelp,
+  billing,
+}
+
+export interface Guide {
+  id: number;
+  label: string;
+  icon: string;
+  category: GuideCategory;
+  amount: number;
+  onClick: (guide: Guide) => void;
+}
 
 @Component({
-  selector: 'vex-guides',
-  templateUrl: './guides.component.html',
-  styleUrls: ['./guides.component.scss'],
-  animations: [
-    stagger60ms,
-    fadeInUp400ms
-  ]
+  selector: 'vex-home-guides',
+  templateUrl: './home-guides.component.html',
+  styleUrls: ['./home-guides.component.scss']
 })
-export class GuidesComponent implements OnInit {
-
+export class HomeGuidesComponent implements OnInit {
   guides: Guide[] = [
     {
-      id: 11,
+      id: 1,
       label: 'Du 01/02/2022 au 01/02/2023',
       icon: 'mat:description',
       category: GuideCategory.billing,
-      amount: 110,
+      amount: 147,
+      onClick: guide => this.openDialog(guide)
+    },
+    {
+      id: 2,
+      label: 'Du 01/02/2022 au 01/02/2023',
+      icon: 'mat:description',
+      category: GuideCategory.billing,
+      amount: 102,
       onClick: guide => this.openDialog(guide)
     },
   ];
@@ -34,6 +48,7 @@ export class GuidesComponent implements OnInit {
   apiHelp = this.guides.filter(guide => guide.category === GuideCategory.apiHelp);
   billing = this.guides.filter(guide => guide.category === GuideCategory.billing);
   firstSteps = this.guides.filter(guide => guide.category === GuideCategory.firstSteps);
+
 
   trackById = trackById;
 
@@ -45,7 +60,7 @@ export class GuidesComponent implements OnInit {
   openDialog(guide: Guide) {
     this.dialog.open(HomeGuidesGuideComponent, {
       data: guide,
-      width: '600px'
+      width: '95%'
     });
   }
 }

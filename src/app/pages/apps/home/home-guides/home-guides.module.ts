@@ -1,28 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { GuidesRoutingModule } from './guides-routing.module';
-import { GuidesComponent } from './guides.component';
+import { HomeGuidesRoutingModule } from './home-guides-routing.module';
+import { HomeGuidesComponent } from './home-guides.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HomeGuidesModule } from '../../apps/home/home-guides/home-guides.module';
-
 
 
 @NgModule({
-  declarations: [GuidesComponent],
+  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent],
   imports: [
     CommonModule,
-    GuidesRoutingModule,
-    MatButtonModule,
+    HomeGuidesRoutingModule,
 
+    MatButtonModule,
     MatListModule,
     MatIconModule,
-    MatDialogModule,
-    HomeGuidesModule
+    MatDialogModule
   ]
 })
-export class GuidesModule {
+export class HomeGuidesModule {
 }

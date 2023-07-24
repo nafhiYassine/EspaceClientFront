@@ -32,7 +32,7 @@ export class MegaMenuComponent implements OnInit {
     {
       icon: 'mat:contact_support',
       label: 'Help Center',
-      route: '/apps/help-center'
+      route: '/apps/home'
     },
     {
       icon: 'mat:contacts',
@@ -52,13 +52,14 @@ export class MegaMenuComponent implements OnInit {
   ];
 
   pages: MegaMenuPage[] = [
-    {
-      label: 'All-In-One Table',
-      route: '/apps/aio-table'
-    },
+    
     {
       label: 'Authentication',
       route: '/login'
+    },
+    {
+      label: 'All-In-One Table',
+      route: '/apps/aio-table'
     },
     {
       label: 'Components',
@@ -86,7 +87,7 @@ export class MegaMenuComponent implements OnInit {
     },
     {
       label: 'Help Center',
-      route: '/apps/help-center'
+      route: '/apps/home'
     },
     {
       label: 'Scrumboard',

@@ -48,21 +48,16 @@ export class LoginComponent implements OnInit {
   }
   async logInFormOpen(){
 		this.user = this.form.value
-    console.log('Username ' + this.user.username)
 		if(this.form.valid){
-      console.log('Valid Form');
       (await this.authService.authenticate(this.user)).subscribe((authorization: string) => {
 			if(authorization==null){
-        console.log("1")
 			  this.router.navigate(['/404']);
         this.snackbar.open('Your Password is not working', 'OK', {
           duration: 10000
         });
 			}else if(authorization !==null){ 
-        console.log("2")
-
 			this.tokenStorage.saveToken(authorization,this.user.username);
-      this.router.navigate(['/apps/help-center/mon-contrat']);
+      this.router.navigate(['/apps/home/mon-contrat']);
       this.snackbar.open('Successfully logged In! ;)', 'OK', {
         duration: 10000
       });
