@@ -7,8 +7,8 @@
     </div>
 
     <div class="text-center mt-4">
-      <h2 class="title m-0">Welcome back</h2>
-      <h4 class="body-2 text-secondary m-0">Sign in with your credentials below.</h4>
+      <h2 class="title m-0">Bienvenue</h2>
+      <h4 class="body-2 text-secondary m-0">Connectez-vous avec vos identifiants ci-dessous.</h4>
     </div>
 
     <div [formGroup]="form" class="p-6 flex flex-col gap-4">
@@ -16,33 +16,33 @@
         <mat-form-field class="flex-1">
           <mat-label>E-Mail</mat-label>
           <input formControlName="username" matInput required>
-          <mat-error *ngIf="form.controls['username'].hasError('required')">We need an email address to log you in</mat-error>
-          <mat-error *ngIf="form.controls['username'].hasError('pattern')">E-mail must be valid</mat-error>
+          <mat-error *ngIf="form.controls['username'].hasError('required')">Nous avons besoin d'une adresse e-mail pour vous connecter</mat-error>
+          <mat-error *ngIf="form.controls['username'].hasError('pattern')">L'email doit être valide</mat-error>
         </mat-form-field>
         <mat-form-field class="flex-1">
-          <mat-label>Password</mat-label>
+          <mat-label>Mot de passe</mat-label>
           <input [type]="inputType" formControlName="password" matInput required>
           <button (click)="toggleVisibility()" mat-icon-button matSuffix matTooltip="Toggle Visibility" type="button">
             <mat-icon *ngIf="visible" svgIcon="mat:visibility"></mat-icon>
             <mat-icon *ngIf="!visible" svgIcon="mat:visibility_off"></mat-icon>
           </button>
-          <mat-hint>Click the eye to toggle visibility</mat-hint>
-          <mat-error *ngIf="form.get('password').hasError('required')">We need a password to log you in</mat-error>
+          <mat-hint>Cliquez sur l'œil pour basculer la visibilité</mat-hint>
+          <mat-error *ngIf="form.get('password').hasError('required')">Nous avons besoin d'un mot de passe pour vous connecter</mat-error>
         </mat-form-field>
       </div>
 
       <div class="flex items-center justify-between">
-        <mat-checkbox class="caption" color="primary">Remember Me</mat-checkbox>
-        <a [routerLink]="['/forgot-password']" class="caption">Forgot Password?</a>
+        <mat-checkbox class="caption" color="primary">Rester connecté</mat-checkbox>
+        <a [routerLink]="['/forgot-password']" class="caption">Mot de passe oublié</a>
       </div>
 
       <button (click)="logInFormOpen()" color="primary" mat-raised-button type="button">
-        SIGN IN
+        Se connecter
       </button>
 
       <p class="text-secondary text-center">
-        Don't have an account?<br/>
-        <a [routerLink]="['/register']">Click here to create one</a>
+        Vous n'avez pas de compte ?<br/>
+        <a [routerLink]="['/register']">Cliquez ici pour en créer un</a>
       </p>
     </div>
   </div>
