@@ -47,6 +47,10 @@ export class HomeComponent implements OnInit {
   ];
 
   trackByRoute = trackByRoute;
+  // isDesktop$  = this.layoutService.isDesktop$;
+  isMobile$  = this.layoutService.isMobile$;
+  isDesktopValue : boolean;
+  isMobileValue : boolean;
 
   constructor(private layoutService: LayoutService) { }
 
@@ -87,6 +91,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+  
 
   // untilDestroyed(this){
 

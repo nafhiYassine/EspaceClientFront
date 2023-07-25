@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
 			}else if(authorization !==null){ 
 			this.tokenStorage.saveToken(authorization,this.user.username);
       this.router.navigate(['/apps/home/mon-contrat']);
-      this.snackbar.open('Successfully logged In! ;)', 'OK', {
+      this.snackbar.open('    Successfully logged In!   ', 'OK', {
         duration: 10000
       });
 		  }
