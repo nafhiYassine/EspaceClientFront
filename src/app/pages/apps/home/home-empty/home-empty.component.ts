@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'vex-home-getting-started',
+  selector: 'vex-home-empty',
   templateUrl: './home-empty.component.html',
   styleUrls: ['./home-empty.component.scss']
 })
