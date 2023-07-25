@@ -17,9 +17,13 @@ a {
   text-decoration: none;
 }
 
-.w-8 {
-  width: 4rem;
+.w-8-desktop {
+  height: 3.2rem;
 }
+.w-8-mobile {
+  width: 3.2rem;
+}
+
 
 .container{
   max-width: 1400px !important;  
@@ -33,4 +37,8 @@ a {
   position: fixed;
   z-index: 1000;
   background-color: white;
+}
+
+.padding50{
+  padding: 50px;
 }

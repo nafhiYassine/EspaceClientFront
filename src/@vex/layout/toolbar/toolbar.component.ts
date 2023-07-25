@@ -27,6 +27,8 @@ export class ToolbarComponent {
   isNavbarInToolbar$: Observable<boolean> = this.configService.config$.pipe(map(config => config.navbar.position === 'in-toolbar'));
   isNavbarBelowToolbar$: Observable<boolean> = this.configService.config$.pipe(map(config => config.navbar.position === 'below-toolbar'));
   userVisible$: Observable<boolean> = this.configService.config$.pipe(map(config => config.toolbar.user.visible));
+  isDesktop$ = this.layoutService.isDesktop$;
+  isMobile$  = this.layoutService.isMobile$;
 
   megaMenuOpen$: Observable<boolean> = of(false);
 

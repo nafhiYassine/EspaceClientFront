@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trackById } from '../../../../../@vex/utils/track-by';
 import { MatDialog } from '@angular/material/dialog';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
+import { LayoutService } from '../../../../../@vex/services/layout.service';
 
 export enum GuideCategory {
   firstSteps,
@@ -48,12 +49,12 @@ export class HomeGuidesComponent implements OnInit {
   apiHelp = this.guides.filter(guide => guide.category === GuideCategory.apiHelp);
   billing = this.guides.filter(guide => guide.category === GuideCategory.billing);
   firstSteps = this.guides.filter(guide => guide.category === GuideCategory.firstSteps);
-
-
   trackById = trackById;
+  isDesktop$  = this.layoutService.isDesktop$;
 
-  constructor(private dialog: MatDialog) { }
-
+  constructor(
+    private dialog: MatDialog,
+    private layoutService: LayoutService) { }
   ngOnInit() {
   }
 

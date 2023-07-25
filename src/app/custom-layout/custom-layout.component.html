@@ -6,7 +6,9 @@
   <vex-toolbar [hasShadow]="toolbarShadowEnabled$ | async" [mobileQuery]="!(isDesktop$ | async)"
     class="vex-toolbar"></vex-toolbar>
   <hr>
-  <vex-second-toolbar></vex-second-toolbar>
+  <div *ngIf="(isDesktop$ | async)">
+    <vex-second-toolbar></vex-second-toolbar>
+  </div>
 </ng-template>
 
 
