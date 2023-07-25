@@ -66,7 +66,7 @@ export const scrumboardAttachments: ScrumboardAttachment[] = [
 
 export const scrumboardUsers: ScrumboardUser[] = [
   {
-    name: 'David Smith',
+    name: 'Pauline Dubeau',
     imageSrc: 'assets/img/avatars/1.jpg'
   },
   {

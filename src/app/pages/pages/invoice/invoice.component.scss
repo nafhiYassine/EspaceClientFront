@@ -1,7 +1,8 @@
 @media print {
-  .p-gutter {
-    padding: 0 !important;
-  }
+
+  .p-gutter{
+    padding-top: calc(2 * var(--toolbar-height)) !important;
+}
 
   .card {
     box-shadow: none !important;

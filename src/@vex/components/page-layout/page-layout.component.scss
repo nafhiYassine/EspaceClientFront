@@ -1,5 +1,6 @@
 .vex-page-layout {
   display: block;
+  padding-top: calc( 2 * var(--toolbar-height))
 }
 
 .vex-page-layout-simple {

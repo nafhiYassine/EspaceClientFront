@@ -8,6 +8,7 @@ import { FooterModule } from '../../@vex/layout/footer/footer.module';
 import { ConfigPanelModule } from '../../@vex/components/config-panel/config-panel.module';
 import { SidebarModule } from '../../@vex/components/sidebar/sidebar.module';
 import { QuickpanelModule } from '../../@vex/layout/quickpanel/quickpanel.module';
+import { SecondToolbarModule } from 'src/@vex/layout/second-toolbar/second-toolbar.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { QuickpanelModule } from '../../@vex/layout/quickpanel/quickpanel.module
     LayoutModule,
     SidenavModule,
     ToolbarModule,
+    SecondToolbarModule,
     FooterModule,
     ConfigPanelModule,
     SidebarModule,

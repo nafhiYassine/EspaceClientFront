@@ -20,13 +20,15 @@ a {
 .w-8 {
   width: 4rem;
 }
-
+.container{
+  max-width: 1000px !important;  
+}
 .containerX {
   margin-left: auto;
   margin-right: auto;
   max-width: 2000px;
   width: 100%;
   position: fixed;
-  z-index: 1000;
-  background-color: white;
+  z-index: 999;
+  padding-top: var(--toolbar-height)
 }

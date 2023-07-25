@@ -44,7 +44,7 @@ function createFakeMail(id: number): Mail {
   };
 
   const to: Mail['to'] = {
-    name: 'David Smith',
+    name: 'Pauline Dubeau',
     email: 'david.smith@example.org'
   };
 
