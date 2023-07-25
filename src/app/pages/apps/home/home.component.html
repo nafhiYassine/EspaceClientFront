@@ -20,7 +20,11 @@
   </div>
 </div>
 
-<router-outlet></router-outlet>
+
+<router-outlet *ngIf="iSBool" style="display: none;"></router-outlet>
+<div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6" style="padding-top: 2rem ;">
+</div>
+
 
 <div class="bg-foreground py-16 px-gutter footer">
   <h2 class="display-1 mt-0 mb-4 text-center">Still have questions?</h2>
