@@ -48,23 +48,16 @@ export class HomeComponent implements OnInit {
   ];
 
   trackByRoute = trackByRoute;
-  isDesktop$  = this.layoutService.isDesktop$;
-  isMobile$  = this.layoutService.isMobile$;
-  isDesktopValue : boolean;
-  isMobileValue : boolean;
+  isDesktop$   = this.layoutService.isDesktop$;
+  isMobile$    = this.layoutService.isMobile$;
+  ltLg$        = this.layoutService.ltLg$;
+  gtMd$        = this.layoutService.gtMd$;
+  ltMd$        = this.layoutService.ltMd$;
+  gtSm$        = this.layoutService.gtSm$;
 
   constructor(private layoutService: LayoutService) { }
 
-  ngOnInit() {
-    this.isDesktop$.subscribe(value => {
-      this.isDesktopValue = value;
-      console.log("Desktop : " + this.isDesktopValue) // Update the component property with the emitted value
-    });
-    this.isMobile$.subscribe(value => {
-      this.isMobileValue = value;
-      console.log("Mobile : " + this.isDesktopValue) // Update the component property with the emitted value
-    });
-  }
+  ngOnInit() {}
   
 
 }

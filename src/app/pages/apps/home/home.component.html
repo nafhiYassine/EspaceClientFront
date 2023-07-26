@@ -1,18 +1,24 @@
-<div class="text-center py-12 header" [ngClass]="{'padding-top-1-5': isDesktop$ | async, 'padding-top-0': !(isDesktop$ | async)}">
+<div class="text-center py-12 header"
+  [ngClass]="{'padding-top-1-5': isDesktop$ | async, 'padding-top-0': !(isDesktop$ | async)}">
   <div class="container">
     <div @fadeInUp
       class="mt-24 -mb-16 mx-auto flex flex-col sm:flex-row gap-4 sm:gap-6 grid grid-cols-2 sm:grid-cols-5 ">
       <div *ngFor="let link of links; trackBy: trackByRoute">
-        <div class="bg-foreground rounded-lg " >
-          <a href="/hehe" *ngIf="!isDesktop$"></a>
-          <a *ngIf="isDesktop$" #rla="routerLinkActive" [routerLink]="link.route" 
+        <div class="bg-foreground rounded-lg ">
+          <a #rla="routerLinkActive" [routerLink]="link.route"
             [ngClass]="{ 'border-primary bg-primary/10': rla.isActive, 'hover:bg-app-bar border-gray-200 border-transparent': !rla.isActive }"
             class="border block text-center p-6 trans-ease-out cursor-pointer relative text-dark flex flex-col items-center justify-center rounded-lg"
-            matRipple routerLinkActive="">
-            <mat-icon  [class.text-primary]="rla.isActive" [svgIcon]="link.icon"
+            matRipple routerLinkActive="" *ngIf="isDesktop$">
+            <mat-icon [class.text-primary]="rla.isActive" [svgIcon]="link.icon"
               class="trans-ease-out icon-3xl"></mat-icon>
-              <h3 class="title mb-0 mt-4">{{ link.label }} <ng-template [ngIf]="link.label.length < 18"><div><br></div></ng-template></h3>
-            </a>
+            <h3 class="title mb-0 mt-4">{{ link.label }} <ng-template [ngIf]="link.label.length < 18">
+                <div><br></div>
+              </ng-template></h3>
+          </a>
+          <!-- <a routerLink="/" *ngIf="isMobile$">
+            <mat-icon [svgIcon]="link.icon" class="trans-ease-out icon-3xl"></mat-icon>
+              <h3 class="title mb-0 mt-4">{{ link.label }} <ng-template [ngIf]="link.label.length < 14"><div><br></div></ng-template></h3>
+          </a> -->
         </div>
       </div>
     </div>

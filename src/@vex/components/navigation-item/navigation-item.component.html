@@ -18,8 +18,8 @@
 <ng-container *ngIf="(isSubheading(item) && item.children?.length > 0) || isDropdown(item)">
   <div [class.hover:bg-hover]="!(isActive$ | async)(item)"
        [matMenuTriggerFor]="menu"
-       [ngClass]="{ 'bg-primary text-primary-contrast': (isActive$ | async)(item), 'navigation-color': !(isActive$ | async)(item) }"
-       class="navigation-item"
+       [ngClass]="{ 'bg-primary': (isActive$ | async)(item)}"
+       class="navigation-item text-primary-contrast"
        matRipple>
     {{ item.label }}
   </div>

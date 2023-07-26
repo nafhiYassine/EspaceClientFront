@@ -656,13 +656,8 @@ export class AppComponent {
         type: 'subheading',
         label: 'Customize',
         children: []
-      },
-      {
-        type: 'link',
-        label: 'Configuration',
-        route: () => this.layoutService.openConfigpanel(),
-        icon: 'mat:settings'
       }
+      
     ];
   }
 }
