@@ -15,8 +15,8 @@
   }
 }
 .padding-top-1-5{
-  padding-top: calc(1.5 * var(--toolbar-height)) !important;
+  padding-top: calc(-1 * var(--toolbar-height)) !important;
 }
 .padding-top-0{
-  padding-top: 0 !important;
+  padding-top: calc(-2.5 * var(--toolbar-height)) !important;
 }

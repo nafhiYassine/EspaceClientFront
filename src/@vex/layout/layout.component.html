@@ -36,7 +36,11 @@
     <mat-sidenav-content class="sidenav-content">
       <ng-container *ngTemplateOutlet="toolbarRef"></ng-container>
 
-      <main class="content">
+      <main class="content padding" *ngIf="isBool">
+        <router-outlet></router-outlet>
+      </main>
+
+      <main class="content" *ngIf="!isBool">
         <router-outlet></router-outlet>
       </main>
 

@@ -7,6 +7,7 @@ import { PageLayoutModule } from '../../../../@vex/components/page-layout/page-l
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({

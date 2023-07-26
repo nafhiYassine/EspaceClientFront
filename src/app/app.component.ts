@@ -651,11 +651,6 @@ export class AppComponent {
             routerLinkActiveOptions: { exact: true }
           },
         ]
-      },
-      {
-        type: 'subheading',
-        label: 'Customize',
-        children: []
       }
       
     ];

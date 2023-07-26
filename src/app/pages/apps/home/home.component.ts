@@ -3,7 +3,8 @@ import { Link } from '../../../../@vex/interfaces/link.interface';
 import { trackByRoute } from '../../../../@vex/utils/track-by';
 import { fadeInUp400ms } from '../../../../@vex/animations/fade-in-up.animation';
 import { stagger40ms } from '../../../../@vex/animations/stagger.animation';
-import { LayoutService } from '../../../../@vex/services/layout.service';
+import { LayoutService } from 'src/@vex/services/layout.service';
+import { link } from 'fs';
 
 @Component({
   selector: 'vex-home',
@@ -15,9 +16,34 @@ import { LayoutService } from '../../../../@vex/services/layout.service';
   ]
 })
 export class HomeComponent implements OnInit {
-
-  mobileValue: number = 19;
-  desktopValue: number = 18;
+  isBool = true;
+  mobileLinks: (Link & { icon: string })[] = [
+    {
+      label: 'Mon contrat',
+      route: 'pages/invoice',
+      icon: 'mat:chrome_reader_mode'
+    },
+    {
+      label: 'Ma carte de tiers payant',
+      route: 'w',
+      icon: 'mat:card_membership'
+    },
+    {
+      label: 'Mes documents',
+      route: 'v',
+      icon: 'mat:description'
+    },
+    {
+      label: 'Mes remboursements',
+      route: 'z',
+      icon: 'mat:undo'
+    },
+    {
+      label: 'Mes prises en charge',
+      route: 's',
+      icon: 'mat:euro_symbol'
+    }
+  ];
 
   links: (Link & { icon: string })[] = [
     {
@@ -48,16 +74,19 @@ export class HomeComponent implements OnInit {
   ];
 
   trackByRoute = trackByRoute;
-  isDesktop$   = this.layoutService.isDesktop$;
-  isMobile$    = this.layoutService.isMobile$;
-  ltLg$        = this.layoutService.ltLg$;
-  gtMd$        = this.layoutService.gtMd$;
-  ltMd$        = this.layoutService.ltMd$;
-  gtSm$        = this.layoutService.gtSm$;
-
+  isDesktop$ = this.layoutService.isDesktop$;
   constructor(private layoutService: LayoutService) { }
 
-  ngOnInit() {}
-  
+  ngOnInit() {
+    this.isDesktop$.pipe(
+    ).subscribe(isDesktop => {
+      if (isDesktop) {
+        this.isBool = true;
+      } else {
+        this.isBool = false;
+        this.links = this.mobileLinks;
+      }
+    });
+  }
 
 }

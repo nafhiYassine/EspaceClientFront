@@ -19,16 +19,12 @@ export class CustomLayoutComponent implements OnInit {
 
   sidenavCollapsed$ = this.layoutService.sidenavCollapsed$;
   isFooterVisible$ = this.configService.config$.pipe(map(config => config.footer.visible));
-  isDesktop$ = this.layoutService.isDesktop$;
-  isMobile$ = this.layoutService.isMobile$;
 
   toolbarShadowEnabled$ = this.router.events.pipe(
     filter(event => event instanceof NavigationEnd),
     startWith(null),
     map(() => checkRouterChildsData(this.router.routerState.root.snapshot, data => data.toolbarShadowEnabled))
   );
-  isDesktopValue : boolean;
-  isMobileValue : boolean;
   @ViewChild('configpanel', { static: true }) configpanel: SidebarComponent;
 
   constructor(private layoutService: LayoutService,
@@ -40,25 +36,5 @@ export class CustomLayoutComponent implements OnInit {
     this.layoutService.configpanelOpen$.pipe(
       untilDestroyed(this)
     ).subscribe(open => open ? this.configpanel.open() : this.configpanel.close());
-  
-    this.layoutService.isDesktop$.subscribe(value => {
-      console.log("Desktop : " + value) // Update the component property with the emitted value
-    }); 
-    this.layoutService.ltLg$.subscribe(value => {
-      console.log("ltLg : " + value) // Update the component property with the emitted value
-    });
-    this.layoutService.gtMd$.subscribe(value => {
-      console.log("gtMd : " + value) // Update the component property with the emitted value
-    });
-    this.layoutService.ltMd$.subscribe(value => {
-      console.log("ltMd : " + value) // Update the component property with the emitted value
-    });  
-    this.layoutService.gtSm$.subscribe(value => {
-      console.log("gtSm : " + value) // Update the component property with the emitted value
-    });  
-    this.layoutService.isMobile$.subscribe(value => {
-      console.log("Mobile : " + value) // Update the component property with the emitted value
-    }); 
-
   }
 }

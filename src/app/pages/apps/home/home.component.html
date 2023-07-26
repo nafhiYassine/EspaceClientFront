@@ -15,18 +15,18 @@
                 <div><br></div>
               </ng-template></h3>
           </a>
-          <!-- <a routerLink="/" *ngIf="isMobile$">
-            <mat-icon [svgIcon]="link.icon" class="trans-ease-out icon-3xl"></mat-icon>
-              <h3 class="title mb-0 mt-4">{{ link.label }} <ng-template [ngIf]="link.label.length < 14"><div><br></div></ng-template></h3>
-          </a> -->
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<router-outlet *ngIf="isDesktop$ | async"></router-outlet>
-<div *ngIf="isDesktop$"> <br><br><br></div>
+
+<router-outlet *ngIf="isBool" style="display: none;"></router-outlet>
+<div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6" style="padding-top: 2rem ;">
+</div>
+
+
 <div class="bg-foreground py-16 px-gutter footer">
   <h2 class="display-1 mt-0 mb-4 text-center">Vous avez encore des questions ?</h2>
 

@@ -21,6 +21,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   @Input() toolbarRef: TemplateRef<any>;
   @Input() footerRef: TemplateRef<any>;
   @Input() quickpanelRef: TemplateRef<any>;
+  isBool : boolean;
 
   isLayoutVertical$ = this.configService.config$.pipe(map(config => config.layout === 'vertical'));
   isBoxed$ = this.configService.config$.pipe(map(config => config.boxed));
@@ -29,6 +30,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   isFooterVisible$ = this.configService.config$.pipe(map(config => config.footer.visible));
   sidenavCollapsed$ = this.layoutService.sidenavCollapsed$;
   isDesktop$ = this.layoutService.isDesktop$;
+  isMobile$ = this.layoutService.isMobile$;
 
   scrollDisabled$ = this.router.events.pipe(
     filter(event => event instanceof NavigationEnd),
@@ -59,6 +61,15 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     /**
      * Expand Sidenav when we switch from mobile to desktop view
      */
+    this.isDesktop$.pipe(
+    ).subscribe(isDesktop => {
+      if (isDesktop) {
+        this.isBool = true;
+      } else {
+        this.isBool = false;
+      }
+    });
+
     this.isDesktop$.pipe(
       filter(matches => !matches),
       untilDestroyed(this)
