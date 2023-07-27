@@ -30,7 +30,6 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   isFooterVisible$ = this.configService.config$.pipe(map(config => config.footer.visible));
   sidenavCollapsed$ = this.layoutService.sidenavCollapsed$;
   isDesktop$ = this.layoutService.isDesktop$;
-  isMobile$ = this.layoutService.isMobile$;
 
   scrollDisabled$ = this.router.events.pipe(
     filter(event => event instanceof NavigationEnd),

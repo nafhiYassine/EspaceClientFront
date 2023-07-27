@@ -9,11 +9,12 @@
             [ngClass]="{ 'border-primary bg-primary/10': rla.isActive, 'hover:bg-app-bar border-gray-200 border-transparent': !rla.isActive }"
             class="border block text-center p-6 trans-ease-out cursor-pointer relative text-dark flex flex-col items-center justify-center rounded-lg"
             matRipple routerLinkActive="" *ngIf="isDesktop$">
-            <mat-icon [class.text-primary]="rla.isActive" [svgIcon]="link.icon"
-              class="trans-ease-out icon-3xl"></mat-icon>
+            <mat-icon [svgIcon]="link.icon"
+              class="trans-ease-out icon-3xl text-primary"></mat-icon>
             <h3 class="title mb-0 mt-4">{{ link.label }} <ng-template [ngIf]="link.label.length < 18">
                 <div><br></div>
-              </ng-template></h3>
+              </ng-template>
+            </h3>
           </a>
         </div>
       </div>

@@ -21,7 +21,7 @@ a {
   width: 4rem;
 }
 .container{
-  max-width: 1000px !important;  
+  max-width: 1357px !important;  
 }
 .containerX {
   margin-left: auto;
@@ -30,9 +30,10 @@ a {
   width: 100%;
   position: fixed;
   z-index: 999;
-  margin-top: var(--toolbar-height)
+  margin-top: calc(var(--toolbar-height) - 2px)
 }
 
 .bg-primary\/10 {
   background-color: rgba(var(--color-primary), 0.75) !important;
+  backdrop-filter: blur(10px);
 }

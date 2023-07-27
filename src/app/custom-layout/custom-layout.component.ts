@@ -19,6 +19,8 @@ export class CustomLayoutComponent implements OnInit {
 
   sidenavCollapsed$ = this.layoutService.sidenavCollapsed$;
   isFooterVisible$ = this.configService.config$.pipe(map(config => config.footer.visible));
+  isDesktop$ = this.layoutService.isDesktop$;
+  isBool : boolean;
 
   toolbarShadowEnabled$ = this.router.events.pipe(
     filter(event => event instanceof NavigationEnd),
@@ -36,5 +38,13 @@ export class CustomLayoutComponent implements OnInit {
     this.layoutService.configpanelOpen$.pipe(
       untilDestroyed(this)
     ).subscribe(open => open ? this.configpanel.open() : this.configpanel.close());
+    this.isDesktop$.pipe(
+      ).subscribe(isDesktop => {
+        if (isDesktop) {
+          this.isBool = true;
+        } else {
+          this.isBool = false;
+        }
+      });
   }
 }
