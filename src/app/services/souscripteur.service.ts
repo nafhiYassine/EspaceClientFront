@@ -13,7 +13,12 @@ export class SouscripteurService {
   constructor(private httpClient:HttpClient) { }
   public findSouscripteur():Observable<Souscripteur> {
     return this.httpClient.get(API_HOST + '/api/souscripteur').pipe(
-      map((response : Souscripteur)=> response )
-    )
+      map((response : Souscripteur)=> response ),
+      catchError((error: any) => {
+        console.error('Erreur recuperation souscripteur ', error);
+        throw error;
+        }
+
+    ))
   }
 }
