@@ -3,6 +3,8 @@ import { trackById } from '../../../../../@vex/utils/track-by';
 import { MatDialog } from '@angular/material/dialog';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { LayoutService } from '../../../../../@vex/services/layout.service';
+import { Contrat } from 'src/app/models/contrat';
+import { ContratService } from 'src/app/services/contrat.service';
 
 export enum GuideCategory {
   firstSteps,
@@ -26,7 +28,10 @@ export interface Guide {
   styleUrls: ['./home-guides.component.scss']
 })
 export class HomeGuidesComponent implements OnInit {
+  contrat :Contrat;
+
   guides: Guide[] = [
+
     {
       id: 1,
       label: 'Du 01/02/2022 au 01/02/2023',
@@ -53,9 +58,19 @@ export class HomeGuidesComponent implements OnInit {
   isDesktop$  = this.layoutService.isDesktop$;
 
   constructor(
-    private dialog: MatDialog,
+    private dialog: MatDialog,private contratService:ContratService,
     private layoutService: LayoutService) { }
   ngOnInit() {
+    console.log("helleoooo")
+    this.contratService.findContrats().subscribe
+    (
+      (data)=>{
+        console.log("data",data)
+        this.contrat=data;
+        console.log('this.contrat:',JSON.stringify(this.contrat));
+      }
+    )
+
   }
 
   openDialog(guide: Guide) {
