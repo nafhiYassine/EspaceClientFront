@@ -43,12 +43,16 @@ export class AuthService {
 		);
 	}
 
-	  public async authenticate(souscripteur: User) {
-		await this.getBibBySouscripteur(souscripteur).toPromise(); // Convert the Observable to a Promise
+	public async authenticate(souscripteur: User) {
+		await this.getBibBySouscripteur(souscripteur).toPromise();
 		const headers = new HttpHeaders().set('X-TenantID', this.envir);
 		return this.http.post(API_HOST + '/api/auth/login', souscripteur, { headers, observe: 'response' })
 		  .pipe(
-			map((data) => data.headers.get('authorization')),
+			map((data) => {
+			  const authorization = data.headers.get('authorization');
+			  const refreshToken = data.headers.get('refreshToken');
+			  return { authorization, refreshToken };
+			}),
 			catchError(this.handleError<User>('authenticate'))
 		  );
 	  }

@@ -5,7 +5,7 @@
     </button>
 
     <a *ngIf="isVerticalLayout$ | async" [routerLink]="['/']" class="ltr:mr-4 rtl:ml-4 block flex items-center">
-      <img alt="Logo" class=" select-none" src="assets/img/demo/logo.svg" [ngClass]="{'w-8-desktop': isDesktop$ | async, 'w-8-mobile': !(isDesktop$ | async)}" />
+      <img alt="Logo" class=" select-none" src="assets/img/demo/logo.png" [ngClass]="{'w-8-desktop': isDesktop$ | async, 'w-8-mobile': !(isDesktop$ | async)}" />
       <!-- <h1 [class.hidden]="!mobileQuery" class="title ltr:pl-4 rtl:pr-4 m-0 select-none">VEX</h1> -->
     </a>
 

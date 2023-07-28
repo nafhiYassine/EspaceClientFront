@@ -9,12 +9,15 @@
             [ngClass]="{ 'border-primary bg-primary/10': rla.isActive, 'hover:bg-app-bar border-gray-200 border-transparent': !rla.isActive }"
             class="border block text-center p-6 trans-ease-out cursor-pointer relative text-dark flex flex-col items-center justify-center rounded-lg"
             matRipple routerLinkActive="" *ngIf="isDesktop$">
-            <mat-icon [svgIcon]="link.icon"
-              class="trans-ease-out icon-3xl text-primary"></mat-icon>
-            <h3 class="title mb-0 mt-4">{{ link.label }} <ng-template [ngIf]="link.label.length < 18">
+            <mat-icon [svgIcon]="link.icon" class="trans-ease-out icon-3xl text-primary"></mat-icon>
+            <h3 *ngIf="isBool" class="title mb-0 mt-4">{{ link.label }} <ng-template [ngIf]="link.label.length < 18">
                 <div><br></div>
               </ng-template>
             </h3>
+            <h3 *ngIf="!isBool" class="title mb-0 mt-4">{{ link.label }} <ng-template [ngIf]="link.label.length < 13">
+              <div><br></div>
+            </ng-template>
+          </h3>
           </a>
         </div>
       </div>
@@ -24,18 +27,6 @@
 
 
 <router-outlet *ngIf="isBool" style="display: none;"></router-outlet>
-<div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6" style="padding-top: 2rem ;">
-</div>
-
-
-<div class="bg-foreground py-16 px-gutter footer">
-  <h2 class="display-1 mt-0 mb-4 text-center">Vous avez encore des questions ?</h2>
-
-  <div class="mt-16 max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-1 gap-6">
-    <div class="text-center p-6 border rounded">
-      <mat-icon class="text-hint icon-3xl" svgIcon="mat:mail"></mat-icon>
-      <h3 class="title mb-0 mt-4">support-it@cergap.fr</h3>
-      <h4 class="subheading-2 m-0 text-hint">Envoyez-nous un mail pour résoudre votre problème</h4>
-    </div>
-  </div>
+<div *ngIf="!isBool" class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6"
+  style="padding-top: 2rem ;">
 </div>

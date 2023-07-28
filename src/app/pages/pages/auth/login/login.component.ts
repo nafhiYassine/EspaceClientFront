@@ -7,6 +7,7 @@ import { UserService } from '../../../../services/user.service';
 import { User } from '../../../../../app/models/User';
 import { AuthService } from '../../../../../app/services/Auth.service'
 import { TokenStorageService } from '../../../../../app/token-storage-service'
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'vex-login',
@@ -21,57 +22,61 @@ import { TokenStorageService } from '../../../../../app/token-storage-service'
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-	user :User ;
+  user: User;
   inputType = 'password';
   visible = false;
-  emailPattern : string = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
+  emailPattern: string = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
+  jwtToken: string;
+  issuer: string;
+  id: string;
+  compo: string;
 
 
   constructor(private router: Router,
-              private fb: FormBuilder,
-              public authService : AuthService,
-              private cd: ChangeDetectorRef,
-              private tokenStorage : TokenStorageService,
-              private userServices :UserService,
-              private snackbar: MatSnackBar
+    private fb: FormBuilder,
+    public authService: AuthService,
+    private cd: ChangeDetectorRef,
+    private tokenStorage: TokenStorageService,
+    private userServices: UserService,
+    private snackbar: MatSnackBar
   ) {}
 
-  ngOnInit() {
-
+  ngOnInit(): void {
     this.form = this.fb.group({
-      username: ['', 
-      // [Validators.required,Validators.pattern(this.emailPattern)]
-    ],
-      password: [''
-      // , Validators.required,Validators.minLength(8), [this.asyncPasswordValidator]
-    ]
+			username	: ['',[Validators.required,Validators.pattern(this.emailPattern)]],
+			password	: ['',[Validators.required,Validators.minLength(6)]],
     });
   }
-  async logInFormOpen(){
-		this.user = this.form.value
-		if(this.form.valid){
-      (await this.authService.authenticate(this.user)).subscribe((authorization: string) => {
-			if(authorization==null){
-			  this.router.navigate(['/404']);
-        this.snackbar.open('Your Password is not working', 'OK', {
-          duration: 10000
-        });
-			}else if(authorization !==null){ 
-			this.tokenStorage.saveToken(authorization,this.user.username);
-      this.router.navigate(['/apps/home/mon-contrat']);
-      this.snackbar.open('    Successfully logged In!   ', 'OK', {
-        duration: 10000
-      });
-		  }
-			});
-		}
-		else{
-			for( let i in this.form.controls)
-			{
-				this.form.controls[i].markAsTouched();
-			}
-		}		
-	}
+
+  async logInFormOpen() {
+    this.user = this.form.value;
+    if (this.form.valid) {
+      (await this.authService.authenticate(this.user)).subscribe(
+        (data: { authorization: string; refreshToken: string }) => {
+          if (data.authorization == null) {
+            this.router.navigate(['/404']);
+            this.snackbar.open('Your Password is not working', 'OK', {
+              duration: 10000
+            });
+          } else {
+            this.tokenStorage.storeSessionData(data.authorization, data.refreshToken);
+            this.router.navigate(['/apps/home/mon-contrat']);
+            this.snackbar.open(' Connexion réussie ! ', 'OK', {
+              duration: 2000
+            });
+          }
+        },
+        (error) => {
+          // Handle error if needed
+        }
+      );
+    } else {
+      for (let i in this.form.controls) {
+        this.form.controls[i].markAsTouched();
+      }
+    }
+  }
+
 
   asyncPasswordValidator(control: AbstractControl): Promise<ValidationErrors | null> {
     return new Promise((resolve, reject) => {
@@ -87,7 +92,7 @@ export class LoginComponent implements OnInit {
   }
 
   send() {
-    
+
     this.router.navigate(['/']);
     this.snackbar.open('Lucky you! Looks like you didn\'t need a password or email address! For a real application we provide validators to prevent this. ;)', 'LOL THANKS', {
       duration: 10000
