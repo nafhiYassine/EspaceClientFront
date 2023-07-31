@@ -56,19 +56,14 @@ export class LoginComponent implements OnInit {
           if (data.authorization == null) {
             this.router.navigate(['/404']);
             this.snackbar.open('Your Password is not working', 'OK', {
-              duration: 10000
+              duration: 5000
             });
           } else {
             this.tokenStorage.storeSessionData(data.authorization, data.refreshToken);
             this.router.navigate(['/apps/home/mon-contrat']);
-            this.snackbar.open(' Connexion réussie ! ', 'OK', {
-              duration: 2000
-            });
           }
         },
-        (error) => {
-          // Handle error if needed
-        }
+        (error) => {}
       );
     } else {
       for (let i in this.form.controls) {
@@ -88,14 +83,6 @@ export class LoginComponent implements OnInit {
           resolve(null); // Validation passed
         }
       }, 1000); // Simulating a 1-second delay
-    });
-  }
-
-  send() {
-
-    this.router.navigate(['/']);
-    this.snackbar.open('Lucky you! Looks like you didn\'t need a password or email address! For a real application we provide validators to prevent this. ;)', 'LOL THANKS', {
-      duration: 10000
     });
   }
 
