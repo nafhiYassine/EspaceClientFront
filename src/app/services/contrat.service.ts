@@ -8,7 +8,7 @@ import { Contrat } from '../models/contrat';
   providedIn: 'root'
 })
 export class ContratService {
-contrat:Contrat;
+contrat:Contrat=null;
   constructor(private httpClient:HttpClient) { }
 
   public findContrats():Observable<Contrat> {
@@ -20,6 +20,7 @@ contrat:Contrat;
       console.log(API_HOST + '/api/data/sante')
 			// Handle the retrieved string data
 			this.contrat = response;
+   //   console.log("response",JSON.stringify(response))
 		  }),
 		  catchError((error: any) => {
 			console.error('Error de recuperation de contrat', error);
