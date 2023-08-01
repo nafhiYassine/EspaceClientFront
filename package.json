@@ -64,5 +64,13 @@
     "postcss-scss": "~4.0.4",
     "ts-node": "~8.3.0",
     "typescript": "~5.0.4"
-  }
+  },
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "https://git.eca-assurances.com/ZBALKHITY/espace-client-angular.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

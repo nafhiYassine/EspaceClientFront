@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Souscripteur } from '../models/souscripteur';
+import { Souscripteur } from '../models/Souscripteur';
 import { Observable, catchError, map, tap } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { API_HOST } from '../commons/url.constants';
