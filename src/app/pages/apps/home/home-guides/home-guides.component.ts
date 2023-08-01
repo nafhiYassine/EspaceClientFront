@@ -82,6 +82,7 @@ export class HomeGuidesComponent implements OnInit {
     this.authObj.typeContrat=this.decodedToken.typcrm;
     this.authObj.username=this.decodedToken.iss;
 
+    console.log("Envir"+this.authObj.envir);
 
     console.log("helleoooo")
     this.dataService.findContrats(this.authObj).subscribe
@@ -89,8 +90,8 @@ export class HomeGuidesComponent implements OnInit {
       (data)=>{
         console.log("data",data)
 
-        this.data=data[0];
-        console.log('data:',JSON.stringify(data[0]));
+        this.data=data;
+        console.log('data:',data);
 
         console.log('this.contrat:',JSON.stringify(this.data));
       }
