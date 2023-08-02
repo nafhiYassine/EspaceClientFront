@@ -85,9 +85,9 @@
           </button> -->
 
           
-          <div *ngFor="let doc of documents">
+          <div *ngFor="let doc of documentsNor">
             
-              <button type="submit" (click)="downloadDocument(doc)" style="cursor: pointer;">
+              <button type="submit" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
                 <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
                 {{ doc.name }}
             </button> 

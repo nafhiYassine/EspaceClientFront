@@ -20,28 +20,33 @@ export class HomeComponent implements OnInit {
   mobileLinks: (Link & { icon: string })[] = [
     {
       label: 'Mon contrat',
-      route: 'pages/invoice',
+      route: 'mon-contrat',
       icon: 'mat:chrome_reader_mode'
     },
     {
       label: 'Ma carte de tiers payant',
-      route: 'w',
+      route: 'pricing',
       icon: 'mat:card_membership'
     },
     {
       label: 'Mes documents',
-      route: 'v',
+      route: 'guides',
       icon: 'mat:description'
     },
     {
       label: 'Mes remboursements',
-      route: 'z',
+      route: 'faq',
       icon: 'mat:undo'
     },
     {
       label: 'Mes prises en charge',
-      route: 's',
+      route: 'pec',
       icon: 'mat:euro_symbol'
+    },
+    {
+      label: 'Mes demandes et réclamations',
+      route: 's',
+      icon: 'mat:supervised_user_circle'
     }
   ];
 
@@ -70,6 +75,11 @@ export class HomeComponent implements OnInit {
       label: 'Mes prises en charge',
       route: 'pec',
       icon: 'mat:euro_symbol'
+    },
+    {
+      label: 'Mes demandes et réclamations',
+      route: 's',
+      icon: 'mat:supervised_user_circle'
     }
   ];
 

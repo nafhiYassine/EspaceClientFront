@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { API_HOST } from '../commons/url.constants';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { TokenStorageService } from '../token-storage-service';
 import { DocumentResponse } from '../models/DocumentsResponse';
@@ -16,9 +16,12 @@ export class DocumentsService {
   base64Document: string;
   constructor(private http: HttpClient ,private tokenStorageService: TokenStorageService) { }
 
-  getDocuments(): Observable<string[]> {
-    const headers = this.getHeaders();
-    return this.http.get<string[]>(this.apiUrl+'/documentTest', { headers });
+  getDocuments(param1: string, param2: string): Observable<DocumentResponse> {
+    // const headers = this.getHeaders();
+    const params = new HttpParams()
+      .set('param1', param1)
+      .set('param2', param2);
+      return this.http.get<DocumentResponse>(`${this.apiUrl}/documentTest2`, { params });
   }
   private getHeaders() {
     const token = this.tokenStorageService.getToken() // Retrieve the token from storage
@@ -28,6 +31,17 @@ export class DocumentsService {
     });
     return headers;
   }
+  // getData() {
+  //   const apiUrl = 'your_api_url_here';
+  
+  //   // Create an instance of HttpParams and add the parameters
+  //   const params = new HttpParams()
+  //     .set('param1', param1)
+  //     .set('param2', param2);
+  
+  //   // Make the GET request with the parameters
+  //   return this.http.get<string[]>(`${apiUrl}/documentTest`, { params });
+  // }
   // getDocumentsGenerique(): Observable<string[]> {
   //   const headers = this.getHeaders();
   //   return this.http.get<string[]>(this.apiUrl+'/Documentgeneriques', { headers });

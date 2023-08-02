@@ -1,54 +1,65 @@
 
 <div class="my-12 container grid grid-cols-1 sm:grid-cols-2 gap-6">
   <div class="card max-w-full overflow-hidden p-3">
-    <mat-nav-list>
+    <mat-nav-list >
         <div class="px-gutter py-4 border-b">
           <h2 class="title m-0">Mon contrat - Complémentaire santé</h2>
         </div>
-  
+
         <div class="px-gutter py-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="py-3 flex items-center">
             <div
                  class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
               <mat-icon class="icon-sm" svgIcon="mat:chrome_reader_mode"></mat-icon>
             </div>
-  
+
             <div >
-              <p class="m-0 body-1">CINDA2312113</p>
+              <p class="m-0 body-1">{{data.numeroContrat}}</p>
               <p class="m-0 caption text-hint">N contrat</p>
             </div>
           </div>
-  
+
           <div class="py-3 flex items-center">
             <div
                  class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
-              <mat-icon class="icon-sm" svgIcon="mat:hourglass_full"></mat-icon>
+              <mat-icon class="icon-sm" svgIcon="mat:date_range"></mat-icon>
             </div>
-  
+
             <div>
-              <p class="m-0 body-1">01/02/2023</p>
+              <p class="m-0 body-1">{{data.dateEffet}}</p>
               <p class="m-0 caption text-hint">Date début</p>
             </div>
           </div>
-  
+
+          <div class="py-3 flex items-center">
+            <div
+                 class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+              <mat-icon class="icon-sm" svgIcon="mat:date_range"></mat-icon>
+            </div>
+
+            <div>
+              <p class="m-0 body-1">{{data.dateFin}}</p>
+              <p class="m-0 caption text-hint">Date fin</p>
+            </div>
+          </div>
           <div class="py-3 flex items-center">
             <div
                  class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
               <mat-icon class="icon-sm" svgIcon="mat:hourglass_empty"></mat-icon>
             </div>
-  
+
             <div>
-              <p class="m-0 body-1">01/02/2024</p>
-              <p class="m-0 caption text-hint">Date fin</p>
+              <p class="m-0 body-1">{{data.statut}}</p>
+              <p class="m-0 caption text-hint">Statut</p>
             </div>
           </div>
-  
+
           <div class="py-3 flex items-center">
-            <div 
+            <div
                  class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
               <mat-icon class="icon-sm" svgIcon="mat:euro_symbol"></mat-icon>
             </div>
-  
+
             <div >
               <p class="m-0 body-1">112£</p>
               <p class="m-0 caption text-hint">Cotisation mensuelle</p>
@@ -60,13 +71,13 @@
                  class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
               <mat-icon class="icon-sm" svgIcon="mat:account_balance_wallet"></mat-icon>
             </div>
-  
+
             <div>
               <p class="m-0 body-1">-19£</p>
               <p class="m-0 caption text-hint">Solde</p>
             </div>
           </div>
-  
+
 
         </div>
     </mat-nav-list>
@@ -76,42 +87,42 @@
   <div class="card max-w-full overflow-hidden p-3">
     <mat-nav-list>
         <div class="px-gutter py-4 border-b">
-          <h2 class="title m-0">Assuré pricipal</h2>
+          <h2 class="title m-0">Souscripteur</h2>
         </div>
-  
+
         <div class="px-gutter py-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="py-3 flex items-center">
             <div
                  class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
               <mat-icon class="icon-sm" svgIcon="mat:account_circle"></mat-icon>
             </div>
-  
+
             <div>
-              <p class="m-0 body-1">Dubeau</p>
+              <p class="m-0 body-1">{{souscripteur.nom}}</p>
               <p class="m-0 caption text-hint">Nom</p>
             </div>
           </div>
-  
+
           <div class="py-3 flex items-center">
             <div
                  class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
               <mat-icon class="icon-sm" svgIcon="mat:account_circle"></mat-icon>
             </div>
-  
+
             <div>
-              <p class="m-0 body-1">Pauline</p>
+              <p class="m-0 body-1">{{souscripteur.prenom}}</p>
               <p class="m-0 caption text-hint">Prénom</p>
             </div>
           </div>
-  
+
           <div class="py-3 flex items-center">
             <div
                  class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
               <mat-icon class="icon-sm" svgIcon="mat:sentiment_satisfied"></mat-icon>
             </div>
-  
+
             <div>
-              <p class="m-0 body-1">177065918304410</p>
+              <p class="m-0 body-1">{{souscripteur.idfnss}}</p>
               <p class="m-0 caption text-hint">N Sécurité sociale</p>
             </div>
           </div>
@@ -121,13 +132,16 @@
                  class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
               <mat-icon class="icon-sm" svgIcon="mat:favorite_border"></mat-icon>
             </div>
-  
+
             <div>
               <p class="m-0 body-1">Maladie</p>
               <p class="m-0 caption text-hint">Régime sociale</p>
             </div>
           </div>
-  
+          <div>
+
+          </div>
+
 
         </div>
     </mat-nav-list>
@@ -156,16 +170,32 @@
 
   <div class="card max-w-full overflow-hidden p-3">
     <mat-nav-list>
-      <h3 mat-subheader>Les assurés</h3>
-      <a (click)="guide.onClick(guide)"
+      <div class="px-gutter py-4 border-b">
+        <h2 class="title m-0">Les assurés </h2>
+      </div>
+<!--       <a (click)="guide.onClick(guide)"
          *ngFor="let guide of firstSteps; trackBy: trackById"
          class="rounded overflow-hidden"
          mat-list-item>
         <mat-icon [svgIcon]="guide.icon" matListItemIcon></mat-icon>
-        <div matListItemTitle><div matListItemTitle></div>
+
+        <div matListItemTitle>  <div matListItemTitle></div>
       </div>
-      </a>
+      </a> -->
+
     </mat-nav-list>
+
+    <div class="px-gutter py-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="py-3 flex items-center">
+        <div
+             class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+          <mat-icon class="icon-sm" svgIcon="mat:account_circle"></mat-icon>
+        </div>
+
+        <div>
+          <p class="m-0 body-1">{{data.numeroContrat}}</p>
+          <p class="m-0 caption text-hint">Nom</p>
+        </div>
   </div>
 
 </div>

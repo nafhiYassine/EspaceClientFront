@@ -28,6 +28,7 @@ export class TokenStorageService {
     window.sessionStorage.setItem(TYPECRM, typcrm);
   }
 
+
   public getRole(){
        return jwt_decode(sessionStorage.getItem(TOKEN_KEY))['roles'][0];
 
@@ -61,6 +62,16 @@ export class TokenStorageService {
     } catch (error) {
       console.error('Error decoding JWT:', error);
     }
+  }
+  public getTycrm(){
+    return  jwt_decode(sessionStorage.getItem(TYPECRM));
+  }
+  public getIdfass(){
+    return  jwt_decode(sessionStorage.getItem(TYPECRM));
+  }
+  public getUserName():string{
+    return  jwt_decode(sessionStorage.getItem(AUTH_USER));
+
   }
 }
 
