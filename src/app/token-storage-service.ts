@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
+import { AuthObject } from './models/AuthObject';
 
 const TOKEN_KEY = 'JWTToken';
 const REFRESH_TOKEN = 'REFRESH_TOKEN';
@@ -11,7 +12,6 @@ const TYPECRM = 'TYPECRM';
 })
 export class TokenStorageService {
   userRole: any;
-
   constructor() { }
 //slidbar
   public saveToken(token: string, refreshToken: string, issuer: string, id: string, typcrm: string) {

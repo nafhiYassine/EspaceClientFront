@@ -5,6 +5,12 @@ import { fadeInUp400ms } from '../../../../../@vex/animations/fade-in-up.animati
 import { fadeInRight400ms } from '../../../../../@vex/animations/fade-in-right.animation';
 import { scaleIn400ms } from '../../../../../@vex/animations/scale-in.animation';
 import { stagger40ms } from '../../../../../@vex/animations/stagger.animation';
+import { DataService } from 'src/app/services/data.service';
+import { TokenStorageService } from 'src/app/token-storage-service';
+import jwt_decode from 'jwt-decode';
+import { Data } from '@angular/router';
+import { Souscripteur } from 'src/app/models/Souscripteur';
+import { AuthObject } from 'src/app/models/AuthObject';
 
 @Component({
   selector: 'vex-social-profile',
@@ -19,11 +25,41 @@ import { stagger40ms } from '../../../../../@vex/animations/stagger.animation';
 })
 export class SocialProfileComponent implements OnInit {
 
+  decodedToken: any = jwt_decode(this.tokenStorage.getToken());
+
+  data :Data={
+
+  };
+  
+  souscripteur:Souscripteur={
+     
+  };
+  authObj:AuthObject={
+
+  };
+
+
   suggestions = friendSuggestions;
 
-  constructor() { }
+  constructor(private dataService:DataService,private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
+
+    this.authObj.idfass=this.decodedToken.jti;
+    this.authObj.envir=this.decodedToken.aud;
+    this.authObj.compo=this.decodedToken.compo;
+    this.authObj.typeContrat=this.decodedToken.typcrm;
+    this.authObj.username=this.decodedToken.iss;
+
+    this.dataService.findData(this.authObj).subscribe
+    (
+      (data)=>{
+
+        this.data=data;
+      }
+    )
+
+
   }
 
   addFriend(friend: FriendSuggestion) {

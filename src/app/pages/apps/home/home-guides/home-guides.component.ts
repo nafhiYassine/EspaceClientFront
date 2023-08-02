@@ -3,13 +3,11 @@ import { trackById } from '../../../../../@vex/utils/track-by';
 import { MatDialog } from '@angular/material/dialog';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { LayoutService } from '../../../../../@vex/services/layout.service';
-import { Contrat } from 'src/app/models/contrat';
-import { ContratService } from 'src/app/services/contrat.service';
-import { Souscripteur } from 'src/app/models/souscripteur';
-import { SouscripteurService } from 'src/app/services/souscripteur.service';
-import { TokenStorageService } from 'src/app/token-storage-service';
+import {  DataService } from 'src/app/services/data.service';
+import { Data } from '@angular/router';
+import { AuthObject } from 'src/app/models/AuthObject';
 import jwt_decode from 'jwt-decode';
-
+import { TokenStorageService } from 'src/app/token-storage-service';
 
 export enum GuideCategory {
   firstSteps,
@@ -33,19 +31,15 @@ export interface Guide {
   styleUrls: ['./home-guides.component.scss']
 })
 export class HomeGuidesComponent implements OnInit {
-  username:string;
-  envir:string;
-  contrat :Contrat={
+  data :Data={
 
   };
-  souscripteur:Souscripteur={
-    nom: '',
-    prenom: '',
-    idfnss:''
-  };
-  authObj:AuthObj={
 
-  }
+
+  authObj:AuthObject={
+
+  };
+
   guides: Guide[] = [
 
     {
@@ -74,42 +68,29 @@ export class HomeGuidesComponent implements OnInit {
   isDesktop$  = this.layoutService.isDesktop$;
 
   constructor(
-    private dialog: MatDialog,private contratService:ContratService,private souscripteurService:SouscripteurService,private tokenStorage:TokenStorageService
-   , private layoutService: LayoutService) { }
+    private dialog: MatDialog,private dataService:DataService,private tokenStorage:TokenStorageService,
+    private layoutService: LayoutService) { }
   ngOnInit() {
-    const decodedToken: any = jwt_decode(this.tokenStorage.getToken());
- console.log(decodedToken.iss);
- this.username=decodedToken.iss;
- this.envir=decodedToken.aud;
-  console.log(this.username +"   "+this.envir)
+    const jwt : string = sessionStorage.getItem("JWTToken")
+    const decodedToken: any = jwt_decode(jwt);
+    this.authObj.idfass=decodedToken.jti;
+    this.authObj.envir=decodedToken.aud;
+    this.authObj.compo=decodedToken.compo;
+    this.authObj.typeContrat=decodedToken.typcrm;
+    this.authObj.username=decodedToken.iss;
+
+    console.log("Envir : "+this.authObj);
 
     console.log("helleoooo")
-
-    this.souscripteurService.findSouscripteur(this.username,this.envir).subscribe (
-      (data)=>{
-        console.log("data",data)
-        console.log("getToken()",this.tokenStorage.getToken())
-        this.souscripteur=data;
-        console.log('this.souscripteur:',JSON.stringify(this.souscripteur));
-      }
-    )
-    this.authObj.idfass=decodedToken.jti
-    this.authObj.envir=decodedToken.aud
-    this.authObj.compo=decodedToken.compo
-    this.authObj.typeContrat=decodedToken.typcrm;
-    this.authObj.username=decodedToken.iss
-
-    this.contratService.findContrats(this.authObj).subscribe
+    this.dataService.findData(this.authObj).subscribe
     (
       (data)=>{
+        console.log("data Get :",data)
 
-        this.contrat=data[0];
-        console.log('data data:',JSON.stringify(this.authObj));
-
-        console.log('this.contrat:',JSON.stringify(this.contrat));
+        this.data=data;
+        console.log('this.data:',JSON.stringify(this.data));
       }
     )
-
   }
 decodeToken (){
   return jwt_decode(this.tokenStorage.getToken())

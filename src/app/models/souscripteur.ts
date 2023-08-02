@@ -1,5 +1,13 @@
 export class Souscripteur {
-  nom:string;
-  prenom:string;
-  idfnss:string;
+  id?:number;
+  idpolice?:number;
+  nom?:String;
+  prenom?:String;
+  idfnss?:String;
+  username?:String;
+  envir?:String;
+  compo?:String;
+  numeroTel?:String;
+  dateNaissance?:String;
+  adressePostale?:String;
 }
