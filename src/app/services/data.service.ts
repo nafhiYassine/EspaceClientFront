@@ -12,20 +12,19 @@ import { AuthObject } from '../models/AuthObject';
 export class DataService {
 data:Data=null;
   constructor(private httpClient:HttpClient) { }
-  private tenantId = 'COVERTY'; // Replace this with your actual tenant ID
 
   public findContrats(authObj:AuthObject):Observable<Data> {
 
      let httpH = new HttpHeaders();
+     console.log("before we append : " + authObj.envir)
      httpH.append("X-TENANTID",authObj.envir);
 
+		const headers = new HttpHeaders().set('X-TenantID', authObj.envir);
     /*queryParams = queryParams.append("idfass",idfass);
     queryParams = queryParams.append("envir",envir);*/
 //,{params:queryParams}
 
-     const headers = this.getHeaders();
-
-    return this.httpClient.post(API_HOST + '/api/data',authObj,{ headers }).pipe(tap((response: Data) => {
+    return this.httpClient.post(API_HOST + '/api/data',authObj,{ headers, observe: 'response' }).pipe(tap((response: Data) => {
       console.log(API_HOST + '/api/data')
 			// Handle the retrieved string data
 			this.data = response;
@@ -38,25 +37,4 @@ data:Data=null;
 		);;
 
   }
-
-  private getHeaders(): HttpHeaders {
-    // Set the custom header using HttpHeaders
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'X-TENANTID': this.tenantId
-    });
-
-  // getSomeData() {
-  //   const url = `${this.baseUrl}/some-endpoint`;
-  //   const headers = this.getHeaders();
-
-  //   return this.http.get(url, { headers });
-  // }
-  // postData(data: any) {
-  //   const url = `${this.baseUrl}/some-endpoint`;
-  //   const headers = this.getHeaders();
-
-  //   return this.http.post(url, data, { headers });
-  // }
-}
 }
