@@ -652,7 +652,7 @@ export class AppComponent {
           },
         ]
       }
-      
+
     ];
   }
 }
