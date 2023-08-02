@@ -4,8 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { LayoutService } from '../../../../../@vex/services/layout.service';
 import {  DataService } from 'src/app/services/data.service';
-import { Souscripteur } from 'src/app/models/Souscripteur';
-import { SouscripteurService } from 'src/app/services/souscripteur.service';
 import { Data } from '@angular/router';
 import { AuthObject } from 'src/app/models/AuthObject';
 import jwt_decode from 'jwt-decode';
@@ -33,14 +31,11 @@ export interface Guide {
   styleUrls: ['./home-guides.component.scss']
 })
 export class HomeGuidesComponent implements OnInit {
-  decodedToken: any = jwt_decode(this.tokenStorage.getToken());
   data :Data={
 
   };
   
-  souscripteur:Souscripteur={
-     
-  };
+
   authObj:AuthObject={
 
   };
@@ -73,17 +68,18 @@ export class HomeGuidesComponent implements OnInit {
   isDesktop$  = this.layoutService.isDesktop$;
 
   constructor(
-    private dialog: MatDialog,private dataService:DataService,private souscripteurService:SouscripteurService,private tokenStorage:TokenStorageService, 
+    private dialog: MatDialog,private dataService:DataService,private tokenStorage:TokenStorageService, 
     private layoutService: LayoutService) { }
   ngOnInit() {
+    const jwt : string = sessionStorage.getItem("JWTToken")
+    const decodedToken: any = jwt_decode(jwt);
+    this.authObj.idfass=decodedToken.jti;
+    this.authObj.envir=decodedToken.aud;
+    this.authObj.compo=decodedToken.compo;
+    this.authObj.typeContrat=decodedToken.typcrm;
+    this.authObj.username=decodedToken.iss;
 
-    this.authObj.idfass=this.decodedToken.jti;
-    this.authObj.envir=this.decodedToken.aud;
-    this.authObj.compo=this.decodedToken.compo;
-    this.authObj.typeContrat=this.decodedToken.typcrm;
-    this.authObj.username=this.decodedToken.iss;
-
-    console.log("Envir"+this.authObj.envir);
+    console.log("Envir : "+this.authObj);
 
     console.log("helleoooo")
     this.dataService.findData(this.authObj).subscribe
@@ -95,14 +91,6 @@ export class HomeGuidesComponent implements OnInit {
         console.log('this.data:',JSON.stringify(this.data));
       }
     )
-/*     this.souscripteurService.findSouscripteur("roumiguieres@orange.fr","COVERTY").subscribe (
-      (data)=>{
-        console.log("data",data)
-        this.souscripteur=data;
-        console.log('this.souscripteur:',JSON.stringify(this.souscripteur));
-      }
-    ) */
-
   }
 
   openDialog(guide: Guide) {
