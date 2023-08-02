@@ -37,6 +37,7 @@ export class HomeGuidesComponent implements OnInit {
   data :Data={
 
   };
+  
   souscripteur:Souscripteur={
      
   };
@@ -85,24 +86,22 @@ export class HomeGuidesComponent implements OnInit {
     console.log("Envir"+this.authObj.envir);
 
     console.log("helleoooo")
-    this.dataService.findContrats(this.authObj).subscribe
+    this.dataService.findData(this.authObj).subscribe
     (
       (data)=>{
-        console.log("data",data)
+        console.log("data Get :",data)
 
         this.data=data;
-        console.log('data:',data);
-
-        console.log('this.contrat:',JSON.stringify(this.data));
+        console.log('this.data:',JSON.stringify(this.data));
       }
     )
-    this.souscripteurService.findSouscripteur("roumiguieres@orange.fr","COVERTY").subscribe (
+/*     this.souscripteurService.findSouscripteur("roumiguieres@orange.fr","COVERTY").subscribe (
       (data)=>{
         console.log("data",data)
         this.souscripteur=data;
         console.log('this.souscripteur:',JSON.stringify(this.souscripteur));
       }
-    )
+    ) */
 
   }
 

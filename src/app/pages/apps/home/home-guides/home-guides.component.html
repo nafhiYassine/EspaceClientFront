@@ -98,7 +98,7 @@
             </div>
 
             <div>
-              <p class="m-0 body-1">{{souscripteur.nom}}</p>
+              <p class="m-0 body-1">{{data.souscripteur.nom}}</p>
               <p class="m-0 caption text-hint">Nom</p>
             </div>
           </div>
@@ -110,7 +110,7 @@
             </div>
 
             <div>
-              <p class="m-0 body-1">{{souscripteur.prenom}}</p>
+              <p class="m-0 body-1">{{data.souscripteur.prenom}}</p>
               <p class="m-0 caption text-hint">Prénom</p>
             </div>
           </div>
@@ -122,7 +122,7 @@
             </div>
 
             <div>
-              <p class="m-0 body-1">{{souscripteur.idfnss}}</p>
+              <p class="m-0 body-1">{{data.souscripteur.idfnss}}</p>
               <p class="m-0 caption text-hint">N Sécurité sociale</p>
             </div>
           </div>
@@ -173,7 +173,7 @@
       <div class="px-gutter py-4 border-b">
         <h2 class="title m-0">Les assurés </h2>
       </div>
-<!--       <a (click)="guide.onClick(guide)"
+      <a (click)="guide.onClick(guide)"
          *ngFor="let guide of firstSteps; trackBy: trackById"
          class="rounded overflow-hidden"
          mat-list-item>
@@ -181,7 +181,7 @@
 
         <div matListItemTitle>  <div matListItemTitle></div>
       </div>
-      </a> -->
+      </a>
 
     </mat-nav-list>
 
@@ -193,7 +193,7 @@
         </div>
 
         <div>
-          <p class="m-0 body-1">{{data.numeroContrat}}</p>
+          <p class="m-0 body-1">{{data.souscripteur.nom}}</p>
           <p class="m-0 caption text-hint">Nom</p>
         </div>
   </div>

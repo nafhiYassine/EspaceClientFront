@@ -13,20 +13,20 @@
           </div>
 
           <div @fadeInRight>
-            <p class="m-0 body-1">+1 (930) 502</p>
-            <p class="m-0 caption text-hint">Business</p>
+            <p class="m-0 body-1">{{data.souscripteur.numeroTel}}</p>
+            <p class="m-0 caption text-hint">Numéro de téléphone</p>
           </div>
         </div>
 
         <div class="py-3 flex items-center">
           <div @scaleIn
                class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
-            <mat-icon class="icon-sm" svgIcon="mat:work"></mat-icon>
+            <mat-icon class="icon-sm" svgIcon="mat:date_range"></mat-icon>
           </div>
 
           <div @fadeInRight>
-            <p class="m-0 body-1">Web Developer at IceCube</p>
-            <p class="m-0 caption text-hint">Previously Designer at HotStuff</p>
+            <p class="m-0 body-1">{{data.souscripteur.dateNaissance}}</p>
+            <p class="m-0 caption text-hint">Date de naissance</p>
           </div>
         </div>
 
@@ -37,20 +37,20 @@
           </div>
 
           <div @fadeInRight>
-            <p class="m-0 body-1">david.smith@example.com</p>
-            <p class="m-0 caption text-hint">Business inquiries only</p>
+            <p class="m-0 body-1">{{data.souscripteur.username}}</p>
+            <p class="m-0 caption text-hint">Adresse mail</p>
           </div>
         </div>
 
         <div class="py-3 flex items-center">
           <div @scaleIn
                class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
-            <mat-icon class="icon-sm" svgIcon="mat:access_time"></mat-icon>
+            <mat-icon class="icon-sm" svgIcon="mat:location_on"></mat-icon>
           </div>
 
           <div @fadeInRight>
-            <p class="m-0 body-1">Usually available 9am-5pm</p>
-            <p class="m-0 caption text-hint">Call +1 (930) 242-5186 for important things</p>
+            <p class="m-0 body-1">{{data.souscripteur.adressPostale}}</p>
+            <p class="m-0 caption text-hint">Adresse postale</p>
           </div>
         </div>
 
