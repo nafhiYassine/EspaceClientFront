@@ -4,11 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { LayoutService } from '../../../../../@vex/services/layout.service';
 import {  DataService } from 'src/app/services/data.service';
-import { Souscripteur } from 'src/app/models/Souscripteur';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthObject } from 'src/app/models/AuthObject';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from 'src/app/token-storage-service';
+import { Data } from '../../../../models/Data';
+
 
 export enum GuideCategory {
   firstSteps,
@@ -34,10 +35,6 @@ export interface Guide {
 export class HomeGuidesComponent implements OnInit {
   decodedToken: any = jwt_decode(this.tokenStorage.getToken());
   data :Data;
-  
-  souscripteur:Souscripteur={
-     
-  };
   authObj:AuthObject={
 
   };
@@ -85,8 +82,8 @@ export class HomeGuidesComponent implements OnInit {
     this.authObj.typeContrat = this.decodedToken.typcrm;
     this.authObj.username = this.decodedToken.iss;
     this.dataService.findData(this.authObj).subscribe(
-      (data) => {
-        console.log("data Get :", data);
+      (data : Data) => {
+        console.log("ARRAY:", data.listeContrats);
 
         this.data = data;
       }

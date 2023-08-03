@@ -9,7 +9,6 @@ import { DataService } from 'src/app/services/data.service';
 import { TokenStorageService } from 'src/app/token-storage-service';
 import jwt_decode from 'jwt-decode';
 import { Data } from '@angular/router';
-import { Souscripteur } from 'src/app/models/Souscripteur';
 import { AuthObject } from 'src/app/models/AuthObject';
 
 @Component({
@@ -31,9 +30,6 @@ export class SocialProfileComponent implements OnInit {
 
   };
   
-  souscripteur:Souscripteur={
-     
-  };
   authObj:AuthObject={
 
   };
