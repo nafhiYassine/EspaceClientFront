@@ -100,10 +100,6 @@ const routes: VexRoutes = [
             loadChildren: () => import('./pages/pages/faq/faq.module').then(m => m.FaqModule)
           },
           {
-            path: 'guides',
-            loadChildren: () => import('./pages/pages/guides/guides.module').then(m => m.GuidesModule)
-          },
-          {
             path: 'invoice',
             loadChildren: () => import('./pages/pages/invoice/invoice.module').then(m => m.InvoiceModule)
           },

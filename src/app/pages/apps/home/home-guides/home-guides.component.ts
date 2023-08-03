@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { LayoutService } from '../../../../../@vex/services/layout.service';
 import {  DataService } from 'src/app/services/data.service';
-import { SouscripteurService } from 'src/app/services/souscripteur.service';
 import { Data } from '@angular/router';
 import { AuthObject } from 'src/app/models/AuthObject';
 import jwt_decode from 'jwt-decode';
@@ -33,14 +32,11 @@ export interface Guide {
   styleUrls: ['./home-guides.component.scss']
 })
 export class HomeGuidesComponent implements OnInit {
-  decodedToken: any = jwt_decode(this.tokenStorage.getToken());
   data :Data={
 
   };
+  
 
-  souscripteur:Souscripteur={
-
-  };
   authObj:AuthObject={
 
   };
@@ -73,47 +69,29 @@ export class HomeGuidesComponent implements OnInit {
   isDesktop$  = this.layoutService.isDesktop$;
 
   constructor(
-    private dialog: MatDialog,private dataService:DataService,private souscripteurService:SouscripteurService,private tokenStorage:TokenStorageService,
+    private dialog: MatDialog,private dataService:DataService,private tokenStorage:TokenStorageService, 
     private layoutService: LayoutService) { }
   ngOnInit() {
-    const decodedToken: any = jwt_decode(this.tokenStorage.getToken());
- console.log(decodedToken.iss);
- /*this.username=decodedToken.iss;
- this.envir=decodedToken.aud;*/
-
-    this.authObj.idfass=this.decodedToken.jti;
-    this.authObj.envir=this.decodedToken.aud;
-    this.authObj.compo=this.decodedToken.compo;
-    this.authObj.typeContrat=this.decodedToken.typcrm;
-    this.authObj.username=this.decodedToken.iss;
-
-    console.log("Envir"+this.authObj.envir);
-
-    this.souscripteurService.findSouscripteur("roumiguieres@orange.fr","COVERTY").subscribe (
-      (data)=>{
-        console.log("data",data)
-        this.souscripteur=data;
-        console.log('this.souscripteur:',JSON.stringify(this.souscripteur));
-      }
-    );
-
-    this.authObj.idfass=decodedToken.jti
-    this.authObj.envir=decodedToken.aud
-    this.authObj.compo=decodedToken.compo
+    const jwt : string = sessionStorage.getItem("JWTToken")
+    const decodedToken: any = jwt_decode(jwt);
+    this.authObj.idfass=decodedToken.jti;
+    this.authObj.envir=decodedToken.aud;
+    this.authObj.compo=decodedToken.compo;
     this.authObj.typeContrat=decodedToken.typcrm;
-    this.authObj.username=decodedToken.iss
+    this.authObj.username=decodedToken.iss;
 
-   /* this.dataService.findContrats(this.authObj).subscribe
+    console.log("Envir : "+this.authObj);
+
+    console.log("helleoooo")
+    this.dataService.findData(this.authObj).subscribe
     (
       (data)=>{
+        console.log("data Get :",data)
 
-        this.data=data[0];
-        console.log('data data:',JSON.stringify(this.authObj));
-
-        console.log('this.contrat:',JSON.stringify(this.data));
+        this.data=data;
+        console.log('this.data:',JSON.stringify(this.data));
       }
-    )*/
-
+    )
   }
 
   openDialog(guide: Guide) {

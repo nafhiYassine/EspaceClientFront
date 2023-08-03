@@ -47,3 +47,7 @@ blockquote {
     margin: 0;
   }
 }
+
+.mat-expansion-indicator::after{
+  border-color: var(--color-primary-rgb);
+} 

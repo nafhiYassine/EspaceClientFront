@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
+import { AuthObject } from './models/AuthObject';
 
 const TOKEN_KEY = 'JWTToken';
 const REFRESH_TOKEN = 'REFRESH_TOKEN';
@@ -11,7 +12,6 @@ const TYPECRM = 'TYPECRM';
 })
 export class TokenStorageService {
   userRole: any;
-
   constructor() { }
 //slidbar
   public saveToken(token: string, refreshToken: string, issuer: string, id: string, typcrm: string) {
@@ -59,6 +59,27 @@ export class TokenStorageService {
       console.log('Decoded Token: ', decodedToken);
       console.log('Issuer: ', decodedToken.iss);
       console.log('Issuer 2: ', issuer);
+    } catch (error) {
+      console.error('Error decoding JWT:', error);
+    }
+  }
+  public tokenToAuthObj(): AuthObject {
+    try {
+      const token : string = this.getToken()
+      const decodedToken: any = jwt_decode(token);
+      const username : string = decodedToken.iss;
+      const idfass : string = decodedToken.jti;
+      const typecrm : string = decodedToken.typcrm;
+      const envir : string = decodedToken.aud;
+      const compo : string = decodedToken.compo;
+      const authObj: AuthObject = new AuthObject;
+      authObj.username = username;
+      authObj.compo = compo;
+      authObj.idfass = idfass;
+      authObj.typeContrat = typecrm;
+      authObj.envir = envir;
+      console.log(authObj)
+      return authObj;
     } catch (error) {
       console.error('Error decoding JWT:', error);
     }
