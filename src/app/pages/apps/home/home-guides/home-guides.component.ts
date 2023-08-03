@@ -78,17 +78,11 @@ export class HomeGuidesComponent implements OnInit {
     this.authObj.compo=decodedToken.compo;
     this.authObj.typeContrat=decodedToken.typcrm;
     this.authObj.username=decodedToken.iss;
-
-    console.log("Envir : "+this.authObj);
-
-    console.log("helleoooo")
+    console.log("Envir : "+this.authObj.envir);
     this.dataService.findData(this.authObj).subscribe
     (
       (data)=>{
-        console.log("data Get :",data)
-
         this.data=data;
-        console.log('this.data:',JSON.stringify(this.data));
       }
     )
   }
