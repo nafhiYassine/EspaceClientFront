@@ -6,12 +6,14 @@ import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { LoginComponent } from './pages/pages/auth/login/login.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { LoginModule } from './pages/pages/auth/login/login.module';
+import { DocumentMobileComponent } from './pages/apps/home/document-mobile/document-mobile.component';
 
 const routes: VexRoutes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/pages/auth/login/login.module').then(m => m.LoginModule),
   },
+  
   {
     path: 'register',
     loadChildren: () => import('./pages/pages/auth/register/register.module').then(m => m.RegisterModule),
@@ -32,6 +34,10 @@ const routes: VexRoutes = [
         path: 'dashboards/analytics',
         redirectTo: '/',
         pathMatch: 'full'
+      },
+      {
+        path:'documents-Mobile',
+        component :DocumentMobileComponent
       },
       {
         path: '',

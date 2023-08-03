@@ -8,7 +8,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HomeModule } from '../home.module';
 import { ContratsComponent } from './contrats/contrats.component';
 
 

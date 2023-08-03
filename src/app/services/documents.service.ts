@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { API_HOST } from '../commons/url.constants';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { TokenStorageService } from '../token-storage-service';
 import { DocumentResponse } from '../models/DocumentsResponse';
+import { catchError, throwError } from 'rxjs';
 
 
 
@@ -46,6 +47,39 @@ export class DocumentsService {
   //   const headers = this.getHeaders();
   //   return this.http.get<string[]>(this.apiUrl+'/Documentgeneriques', { headers });
   // }
+  EcheancierDoc(idfpol: string, IDfass: string, envir: any): Observable<string> {
+    const params = new HttpParams()
+      .set('idfpol', idfpol)
+      .set('IDfass', IDfass)
+      .set('envir', envir);
+  
+    return this.http.get<string>(`${this.apiUrl}/echeancier`, { params })
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching documents:', error);
+          throw error; // Rethrow the error to the subscriber
+        })
+      );
+  }
+  public getEcheancierDoc(idfpol: string, idfass: string, envir: string): Observable<string[]> {
+    const params = new HttpParams()
+      .set('idfpol', idfpol)
+      .set('IDfass', idfass)
+      .set('envir', envir);
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.get<string[]>(`${this.apiUrl}/echeancier`, { params, headers })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.error('Error fetching documents:', error);
+    return throwError('Something went wrong; please try again later.');
+  }
+
   getDocumentsGenerique(): Observable<DocumentResponse> {
     const headers = this.getHeaders();
     return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`, { headers });

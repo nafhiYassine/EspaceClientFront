@@ -6,9 +6,14 @@ import { VexRoutes } from '../../../../@vex/interfaces/vex-route.interface';
 
 
 const routes: VexRoutes = [
+ 
   {
+   
+    
     path: '',
     component: HomeComponent,
+    
+    
     data: {
       toolbarShadowEnabled: true
     },
@@ -35,9 +40,15 @@ const routes: VexRoutes = [
         loadChildren: () => import('./home-getting-started/home-getting-started.module').then(m => m.HomeGettingStartedModule)
       },
       {
+        path: 'doc',
+        loadChildren: () => import('./home-getting-started/home-getting-started.module').then(m => m.HomeGettingStartedModule)
+      },
+      {
         path: 'pec',
         loadChildren: () => import('./home-empty/home-empty.module').then(m => m.HomeEmptyModule)
       }
+    
+     
     ]
   }
 ];
