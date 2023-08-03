@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule,NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { HomeGuidesRoutingModule } from './home-guides-routing.module';
 import { HomeGuidesComponent } from './home-guides.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,7 +20,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatIconModule,
     MatProgressSpinnerModule,
     MatDialogModule
-  ]
+  ],
+  schemas: [NO_ERRORS_SCHEMA]
+
 })
 export class HomeGuidesModule {
 }

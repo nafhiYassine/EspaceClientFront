@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 
+
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { PageLayoutModule } from '../../../../@vex/components/page-layout/page-layout.module';
@@ -16,6 +17,7 @@ import { ComponentsModule } from '../../ui/components/components.module';
 import { ComponentsOverviewProgressSpinnerModule } from '../../ui/components/components-overview/components/components-overview-progress-spinner/components-overview-progress-spinner.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HighlightModule } from 'src/@vex/components/highlight/highlight.module';
+
 
 @NgModule({
   declarations: [HomeComponent,DocumentMobileComponent],
@@ -35,6 +37,7 @@ import { HighlightModule } from 'src/@vex/components/highlight/highlight.module'
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/documents-Mobile' }, // Set the base URL here
+    MatIconModule
   ],
 })
 export class HomeModule {
