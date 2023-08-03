@@ -4,7 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { LayoutService } from '../../../../../@vex/services/layout.service';
 import {  DataService } from 'src/app/services/data.service';
-import { Data } from '@angular/router';
+import { Souscripteur } from 'src/app/models/Souscripteur';
+import { ActivatedRoute, Data } from '@angular/router';
 import { AuthObject } from 'src/app/models/AuthObject';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from 'src/app/token-storage-service';
@@ -32,11 +33,12 @@ export interface Guide {
   styleUrls: ['./home-guides.component.scss']
 })
 export class HomeGuidesComponent implements OnInit {
-  data :Data={
-
-  };
+  decodedToken: any = jwt_decode(this.tokenStorage.getToken());
+  data :Data;
   
-
+  souscripteur:Souscripteur={
+     
+  };
   authObj:AuthObject={
 
   };
@@ -70,28 +72,26 @@ export class HomeGuidesComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,private dataService:DataService,private tokenStorage:TokenStorageService, 
-    private layoutService: LayoutService) { }
+    private layoutService: LayoutService,private route: ActivatedRoute) { }
+
+
   ngOnInit() {
-    const jwt : string = sessionStorage.getItem("JWTToken")
-    const decodedToken: any = jwt_decode(jwt);
-    this.authObj.idfass=decodedToken.jti;
-    this.authObj.envir=decodedToken.aud;
-    this.authObj.compo=decodedToken.compo;
-    this.authObj.typeContrat=decodedToken.typcrm;
-    this.authObj.username=decodedToken.iss;
+    this.initializeData();
+  }
 
-    console.log("Envir : "+this.authObj);
+  private initializeData() {
+    this.authObj.idfass = this.decodedToken.jti;
+    this.authObj.envir = this.decodedToken.aud;
+    this.authObj.compo = this.decodedToken.compo;
+    this.authObj.typeContrat = this.decodedToken.typcrm;
+    this.authObj.username = this.decodedToken.iss;
+    this.dataService.findData(this.authObj).subscribe(
+      (data) => {
+        console.log("data Get :", data);
 
-    console.log("helleoooo")
-    this.dataService.findData(this.authObj).subscribe
-    (
-      (data)=>{
-        console.log("data Get :",data)
-
-        this.data=data;
-        console.log('this.data:',JSON.stringify(this.data));
+        this.data = data;
       }
-    )
+    );
   }
 
   openDialog(guide: Guide) {

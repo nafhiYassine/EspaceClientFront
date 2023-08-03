@@ -8,19 +8,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ContratsComponent } from './contrats/contrats.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
-  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent,ContratsComponent],
+  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent],
   imports: [
     CommonModule,
     HomeGuidesRoutingModule,
-
-
     MatButtonModule,
     MatListModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     MatDialogModule
   ]
 })
