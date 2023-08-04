@@ -8,9 +8,6 @@ import { User } from '../../../../../app/models/User';
 import { AuthService } from '../../../../../app/services/Auth.service'
 import { TokenStorageService } from '../../../../../app/token-storage-service'
 import jwt_decode from "jwt-decode";
-import { ContratService } from 'src/app/services/contrat.service';
-import { Contrat } from 'src/app/models/contrat';
-import { AuthObj } from 'src/app/models/auth-obj';
 
 @Component({
   selector: 'vex-login',
@@ -33,9 +30,7 @@ export class LoginComponent implements OnInit {
   issuer: string;
   id: string;
   compo: string;
-  contrat :Contrat={
 
-  };
   /*authObj:AuthObj={
 
   }*/
@@ -47,7 +42,7 @@ export class LoginComponent implements OnInit {
     private cd: ChangeDetectorRef,
     private tokenStorage: TokenStorageService,
     private userServices: UserService,
-    private snackbar: MatSnackBar,private contratService:ContratService
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
