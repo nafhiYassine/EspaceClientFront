@@ -13,9 +13,7 @@ import { Data } from '../../../../models/Data';
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 import { SECRET_KEY } from '../../../../commons/url.constants';
-
-
-
+import { IContrat } from 'src/app/models/IContrat';
 
 export enum GuideCategory {
   firstSteps,
@@ -38,10 +36,13 @@ export interface Guide {
   templateUrl: './home-guides.component.html',
   styleUrls: ['./home-guides.component.scss']
 })
+
 export class HomeGuidesComponent implements OnInit {
   decodedToken: any = jwt_decode(this.tokenStorage.getToken());
-  data: Data;
+  data: Data = new Data;
   authObj: AuthObject = new AuthObject;
+  dataSource:IContrat[]=[];
+
   guides: Guide[] = [
 
     {
@@ -68,18 +69,20 @@ export class HomeGuidesComponent implements OnInit {
   firstSteps = this.guides.filter(guide => guide.category === GuideCategory.firstSteps);
   trackById = trackById;
   isDesktop$ = this.layoutService.isDesktop$;
-  data$: Observable<string>;
-
 
   constructor(
     private dialog: MatDialog, private dataService: DataService, private tokenStorage: TokenStorageService,
     private layoutService: LayoutService, private route: ActivatedRoute) { }
 
-
   ngOnInit() {
     this.retrieveData();
   }
   private retrieveData() {
+    this.authObj.idfass = this.decodedToken.jti;
+    this.authObj.envir = this.decodedToken.aud;
+    this.authObj.compo = this.decodedToken.compo;
+    this.authObj.typeContrat = this.decodedToken.typcrm;
+    this.authObj.username = this.decodedToken.iss;
     if (localStorage.getItem('data')) {
       const serializedData: string = localStorage.getItem('data');
       const decryptedBytes = CryptoJS.AES.decrypt(serializedData, SECRET_KEY);
@@ -87,30 +90,21 @@ export class HomeGuidesComponent implements OnInit {
       this.data = JSON.parse(decryptedDataString);
     }
     else {
-      console.log('I SUMMON THE ELSE');
       this.initializeData();
     }
   }
 
   private initializeData() {
-    this.authObj.idfass = this.decodedToken.jti;
-    this.authObj.envir = this.decodedToken.aud;
-    this.authObj.compo = this.decodedToken.compo;
-    this.authObj.typeContrat = this.decodedToken.typcrm;
-    this.authObj.username = this.decodedToken.iss;
+
     this.dataService.findData(this.authObj).subscribe(
       (data: Data) => {
         this.data = data;
         const encryptedData : string = CryptoJS.AES.encrypt(JSON.stringify(this.data), SECRET_KEY).toString()
         localStorage.setItem('data',encryptedData)
-
       }
     );
 
   }
-decodeToken (){
-  return jwt_decode(this.tokenStorage.getToken())
-}
   openDialog(guide: Guide) {
     this.dialog.open(HomeGuidesGuideComponent, {
       data: guide,

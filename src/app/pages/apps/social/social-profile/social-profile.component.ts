@@ -29,7 +29,7 @@ export class SocialProfileComponent implements OnInit {
   data :Data={
 
   };
-  
+
   authObj:AuthObject={
 
   };

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { API_HOST } from '../commons/url.constants';
-import { Observable, catchError, tap } from 'rxjs';
+import { Observable, catchError, map, tap } from 'rxjs';
 import { AuthObject } from '../models/AuthObject';
 import { Data } from '../models/Data';
 
@@ -19,7 +19,7 @@ export class DataService {
     const headers = this.getHeaders();
     return this.httpClient.post(API_HOST + '/api/data', authObj, { headers }).pipe(tap((response: Data) => {
       console.log(API_HOST + '/api/data')
-      this.data = response;      
+      this.data = response;
     }),
       catchError((error: any) => {
         throw error;
