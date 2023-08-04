@@ -3,12 +3,17 @@ import { trackById } from '../../../../../@vex/utils/track-by';
 import { MatDialog } from '@angular/material/dialog';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { LayoutService } from '../../../../../@vex/services/layout.service';
-import {  DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthObject } from 'src/app/models/AuthObject';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from 'src/app/token-storage-service';
 import { Data } from '../../../../models/Data';
+import { Observable } from 'rxjs';
+import * as CryptoJS from 'crypto-js';
+import { SECRET_KEY } from '../../../../commons/url.constants';
+
+
 
 
 export enum GuideCategory {
@@ -34,11 +39,8 @@ export interface Guide {
 })
 export class HomeGuidesComponent implements OnInit {
   decodedToken: any = jwt_decode(this.tokenStorage.getToken());
-  data :Data;
-  authObj:AuthObject={
-
-  };
-
+  data: Data;
+  authObj: AuthObject = new AuthObject;
   guides: Guide[] = [
 
     {
@@ -64,17 +66,32 @@ export class HomeGuidesComponent implements OnInit {
   billing = this.guides.filter(guide => guide.category === GuideCategory.billing);
   firstSteps = this.guides.filter(guide => guide.category === GuideCategory.firstSteps);
   trackById = trackById;
-  isDesktop$  = this.layoutService.isDesktop$;
+  isDesktop$ = this.layoutService.isDesktop$;
+  data$: Observable<string>;
+
 
   constructor(
-    private dialog: MatDialog,private dataService:DataService,private tokenStorage:TokenStorageService, 
-    private layoutService: LayoutService,private route: ActivatedRoute) { }
+    private dialog: MatDialog, private dataService: DataService, private tokenStorage: TokenStorageService,
+    private layoutService: LayoutService, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
-    this.initializeData();
-  }
 
+    if (localStorage.getItem('data')) {
+      const serializedData: string = localStorage.getItem('data')
+      const deserializedState: Data = serializedData ? JSON.parse(atob(serializedData)) : undefined;
+      this.data = deserializedState;
+      const encryptedData : string = CryptoJS.AES.encrypt(JSON.stringify(this.data), SECRET_KEY).toString()
+      console.log("encryptedData : " + encryptedData)
+      const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY);
+      const decryptedDataString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+      console.log("decryptedDataString : " + decryptedDataString)
+    }
+    else {
+      console.log('I SUMMON THE ELSE')
+      this.initializeData()
+    }
+  }
   private initializeData() {
     this.authObj.idfass = this.decodedToken.jti;
     this.authObj.envir = this.decodedToken.aud;
@@ -82,9 +99,7 @@ export class HomeGuidesComponent implements OnInit {
     this.authObj.typeContrat = this.decodedToken.typcrm;
     this.authObj.username = this.decodedToken.iss;
     this.dataService.findData(this.authObj).subscribe(
-      (data : Data) => {
-        console.log("ARRAY:", data.listeContrats);
-
+      (data: Data) => {
         this.data = data;
       }
     );

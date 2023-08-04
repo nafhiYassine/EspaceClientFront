@@ -20,6 +20,9 @@ export class DataService {
     return this.httpClient.post(API_HOST + '/api/data', authObj, { headers }).pipe(tap((response: Data) => {
       console.log(API_HOST + '/api/data')
       this.data = response;
+      console.log(this.data)
+      localStorage.setItem('data',btoa(JSON.stringify(this.data)))
+      console.log(btoa(JSON.stringify(this.data)))
     }),
       catchError((error: any) => {
         throw error;
