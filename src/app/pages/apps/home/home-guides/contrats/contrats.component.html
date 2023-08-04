@@ -1,0 +1,184 @@
+{{authObj.typeContrat}}
+<div *ngIf="authObj.typeContrat!='A'">
+  <div class="px-gutter py-4 border-b">
+    <h2 class="title m-0">Mon contrat - Complémentaire santé</h2>
+  </div>
+
+  <div class="px-gutter py-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:chrome_reader_mode"></mat-icon>
+      </div>
+
+      <div >
+        <p *ngIf="data?.listeContrats && data?.listeContrats?.length" class="m-0 body-1">{{data.listeContrats[0]?.numeroContrat}}</p>
+        <p class="m-0 caption text-hint">N contrat</p>
+      </div>
+    </div>
+
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:date_range"></mat-icon>
+      </div>
+
+      <div>
+        <p class="m-0 body-1">{{data.dateEffet}}</p>
+        <p class="m-0 caption text-hint">Date début</p>
+      </div>
+    </div>
+
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:date_range"></mat-icon>
+      </div>
+
+      <div>
+        <p class="m-0 body-1">{{data.dateFin}}</p>
+        <p class="m-0 caption text-hint">Date fin</p>
+      </div>
+    </div>
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:hourglass_empty"></mat-icon>
+      </div>
+
+      <div>
+        <p class="m-0 body-1">{{data.statut}}</p>
+        <p class="m-0 caption text-hint">Statut</p>
+      </div>
+    </div>
+
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:euro_symbol"></mat-icon>
+      </div>
+
+      <div >
+        <p class="m-0 body-1">112£</p>
+        <p class="m-0 caption text-hint">Cotisation mensuelle</p>
+      </div>
+    </div>
+
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:account_balance_wallet"></mat-icon>
+      </div>
+
+      <div>
+        <p class="m-0 body-1">-19£</p>
+        <p class="m-0 caption text-hint">Solde</p>
+      </div>
+
+    </div>
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:account_balance_wallet"></mat-icon>
+      </div>
+
+      <div>
+        <p class="m-0 body-1"></p>
+        <p class="m-0 caption text-hint">Formule</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div *ngIf="authObj.typeContrat!='A'">
+  <div class="px-gutter py-4 border-b">
+    <h2 class="title m-0">Mon contrat - Complémentaire santé</h2>
+  </div>
+
+  <div class="px-gutter py-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:chrome_reader_mode"></mat-icon>
+      </div>
+
+      <div >
+        <p *ngIf="data?.listeContrats && data?.listeContrats?.length" class="m-0 body-1">{{data.listeContrats[0]?.numeroContrat}}</p>
+        <p class="m-0 caption text-hint">N contrat</p>
+      </div>
+    </div>
+
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:date_range"></mat-icon>
+      </div>
+
+      <div>
+        <p class="m-0 body-1">{{data.dateEffet}}</p>
+        <p class="m-0 caption text-hint">Date début</p>
+      </div>
+    </div>
+
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:date_range"></mat-icon>
+      </div>
+
+      <div>
+        <p class="m-0 body-1">{{data.dateFin}}</p>
+        <p class="m-0 caption text-hint">Date fin</p>
+      </div>
+    </div>
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:hourglass_empty"></mat-icon>
+      </div>
+
+      <div>
+        <p class="m-0 body-1">{{data.statut}}</p>
+        <p class="m-0 caption text-hint">Statut</p>
+      </div>
+    </div>
+
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:euro_symbol"></mat-icon>
+      </div>
+
+      <div >
+        <p class="m-0 body-1">112£</p>
+        <p class="m-0 caption text-hint">Cotisation mensuelle</p>
+      </div>
+    </div>
+
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:account_balance_wallet"></mat-icon>
+      </div>
+
+      <div>
+        <p class="m-0 body-1">-19£</p>
+        <p class="m-0 caption text-hint">Solde</p>
+      </div>
+
+    </div>
+    <div class="py-3 flex items-center">
+      <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+        <mat-icon class="icon-sm" svgIcon="mat:account_balance_wallet"></mat-icon>
+      </div>
+
+      <div>
+        <p class="m-0 body-1"></p>
+        <p class="m-0 caption text-hint">Formule</p>
+      </div>
+
+    </div>
+  </div>
+</div>

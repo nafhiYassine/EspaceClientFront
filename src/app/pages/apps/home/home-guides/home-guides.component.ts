@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthObject } from 'src/app/models/AuthObject';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from 'src/app/token-storage-service';
+import { Souscripteur } from 'src/app/models/Souscripteur';
 import { Data } from '../../../../models/Data';
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
@@ -76,22 +77,21 @@ export class HomeGuidesComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.retrieveData();
+  }
+  private retrieveData() {
     if (localStorage.getItem('data')) {
-      const serializedData: string = localStorage.getItem('data')
-      const deserializedState: Data = serializedData ? JSON.parse(atob(serializedData)) : undefined;
-      this.data = deserializedState;
-      const encryptedData : string = CryptoJS.AES.encrypt(JSON.stringify(this.data), SECRET_KEY).toString()
-      console.log("encryptedData : " + encryptedData)
-      const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY);
+      const serializedData: string = localStorage.getItem('data');
+      const decryptedBytes = CryptoJS.AES.decrypt(serializedData, SECRET_KEY);
       const decryptedDataString = decryptedBytes.toString(CryptoJS.enc.Utf8);
-      console.log("decryptedDataString : " + decryptedDataString)
+      this.data = JSON.parse(decryptedDataString);
     }
     else {
-      console.log('I SUMMON THE ELSE')
-      this.initializeData()
+      console.log('I SUMMON THE ELSE');
+      this.initializeData();
     }
   }
+
   private initializeData() {
     this.authObj.idfass = this.decodedToken.jti;
     this.authObj.envir = this.decodedToken.aud;
@@ -101,8 +101,12 @@ export class HomeGuidesComponent implements OnInit {
     this.dataService.findData(this.authObj).subscribe(
       (data: Data) => {
         this.data = data;
+        const encryptedData : string = CryptoJS.AES.encrypt(JSON.stringify(this.data), SECRET_KEY).toString()
+        localStorage.setItem('data',encryptedData)
+
       }
     );
+    
   }
 
   openDialog(guide: Guide) {

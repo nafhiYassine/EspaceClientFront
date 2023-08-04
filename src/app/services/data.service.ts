@@ -19,10 +19,7 @@ export class DataService {
     const headers = this.getHeaders();
     return this.httpClient.post(API_HOST + '/api/data', authObj, { headers }).pipe(tap((response: Data) => {
       console.log(API_HOST + '/api/data')
-      this.data = response;
-      console.log(this.data)
-      localStorage.setItem('data',btoa(JSON.stringify(this.data)))
-      console.log(btoa(JSON.stringify(this.data)))
+      this.data = response;      
     }),
       catchError((error: any) => {
         throw error;
