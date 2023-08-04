@@ -23,7 +23,7 @@ import { SecondToolbarModule } from 'src/@vex/layout/second-toolbar/second-toolb
     ConfigPanelModule,
     SidebarModule,
     QuickpanelModule
-  ]
+    ]
 })
 export class CustomLayoutModule {
 }

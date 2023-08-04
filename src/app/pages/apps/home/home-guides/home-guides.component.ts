@@ -3,11 +3,19 @@ import { trackById } from '../../../../../@vex/utils/track-by';
 import { MatDialog } from '@angular/material/dialog';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { LayoutService } from '../../../../../@vex/services/layout.service';
-import {  DataService } from 'src/app/services/data.service';
-import { Data } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
+import { ActivatedRoute } from '@angular/router';
 import { AuthObject } from 'src/app/models/AuthObject';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from 'src/app/token-storage-service';
+import { Souscripteur } from 'src/app/models/Souscripteur';
+import { Data } from '../../../../models/Data';
+import { Observable } from 'rxjs';
+import * as CryptoJS from 'crypto-js';
+import { SECRET_KEY } from '../../../../commons/url.constants';
+
+
+
 
 export enum GuideCategory {
   firstSteps,
@@ -31,15 +39,9 @@ export interface Guide {
   styleUrls: ['./home-guides.component.scss']
 })
 export class HomeGuidesComponent implements OnInit {
-  data :Data={
-
-  };
-
-
-  authObj:AuthObject={
-
-  };
-
+  decodedToken: any = jwt_decode(this.tokenStorage.getToken());
+  data: Data;
+  authObj: AuthObject = new AuthObject;
   guides: Guide[] = [
 
     {
@@ -65,26 +67,46 @@ export class HomeGuidesComponent implements OnInit {
   billing = this.guides.filter(guide => guide.category === GuideCategory.billing);
   firstSteps = this.guides.filter(guide => guide.category === GuideCategory.firstSteps);
   trackById = trackById;
-  isDesktop$  = this.layoutService.isDesktop$;
+  isDesktop$ = this.layoutService.isDesktop$;
+  data$: Observable<string>;
+
 
   constructor(
-    private dialog: MatDialog,private dataService:DataService,private tokenStorage:TokenStorageService,
-    private layoutService: LayoutService) { }
+    private dialog: MatDialog, private dataService: DataService, private tokenStorage: TokenStorageService,
+    private layoutService: LayoutService, private route: ActivatedRoute) { }
+
+
   ngOnInit() {
-    const jwt : string = sessionStorage.getItem("JWTToken")
-    const decodedToken: any = jwt_decode(jwt);
-    this.authObj.idfass=decodedToken.jti;
-    this.authObj.envir=decodedToken.aud;
-    this.authObj.compo=decodedToken.compo;
-    this.authObj.typeContrat=decodedToken.typcrm;
-    this.authObj.username=decodedToken.iss;
-    console.log("Envir : "+this.authObj.envir);
-    this.dataService.findData(this.authObj).subscribe
-    (
-      (data)=>{
-        this.data=data;
+    this.retrieveData();
+  }
+  private retrieveData() {
+    if (localStorage.getItem('data')) {
+      const serializedData: string = localStorage.getItem('data');
+      const decryptedBytes = CryptoJS.AES.decrypt(serializedData, SECRET_KEY);
+      const decryptedDataString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+      this.data = JSON.parse(decryptedDataString);
+    }
+    else {
+      console.log('I SUMMON THE ELSE');
+      this.initializeData();
+    }
+  }
+
+  private initializeData() {
+    this.authObj.idfass = this.decodedToken.jti;
+    this.authObj.envir = this.decodedToken.aud;
+    this.authObj.compo = this.decodedToken.compo;
+    this.authObj.typeContrat = this.decodedToken.typcrm;
+    this.authObj.username = this.decodedToken.iss;
+    this.dataService.findData(this.authObj).subscribe(
+      (data: Data) => {
+        this.data = data;
+        const encryptedData : string = CryptoJS.AES.encrypt(JSON.stringify(this.data), SECRET_KEY).toString()
+        localStorage.setItem('data',encryptedData)
+
       }
-    )
+    );
+
   }
 decodeToken (){
   return jwt_decode(this.tokenStorage.getToken())

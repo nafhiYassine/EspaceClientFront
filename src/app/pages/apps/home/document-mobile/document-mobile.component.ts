@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DocumentsService } from 'src/app/services/documents.service';
 import { saveAs } from 'file-saver';
 import { TokenStorageService } from 'src/app/token-storage-service';
 import { DocumentResponse } from 'src/app/models/DocumentsResponse';
 import jwt_decode from 'jwt-decode';
 import { LayoutService } from 'src/@vex/services/layout.service';
-
 @Component({
-  selector: 'vex-home-getting-started',
-  templateUrl: './home-getting-started.component.html',
-  styleUrls: ['./home-getting-started.component.scss']
+  selector: 'vex-document-mobile',
+  templateUrl: './document-mobile.component.html',
+  styleUrls: ['./document-mobile.component.scss']
 })
-export class HomeGettingStartedComponent implements OnInit {
+export class DocumentMobileComponent {
   isBool = false;
   documentsGene: any[] = [];
   documentsNor: any[] = [];
@@ -31,14 +30,16 @@ export class HomeGettingStartedComponent implements OnInit {
         }
       });
 
-    // console.log("----------@",this.getDecodedAccessToken(this.tokenStorage.getToken()));
+    console.log("----------@",this.getDecodedAccessToken(this.tokenStorage.getToken()));
     const resultToken = this.getDecodedAccessToken(this.tokenStorage.getToken());
     const envir = resultToken.aud
      const idfass = resultToken.jti
      const idfpol = resultToken.idfpol
 
+
      this.documentService.EcheancierDoc(idfpol, idfass, envir).subscribe(
       (base64Doc: string) => {
+        console.log("-------------------------->@@@", base64Doc);
         this.DocEcheancier = [{
           base64: base64Doc,
           name: `Document.pdf` // You can customize the name based on your data
@@ -51,6 +52,7 @@ export class HomeGettingStartedComponent implements OnInit {
 
     this.documentService.getEcheancierDoc(idfpol, idfass, envir).subscribe(
       (base64Docs: string[]) => {
+        console.log("-------------------------->@@@", base64Docs);
         this.DocEcheancier = base64Docs.map((base64Doc, index) => {
           return {
             base64: base64Doc,

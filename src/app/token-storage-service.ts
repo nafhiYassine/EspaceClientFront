@@ -43,10 +43,8 @@ export class TokenStorageService {
   }
 
   public signOut() {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.removeItem(AUTH_USER);
-
     window.sessionStorage.clear();
+    window.localStorage.clear()
   }
 
   public storeSessionData(token: string, refreshToken: string): void {

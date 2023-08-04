@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { Link } from '../../../../@vex/interfaces/link.interface';
 import { trackByRoute } from '../../../../@vex/utils/track-by';
 import { fadeInUp400ms } from '../../../../@vex/animations/fade-in-up.animation';
@@ -7,6 +7,7 @@ import { LayoutService } from 'src/@vex/services/layout.service';
 import { link } from 'fs';
 import { TokenStorageService } from 'src/app/token-storage-service';
 import jwt_decode from 'jwt-decode';
+import { APP_BASE_HREF } from '@angular/common';
 
 @Component({
   selector: 'vex-home',
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit {
     },
     {
       label: 'Mes documents',
-      route: 'guides',
+      route: this.baseHref ||'/documents-Mobile',
       icon: 'mat:description'
     },
     {
@@ -114,14 +115,16 @@ export class HomeComponent implements OnInit {
     },
     {
       label: 'Mes demandes et réclamations',
-      route: 's',
+      route: 'doc',
       icon: 'mat:supervised_user_circle'
     }
   ];
 
   trackByRoute = trackByRoute;
   isDesktop$ = this.layoutService.isDesktop$;
-  constructor(private layoutService: LayoutService,private tokenStorage :TokenStorageService ) { }
+  constructor(private layoutService: LayoutService
+    ,@Optional() @Inject(APP_BASE_HREF) private baseHref: string
+    ,private tokenStorage :TokenStorageService ) { }
 
   ngOnInit() {
     const decodedToken: any = jwt_decode(this.tokenStorage.getToken());

@@ -7,7 +7,6 @@ import { User } from '../models/User';
 import { of } from 'rxjs';
 import { TokenStorageService } from '../../app/token-storage-service';
 import { API_HOST } from '../commons/url.constants';
-import { Result } from 'postcss';
 
 @Injectable({
 	providedIn: 'root',
