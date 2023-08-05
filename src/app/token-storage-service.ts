@@ -61,37 +61,8 @@ export class TokenStorageService {
       console.error('Error decoding JWT:', error);
     }
   }
-  public tokenToAuthObj(): AuthObject {
-    try {
-      const token : string = this.getToken()
-      const decodedToken: any = jwt_decode(token);
-      const username : string = decodedToken.iss;
-      const idfass : string = decodedToken.jti;
-      const typecrm : string = decodedToken.typcrm;
-      const envir : string = decodedToken.aud;
-      const compo : string = decodedToken.compo;
-      const authObj: AuthObject = new AuthObject;
-      authObj.username = username;
-      authObj.compo = compo;
-      authObj.idfass = idfass;
-      authObj.typeContrat = typecrm;
-      authObj.envir = envir;
-      console.log(authObj)
-      return authObj;
-    } catch (error) {
-      console.error('Error decoding JWT:', error);
-    }
-  }
-  public getTycrm(){
-    return  jwt_decode(sessionStorage.getItem(TYPECRM));
-  }
-  public getIdfass(){
-    return  jwt_decode(sessionStorage.getItem(TYPECRM));
-  }
-  public getUserName():string{
-    return  jwt_decode(sessionStorage.getItem(AUTH_USER));
 
-  }
+
 }
 
 

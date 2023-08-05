@@ -4,7 +4,7 @@ import { Souscripteur } from "./Souscripteur";
 
 export class Data{
 
-    souscripteur:Souscripteur;
-    listeContrats: Array<IContrat>;
-    
+    souscripteur?:Souscripteur;
+    listeContrats?: Array<IContrat>;
+
 }

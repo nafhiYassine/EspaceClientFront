@@ -31,6 +31,10 @@ export class LoginComponent implements OnInit {
   id: string;
   compo: string;
 
+  /*authObj:AuthObj={
+
+  }*/
+
 
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -52,7 +56,7 @@ export class LoginComponent implements OnInit {
     this.user = this.form.value;
     if (this.form.valid) {
       (await this.authService.authenticate(this.user)).subscribe(
-        (data: { authorization: string; refreshToken: string }) => {
+        async (data: { authorization: string; refreshToken: string }) => {
           if (data.authorization == null) {
             this.router.navigate(['/404']);
             this.snackbar.open('Your Password is not working', 'OK', {
@@ -60,6 +64,24 @@ export class LoginComponent implements OnInit {
             });
           } else {
             this.tokenStorage.storeSessionData(data.authorization, data.refreshToken);
+        /*    const decodedToken: any = jwt_decode(this.tokenStorage.getToken());
+            this.authObj.idfass=decodedToken.jti
+            this.authObj.envir=decodedToken.aud
+            this.authObj.compo=decodedToken.compo
+            this.authObj.typeContrat=decodedToken.typcrm;
+            this.authObj.username=decodedToken.iss
+
+         (await   this.contratService.findContrats(this.authObj).subscribe
+            (
+              (data)=>{
+                console.log("data",data)
+
+                this.contrat=data[0];
+                console.log('data:',JSON.stringify(data[0]));
+
+                console.log('this.contrat:',JSON.stringify(this.contrat));
+              }
+            ))*/
             this.router.navigate(['/apps/home/mon-contrat']);
           }
         },
