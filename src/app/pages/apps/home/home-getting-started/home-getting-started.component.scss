@@ -8,4 +8,39 @@
     border-top: 1px solid var(--foreground-divider);
   }
 }
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 columns in the grid */
+  gap: 10px;
+  /* Gap between grid items */
+}
 
+/* Style for the buttons */
+button {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  font-size: 100%;
+  width: 100%;
+  /* To make buttons fill the grid cells */
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+}
+
+img {
+  width: 20px;
+  height: 30px;
+  margin-right: 5px;
+  /* To create space between image and text */
+}
+
+/* Hover effect */
+button:hover {
+  background-color: #ddd;
+  /* Change background color when hovering */
+}

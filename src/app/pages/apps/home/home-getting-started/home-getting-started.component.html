@@ -1,132 +1,79 @@
-
 <style>
   /* CSS Grid Layout */
-  .button-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 columns in the grid */
-      gap: 10px; /* Gap between grid items */
-  }
-
-  /* Style for the buttons */
-  button {
-      display: flex;
-      align-items: center;
-      /* justify-content: center; */
-      font-size: 100%;
-      width: 100%; /* To make buttons fill the grid cells */
-      padding: 10px;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: transparent;
-      border: none;
-  }
-
-  img {
-      width: 20px;
-      height: 30px;
-      margin-right: 5px; /* To create space between image and text */
-  }
-   /* Hover effect */
-   button:hover {
-            background-color: #ddd; /* Change background color when hovering */
-        }
 
 </style>
-<mat-progress-spinner style="margin: auto;"  *ngIf="documentsGene.length == 0"  mode="indeterminate" ></mat-progress-spinner>
 
-<div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
+<mat-progress-spinner style="margin: auto; margin-top: 140px;" *ngIf="documentsGene.length == 0 && documentsNor.length == 0 && DocEcheancier.length == 0 "
+  mode="indeterminate"></mat-progress-spinner>
+
+<div *ngIf="documentsGene.length != 0 || documentsNor.length != 0 || DocEcheancier.length != 0 "
+  class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
   <div class="card p-6 flex-auto">
     <h4 class="headline mt-0 mb-6">Documents</h4>
 
     <mat-accordion displayMode="flat">
-      <mat-expansion-panel >
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>Documents génériques</mat-panel-title>
         </mat-expansion-panel-header>
         <div class="button-grid" *ngIf="isBool">
-
           <div *ngFor="let doc of documentsGene">
-            
             <button type="submit" (click)="downloadDocumentGenerique(doc)" style="cursor: pointer;">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
+              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1"
+                src="assets/img/avatars/pdf.svg" style="color: transparent;">
               {{ doc.name }}
-          </button> 
+            </button>
           </div>
         </div>
         <div class="mobileVersion" *ngIf="!isBool">
           <div *ngFor="let doc of documentsGene">
-            
+
             <button type="submit" (click)="downloadDocumentGenerique(doc)" style="cursor: pointer;">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
+              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1"
+                src="assets/img/avatars/pdf.svg" style="color: transparent;">
               {{ doc.name }}
-          </button> 
+            </button>
           </div>
         </div>
       </mat-expansion-panel>
-
       <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>Autre Documents</mat-panel-title>
         </mat-expansion-panel-header>
-        
-        <div class="button-grid" *ngIf="isBool" >
-          <!-- <button type="submit">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-              Devoir de conseil
-          </button> -->
-          <!-- <button type="submit">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-              Dispositions particulières
-          </button>
-          <button type="submit">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-              Mandat de prélèvement SEPA
-          </button>
-          <button type="submit">
-            <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-            Proposition d’assurance
-          </button>
-          <button type="submit">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-              Echéancier de prélèvement
-          </button>
-          <button type="submit">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-              Décompte de prestations
-          </button> -->
 
-
+        <div class="button-grid" *ngIf="isBool">
           <div *ngFor="let doc of documentsNor">
-            
-              <button type="submit" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-                <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-                {{ doc.name }}
-            </button> 
+            <button type="submit" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
+              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1"
+                src="assets/img/avatars/pdf.svg" style="color: transparent;">
+              {{ doc.name }}
+            </button>
           </div>
           <div *ngFor="let doc of DocEcheancier">
-            
             <button type="submit" (click)="echeancierDoc(doc)" style="cursor: pointer;">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
+              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1"
+                src="assets/img/avatars/pdf.svg" style="color: transparent;">
               {{ doc.name }}
-          </button> 
-        </div>
+            </button>
+          </div>
           <!-- Add more buttons here -->
-      </div>
+        </div>
         <div class="ismobile" *ngIf="!isBool">
           <div *ngFor="let doc of documentsNor">
-                
+
             <button type="submit" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
+              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1"
+                src="assets/img/avatars/pdf.svg" style="color: transparent;">
               {{ doc.name }}
-          </button> 
+            </button>
           </div>
           <div *ngFor="let doc of DocEcheancier">
-            
+
             <button type="submit" (click)="echeancierDoc(doc)" style="cursor: pointer;">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
+              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1"
+                src="assets/img/avatars/pdf.svg" style="color: transparent;">
               {{ doc.name }}
-          </button> 
+            </button>
           </div>
         </div>
       </mat-expansion-panel>

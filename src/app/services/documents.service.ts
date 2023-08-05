@@ -13,7 +13,7 @@ import { catchError, throwError } from 'rxjs';
 })
 
 export class DocumentsService {
-  private apiUrl = 'http://localhost:8080/doc';
+  private apiUrl = API_HOST+'/doc';
   base64Document: string;
   constructor(private http: HttpClient ,private tokenStorageService: TokenStorageService) { }
 
