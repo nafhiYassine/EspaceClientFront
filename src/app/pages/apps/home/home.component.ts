@@ -21,7 +21,7 @@ import { APP_BASE_HREF } from '@angular/common';
 export class HomeComponent implements OnInit {
 
   isBool = true;
-  isAnimal=true;
+  isAnimal = true;
   mobileLinks: (Link & { icon: string })[] = [
     {
       label: 'Mon contrat',
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     },
     {
       label: 'Mes documents',
-      route: this.baseHref ||'/documents-Mobile',
+      route: this.baseHref || '/documents-Mobile',
       icon: 'mat:description'
     },
     {
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
       route: 'pricing',
       icon: 'mat:card_membership'
     }
-  ,
+    ,
     {
       label: 'Mes documents',
       route: 'guides',
@@ -95,9 +95,6 @@ export class HomeComponent implements OnInit {
       route: 'mon-contrat',
       icon: 'mat:chrome_reader_mode'
     },
-
-
-
     {
       label: 'Mes documents',
       route: 'guides',
@@ -122,25 +119,28 @@ export class HomeComponent implements OnInit {
 
   trackByRoute = trackByRoute;
   isDesktop$ = this.layoutService.isDesktop$;
+  typecrm : string ;
+
   constructor(private layoutService: LayoutService
-    ,@Optional() @Inject(APP_BASE_HREF) private baseHref: string
-    ,private tokenStorage :TokenStorageService ) { }
+    , @Optional() @Inject(APP_BASE_HREF) private baseHref: string
+    , private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
     const decodedToken: any = jwt_decode(this.tokenStorage.getToken());
 
     this.isDesktop$.pipe(
     ).subscribe(isDesktop => {
-
       if (isDesktop) {
-        if (decodedToken.typcrm='A'){
-        this.isAnimal=true;
-        this.links = this.linksAnimal;
-
-      }
-      else {
-        this.isAnimal=false;
-      }
+        this.typecrm = decodedToken.typcrm;
+        if (this.typecrm == 'A') {
+          console.log(decodedToken)
+          this.isAnimal = true;
+          this.links = this.linksAnimal;
+        }
+        else {
+          console.log("NOT ANIMAL")
+          this.isAnimal = false;
+        }
 
         this.isBool = true;
 
