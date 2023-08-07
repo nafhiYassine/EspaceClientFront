@@ -88,10 +88,16 @@ export class HomeGuidesComponent implements OnInit {
       const decryptedBytes = CryptoJS.AES.decrypt(serializedData, SECRET_KEY);
       const decryptedDataString = decryptedBytes.toString(CryptoJS.enc.Utf8);
       this.data = JSON.parse(decryptedDataString);
+      console.log("afficher decryptedDataString **************** :",JSON.stringify(decryptedDataString));
+
     }
     else {
       this.initializeData();
+      console.log("afficher initializa data **************** :",JSON.stringify(this.data));
+
     }
+
+    console.log("afficher data **************** :",JSON.stringify(this.data));
   }
 
   private initializeData() {

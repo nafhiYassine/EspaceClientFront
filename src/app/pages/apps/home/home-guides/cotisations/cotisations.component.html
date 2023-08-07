@@ -1,0 +1,22 @@
+<div *ngIf ="authObj.typeContrat !='A'" class="card max-w-full overflow-hidden p-3">
+  <mat-nav-list>
+    <div class="px-gutter py-4 border-b">
+      <h2 class="title m-0">Mes cotisations</h2>
+    </div>
+    <a
+      class="rounded overflow-hidden" mat-list-item>
+      <mat-icon
+       matListItemIcon></mat-icon>
+      <!-- <div matListItemTitle>{{ guide.label }} </div> -->
+      <table class="table w-full ">
+        <tbody>
+          <tr>
+            <td class="py-6 border-b"> guide.label </td>
+            <td class="py-6 border-b bg-foreground rounded-lg text-primary text-center "> guide.amount £</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </a>
+  </mat-nav-list>
+</div>
