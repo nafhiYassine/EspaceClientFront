@@ -23,10 +23,6 @@ const routes: VexRoutes = [
     loadChildren: () => import('./pages/pages/auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule),
   },
   {
-    path: 'coming-soon',
-    loadChildren: () => import('./pages/pages/coming-soon/coming-soon.module').then(m => m.ComingSoonModule),
-  },
-  {
     path: '',
     component: CustomLayoutComponent,canActivate: [AuthGuard],
     children: [
@@ -40,41 +36,11 @@ const routes: VexRoutes = [
         component :DocumentMobileComponent
       },
       {
-        path: '',
-        loadChildren: () => import('./pages/dashboards/dashboard-analytics/dashboard-analytics.module').then(m => m.DashboardAnalyticsModule),
-      },
-      {
         path: 'apps',
         children: [
           {
-            path: 'chat',
-            loadChildren: () => import('./pages/apps/chat/chat.module').then(m => m.ChatModule),
-            data: {
-              toolbarShadowEnabled: true
-            }
-          },
-          {
-            path: 'mail',
-            loadChildren: () => import('./pages/apps/mail/mail.module').then(m => m.MailModule),
-            data: {
-              toolbarShadowEnabled: true,
-              scrollDisabled: true
-            }
-          },
-          {
             path: 'social',
             loadChildren: () => import('./pages/apps/social/social.module').then(m => m.SocialModule)
-          },
-          {
-            path: 'contacts',
-            loadChildren: () => import('./pages/apps/contacts/contacts.module').then(m => m.ContactsModule)
-          },
-          {
-            path: 'calendar',
-            loadChildren: () => import('./pages/apps/calendar/calendar.module').then(m => m.CalendarModule),
-            data: {
-              toolbarShadowEnabled: true
-            }
           },
           {
             path: 'aio-table',
@@ -83,14 +49,6 @@ const routes: VexRoutes = [
           {
             path: 'home',
             loadChildren: () => import('./pages/apps/home/home.module').then(m => m.HomeModule),
-          },
-          {
-            path: 'scrumboard',
-            loadChildren: () => import('./pages/apps/scrumboard/scrumboard.module').then(m => m.ScrumboardModule),
-          },
-          {
-            path: 'editor',
-            loadChildren: () => import('./pages/apps/editor/editor.module').then(m => m.EditorModule),
           },
         ]
       },
@@ -149,10 +107,6 @@ const routes: VexRoutes = [
             loadChildren: () => import('./pages/ui/page-layouts/page-layouts.module').then(m => m.PageLayoutsModule),
           },
         ]
-      },
-      {
-        path: 'documentation',
-        loadChildren: () => import('./pages/documentation/documentation.module').then(m => m.DocumentationModule),
       },
       {
         path: '**',
