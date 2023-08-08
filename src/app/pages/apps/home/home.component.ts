@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     },
     {
       label: 'Ma carte de tiers payant',
-      route: 'pricing',
+      route: 'ctp',
       icon: 'mat:card_membership'
     },
     {
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     },
     {
       label: 'Mes remboursements',
-      route: 'faq',
+      route: 'remboursements',
       icon: 'mat:undo'
     },
     {
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
     },
     {
       label: 'Mes demandes et réclamations',
-      route: 's',
+      route: 'demandes',
       icon: 'mat:supervised_user_circle'
     }
   ];
@@ -61,21 +61,20 @@ export class HomeComponent implements OnInit {
       route: 'mon-contrat',
       icon: 'mat:chrome_reader_mode'
     },
-
     {
       label: 'Ma carte de tiers payant',
-      route: 'pricing',
+      route: 'ctp',
       icon: 'mat:card_membership'
     }
     ,
     {
       label: 'Mes documents',
-      route: 'guides',
+      route: 'documents',
       icon: 'mat:description'
     },
     {
       label: 'Mes remboursements',
-      route: 'faq',
+      route: 'remboursements',
       icon: 'mat:undo'
     },
     {
@@ -85,7 +84,7 @@ export class HomeComponent implements OnInit {
     },
     {
       label: 'Mes demandes et réclamations',
-      route: 's',
+      route: 'demandes',
       icon: 'mat:supervised_user_circle'
     }
   ];
@@ -97,12 +96,12 @@ export class HomeComponent implements OnInit {
     },
     {
       label: 'Mes documents',
-      route: 'guides',
+      route: 'documents',
       icon: 'mat:description'
     },
     {
       label: 'Mes remboursements',
-      route: 'faq',
+      route: 'remboursements',
       icon: 'mat:undo'
     },
     {
@@ -112,7 +111,7 @@ export class HomeComponent implements OnInit {
     },
     {
       label: 'Mes demandes et réclamations',
-      route: 'doc',
+      route: 'demandes',
       icon: 'mat:supervised_user_circle'
     }
   ];

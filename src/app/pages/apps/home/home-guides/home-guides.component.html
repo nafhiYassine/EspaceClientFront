@@ -2,8 +2,9 @@
   color="accent"></mat-progress-spinner>
 <div *ngIf="data" class="my-12 container grid grid-cols-1 sm:grid-cols-2 gap-6">
   <div class="card max-w-full overflow-hidden p-3">
-    <mat-nav-list >
-      <vex-contrats *ngIf="data?.listeContrats && data?.listeContrats?.length" [authObj]="authObj" [data]="data" ></vex-contrats>
+    <mat-nav-list>
+      <vex-contrats *ngIf="data?.listeContrats && data?.listeContrats?.length" [authObj]="authObj"
+        [data]="data"></vex-contrats>
     </mat-nav-list>
   </div>
 
@@ -61,17 +62,16 @@
             <p class="m-0 caption text-hint">Régime sociale</p>
           </div>
         </div>
-        <div>
-
-        </div>
 
 
       </div>
+      
+
     </mat-nav-list>
   </div>
 
 
-  <div *ngIf ="authObj.typeContrat !='A'" class="card max-w-full overflow-hidden p-3">
+  <div *ngIf="authObj.typeContrat !='A'" class="card max-w-full overflow-hidden p-3">
     <mat-nav-list>
       <div class="px-gutter py-4 border-b">
         <h2 class="title m-0">Mes cotisations</h2>
@@ -93,7 +93,7 @@
     </mat-nav-list>
   </div>
 
-  <div *ngIf ="authObj.typeContrat !='A'" class="card max-w-full overflow-hidden p-3">
+  <div *ngIf="authObj.typeContrat !='A'" class="card max-w-full overflow-hidden p-3">
     <mat-nav-list>
       <div class="px-gutter py-4 border-b">
         <h2 class="title m-0">Les assurés </h2>
@@ -117,7 +117,7 @@
         </div>
 
 
-       <div>
+        <div>
           <p class="m-0 body-1">{{data?.souscripteur?.nom}}</p>
           <p class="m-0 caption text-hint">Nom</p>
         </div>

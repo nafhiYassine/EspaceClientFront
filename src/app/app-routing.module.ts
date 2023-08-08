@@ -44,7 +44,7 @@ const routes: VexRoutes = [
           },
           {
             path: 'aio-table',
-            loadChildren: () => import('./pages/apps/aio-table/aio-table.module').then(m => m.AioTableModule),
+            loadChildren: () => import('./pages/apps/home/home-guides/demandes/demandes.module').then(m => m.AioTableModule),
           },
           {
             path: 'home',

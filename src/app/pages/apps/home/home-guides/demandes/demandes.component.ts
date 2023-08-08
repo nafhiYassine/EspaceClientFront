@@ -6,13 +6,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-import { TableColumn } from '../../../../@vex/interfaces/table-column.interface';
-import { aioTableData, aioTableLabels } from '../../../../static-data/aio-table-data';
+import { TableColumn } from '../../../../../../@vex/interfaces/table-column.interface';
+import { aioTableData, aioTableLabels } from '../../../../../../static-data/aio-table-data';
 import { CustomerCreateUpdateComponent } from './customer-create-update/customer-create-update.component';
 import { SelectionModel } from '@angular/cdk/collections';
-import { fadeInUp400ms } from '../../../../@vex/animations/fade-in-up.animation';
+import { fadeInUp400ms } from '../../../../../../@vex/animations/fade-in-up.animation';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
-import { stagger40ms } from '../../../../@vex/animations/stagger.animation';
+import { stagger40ms } from '../../../../../../@vex/animations/stagger.animation';
 import { UntypedFormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MatSelectChange } from '@angular/material/select';
@@ -21,8 +21,8 @@ import { MatSelectChange } from '@angular/material/select';
 @UntilDestroy()
 @Component({
   selector: 'vex-aio-table',
-  templateUrl: './aio-table.component.html',
-  styleUrls: ['./aio-table.component.scss'],
+  templateUrl: './demandes.component.html',
+  styleUrls: ['./demandes.component.scss'],
   animations: [
     fadeInUp400ms,
     stagger40ms
@@ -37,6 +37,12 @@ import { MatSelectChange } from '@angular/material/select';
   ]
 })
 export class AioTableComponent implements OnInit, AfterViewInit {
+
+  showHelloWorldCard = false;
+
+  toggleHelloWorldCard() {
+    this.showHelloWorldCard = !this.showHelloWorldCard;
+  }
 
   layoutCtrl = new UntypedFormControl('boxed');
 
