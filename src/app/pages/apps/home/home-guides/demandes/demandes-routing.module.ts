@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { QuicklinkModule } from 'ngx-quicklink';
-import { VexRoutes } from '../../../../@vex/interfaces/vex-route.interface';
-import { AioTableComponent } from './aio-table.component';
+import { VexRoutes } from '../../../../../../@vex/interfaces/vex-route.interface';
+import { AioTableComponent } from './demandes.component';
 
 
 const routes: VexRoutes = [

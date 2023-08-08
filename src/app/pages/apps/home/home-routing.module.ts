@@ -28,24 +28,24 @@ const routes: VexRoutes = [
         loadChildren: () => import('./home-guides/home-guides.module').then(m => m.HomeGuidesModule)
       },
       {
-        path: 'pricing',
+        path: 'ctp',
         loadChildren: () => import('./home-pricing/home-pricing.module').then(m => m.HomePricingModule)
       },
       {
-        path: 'faq',
+        path: 'documents',
+        loadChildren: () => import('./home-getting-started/home-getting-started.module').then(m => m.HomeGettingStartedModule)
+      },
+      {
+        path: 'remboursements',
         loadChildren: () => import('./home-faq/home-faq.module').then(m => m.HomeFaqModule)
-      },
-      {
-        path: 'guides',
-        loadChildren: () => import('./home-getting-started/home-getting-started.module').then(m => m.HomeGettingStartedModule)
-      },
-      {
-        path: 'doc',
-        loadChildren: () => import('./home-getting-started/home-getting-started.module').then(m => m.HomeGettingStartedModule)
       },
       {
         path: 'pec',
         loadChildren: () => import('./home-empty/home-empty.module').then(m => m.HomeEmptyModule)
+      },
+      {
+        path: 'demandes',
+        loadChildren: () => import('./home-guides/demandes/demandes.module').then(m => m.AioTableModule)
       }
     
      

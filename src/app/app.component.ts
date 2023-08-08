@@ -158,7 +158,7 @@ export class AppComponent {
           {
             type: 'link',
             label: 'Mes documents',
-            route: '/apps/home/guides'
+            route: '/apps/home/documents'
           },
           {
             type: 'link',

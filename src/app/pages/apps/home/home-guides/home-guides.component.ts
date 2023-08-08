@@ -40,6 +40,7 @@ export interface Guide {
 export class HomeGuidesComponent implements OnInit {
   decodedToken: any = jwt_decode(this.tokenStorage.getToken());
   data: Data ;
+  data: Data;
   authObj: AuthObject = new AuthObject;
   dataSource:IContrat[]=[];
 
