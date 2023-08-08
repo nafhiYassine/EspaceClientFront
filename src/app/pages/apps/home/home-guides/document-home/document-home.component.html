@@ -1,0 +1,33 @@
+<div class="card max-w-full overflow-hidden p-3">
+    <mat-nav-list>
+    <div class="px-gutter py-4 border-b">
+        <h2 class="title m-0">Mes documents contractuels</h2>
+      </div>
+
+      <mat-accordion *ngIf="isBool" displayMode="flat">
+        <mat-progress-spinner [diameter]="70" style="margin: auto; margin-top: 10%;  margin-bottom: 10%;"  *ngIf="documentsGene.length == 0" mode="indeterminate"></mat-progress-spinner>
+        <a *ngFor="let doc of documentsGene;"mat-list-item >
+            <div >
+              
+                <button type="submit" (click)="downloadDocumentGenerique(doc)" style="cursor: pointer;">
+                  <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
+                  {{ doc.name }}
+              </button> 
+              </div>
+            </a>
+        </mat-accordion>
+
+        <div class="mobileVersion" *ngIf="!isBool">
+            <mat-progress-spinner style="margin: auto;"  *ngIf="documentsGene.length == 0"  mode="indeterminate" ></mat-progress-spinner>
+  
+            <div *ngFor="let doc of documentsGene">
+              
+              <button type="submit" (click)="downloadDocumentGenerique(doc)" style="cursor: pointer;">
+                <img alt="pdf file" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
+                {{ doc.name }}
+            </button> 
+            </div>
+          </div>
+
+    </mat-nav-list>
+</div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
+import { LayoutService } from 'src/@vex/services/layout.service';
 import { Beneficiaire } from 'src/app/models/Beneficiaire';
 import { ContratSante } from 'src/app/models/ContratSante';
 import { Data } from 'src/app/models/Data';
@@ -10,6 +11,9 @@ import { Data } from 'src/app/models/Data';
   styleUrls: ['./assures.component.scss']
 })
 export class AssuresComponent implements OnInit {
+
+  isDesktop$ = this.layoutService.isDesktop$;
+  isBool = false;
   @Input()
   authObj;
 
@@ -25,7 +29,7 @@ export class AssuresComponent implements OnInit {
 
   @Input()
   data:Data ;
-  constructor(private router:Router){
+  constructor(private router:Router,private layoutService: LayoutService){
 
   }
   ngOnInit(): void {
@@ -34,8 +38,19 @@ export class AssuresComponent implements OnInit {
 
     console.log("fjlkjklbenef",JSON.stringify( (this.data.listeContrats[0] as ContratSante ).listeBeneficiaire))
     console.log("contrats",JSON.stringify( (this.data.listeContrats[0] as ContratSante )))
+    this.isDesktop$.pipe(
+      ).subscribe(isDesktop => {
+        if (isDesktop) {
+          this.isBool = true;
+        } else {
+          this.isBool = false;
+        }
+      });
 
   }
+
+
+
 
 
 

@@ -15,10 +15,11 @@ import { ContratSanteComponent } from './contrat-sante/contrat-sante.component';
 import { ContratAnimalComponent } from './contrat-animal/contrat-animal.component';
 import { AssuresComponent } from './assures/assures.component';
 import { CotisationsComponent } from './cotisations/cotisations.component';
+import { DocumentHomeComponent } from './document-home/document-home.component';
 
 
 @NgModule({
-  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent, ContratsComponent, SouscripteurComponent, ContratSanteComponent, ContratAnimalComponent, AssuresComponent, CotisationsComponent],
+  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent, ContratsComponent, SouscripteurComponent, ContratSanteComponent, ContratAnimalComponent, AssuresComponent, CotisationsComponent, DocumentHomeComponent],
   imports: [
     CommonModule,
     HomeGuidesRoutingModule,

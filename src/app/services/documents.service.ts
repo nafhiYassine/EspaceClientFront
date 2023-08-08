@@ -81,7 +81,21 @@ export class DocumentsService {
   }
 
   getDocumentsGenerique(): Observable<DocumentResponse> {
+   
     const headers = this.getHeaders();
-    return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`, { headers });
+    return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`,{ headers });
+
   }
+
+  getDocumentsHGenerique(param1: string, param2: string): Observable<DocumentResponse> {
+    const params = new HttpParams()
+      .set('param1', param1)
+      .set('param2', param2);
+    const headers = this.getHeaders();
+    return this.http.get<DocumentResponse>(`${this.apiUrl}/HDocumentgeneriques`,{ params });
+
+  }
+
+
+
 }
