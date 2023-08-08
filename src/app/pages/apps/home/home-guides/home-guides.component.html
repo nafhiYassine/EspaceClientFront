@@ -5,7 +5,7 @@
     <mat-nav-list >
    <!--  <vex-contrats *ngIf="data?.listeContrats && data?.listeContrats?.length" [authObj]="authObj" [data]="data" ></vex-contrats>
    -->
-   <vex-contrat-sante *ngIf ="authObj.typeContrat !='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-sante>
+   <vex-contrat-sante *ngIf="data?.listeContrats && data?.listeContrats?.length && authObj.typeContrat !='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-sante>
    <vex-contrat-animal *ngIf ="authObj.typeContrat =='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-animal>
   </mat-nav-list>
   </div>
