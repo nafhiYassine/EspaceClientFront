@@ -36,20 +36,6 @@ export class DocumentMobileComponent {
      const idfass = resultToken.jti
      const idfpol = resultToken.idfpol
 
-
-     this.documentService.EcheancierDoc(idfpol, idfass, envir).subscribe(
-      (base64Doc: string) => {
-        console.log("-------------------------->@@@", base64Doc);
-        this.DocEcheancier = [{
-          base64: base64Doc,
-          name: `Document.pdf` // You can customize the name based on your data
-        }];
-      },
-      (error) => {
-        console.error('Error fetching documents:', error);
-      }
-    );
-
     this.documentService.getEcheancierDoc(idfpol, idfass, envir).subscribe(
       (base64Docs: string[]) => {
         console.log("-------------------------->@@@", base64Docs);

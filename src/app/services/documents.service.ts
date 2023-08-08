@@ -32,35 +32,6 @@ export class DocumentsService {
     });
     return headers;
   }
-  // getData() {
-  //   const apiUrl = 'your_api_url_here';
-  
-  //   // Create an instance of HttpParams and add the parameters
-  //   const params = new HttpParams()
-  //     .set('param1', param1)
-  //     .set('param2', param2);
-  
-  //   // Make the GET request with the parameters
-  //   return this.http.get<string[]>(`${apiUrl}/documentTest`, { params });
-  // }
-  // getDocumentsGenerique(): Observable<string[]> {
-  //   const headers = this.getHeaders();
-  //   return this.http.get<string[]>(this.apiUrl+'/Documentgeneriques', { headers });
-  // }
-  EcheancierDoc(idfpol: string, IDfass: string, envir: any): Observable<string> {
-    const params = new HttpParams()
-      .set('idfpol', idfpol)
-      .set('IDfass', IDfass)
-      .set('envir', envir);
-  
-    return this.http.get<string>(`${this.apiUrl}/echeancier`, { params })
-      .pipe(
-        catchError((error) => {
-          console.error('Error fetching documents:', error);
-          throw error; // Rethrow the error to the subscriber
-        })
-      );
-  }
   public getEcheancierDoc(idfpol: string, idfass: string, envir: string): Observable<string[]> {
     const params = new HttpParams()
       .set('idfpol', idfpol)

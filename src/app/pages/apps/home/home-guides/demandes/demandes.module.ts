@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AioTableRoutingModule } from './aio-table-routing.module';
-import { AioTableComponent } from './aio-table.component';
-import { PageLayoutModule } from '../../../../@vex/components/page-layout/page-layout.module';
-import { BreadcrumbsModule } from '../../../../@vex/components/breadcrumbs/breadcrumbs.module';
+import { AioTableRoutingModule } from './demandes-routing.module';
+import { AioTableComponent } from './demandes.component';
+import { PageLayoutModule } from '../../../../../../@vex/components/page-layout/page-layout.module';
+import { BreadcrumbsModule } from '../../../../../../@vex/components/breadcrumbs/breadcrumbs.module';
 import { CustomerCreateUpdateModule } from './customer-create-update/customer-create-update.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
@@ -17,10 +17,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CardComponent } from './card/card.component';
+import { DropdownCardComponent } from './card/dropdown-card/dropdown-card.component';
 
 
 @NgModule({
-  declarations: [AioTableComponent],
+  declarations: [AioTableComponent, CardComponent, DropdownCardComponent],
   imports: [
     CommonModule,
     AioTableRoutingModule,
@@ -34,12 +36,11 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-
     FormsModule,
     MatTooltipModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
   ]
 })
 export class AioTableModule {
