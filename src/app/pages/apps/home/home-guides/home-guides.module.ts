@@ -10,10 +10,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { ContratsComponent } from './contrats/contrats.component';
+import { SouscripteurComponent } from './souscripteur/souscripteur.component';
+import { ContratSanteComponent } from './contrat-sante/contrat-sante.component';
+import { ContratAnimalComponent } from './contrat-animal/contrat-animal.component';
+import { AssuresComponent } from './assures/assures.component';
+import { CotisationsComponent } from './cotisations/cotisations.component';
 
 
 @NgModule({
-  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent, ContratsComponent],
+  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent, ContratsComponent, SouscripteurComponent, ContratSanteComponent, ContratAnimalComponent, AssuresComponent, CotisationsComponent],
   imports: [
     CommonModule,
     HomeGuidesRoutingModule,

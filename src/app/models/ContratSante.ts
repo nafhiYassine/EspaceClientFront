@@ -6,6 +6,6 @@ import { Prestation } from "./Prestation";
 
 export class ContratSante extends IContrat{
 
-    listBeneficiaires:Beneficiaire[];
+    listeBeneficiaire:Beneficiaire[];
     listPrestation:Prestation[];
 }
