@@ -1,73 +1,88 @@
 <div class="card bg-primary flex" style="background-color: rgba(var(--color-primary), 0.1);">
-    <div class="p-4 ml-4 flex-none self-center hidden sm:block">
+    <div class="p-4 ml-4 flex-none pt-10 hidden sm:block">
         <img src="assets/img/illustrations/checklist.svg" style="height: 80px; width: 72px">
     </div>
 
     <div class="p-2 sm:p-6 text-primary-contrast flex-auto">
-        <div class="flex justify-between items-center ">
-            <h2 class="headline m-0  text-black">Remboursements de prestations</h2>
-        </div>
-        <div class="mt-4 flex items-center">
-            <!-- <div class="p-1 flex items-center"></div> -->
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-11 sm:gap-4">
-                <p class="col-span-5 p-1 flex items-center text-black">
-                    <span class="body-2 cursor-pointer">
-                        <table>
-                            <tr>
-                                <td colspan=1 align='left'><strong>Motif</strong></td>
-                            </tr>
-                            <tr>
-                                <td colspan=1 align='left'>Explication sur remboursement Prévoyance - Contrat Individuel
-                                    ou Ancien Salarié</td>
-                            </tr>
-                        </table>
-                    </span>
-                </p>
-                <p class="col-span-2 p-1 items-center text-black">
+        <table class="mb-6">
+            <tr>
+                <td>
+                    <p class="vertical-bar flex justify-between items-center"></p>
+                </td>
+                <td>
+                    <div class="flex justify-between items-center ">
+                        <h2 class="headline m-0  text-black">{{demande.sujet}}</h2>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="mt-4">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-12 sm:gap-4">
+                <div class="col-span-5 sm:col-span-6">
+                    <p class="p-1 items-center text-black">
+                        <span class="body-2 cursor-pointer">
+                            <table>
+                                <tr>
+                                    <td colspan=1 align='left'><strong>Motif</strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan=1 align='left'>{{demande.motif}}</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </p>
+                </div>
+                <div class="col-span-2 p-1 items-center text-black">
                     <span class="body-2 cursor-pointer">
                         <table>
                             <tr>
                                 <td colspan=1 align='left'> <strong>État</strong></td>
                             </tr>
                             <tr>
-                                <td colspan=1 align='left'>Non traitée</td>
+                                <td colspan=1 align='left'>{{demande.etat}}</td>
                             </tr>
                         </table>
                         <!-- État : Non traitée -->
                     </span>
-                </p>
-                <p class="col-span-2 p-1 items-center text-black">
+                </div>
+                <div class="col-span-3 p-1 items-center text-black">
                     <span class="body-2 cursor-pointer">
                         <table>
                             <tr>
                                 <td colspan=1 align='left'><strong>Date</strong></td>
                             </tr>
                             <tr>
-                                <td colspan=1 align='left'>02/08/2023 - 11:06:05</td>
+                                <td colspan=1 align='left'>{{demande.dateCreation +' '+ demande.heureCreation }}</td>
                             </tr>
                         </table>
                     </span>
-                </p>
-                <p class="col-span-1 p-1 flex items-center">
-                    <span class="body-2 cursor-pointer"></span>
-                </p>
-                <p class="col-span-3 sm:col-span-1 p-1 flex items-center justify-end">
+                </div>
+                <div class="col-span-5 sm:col-span-1 p-1 flex items-center justify-center">
                     <span class="body-2 cursor-pointer">
                         <a (click)="getDetails()">
-                            <p class="mt-1 mb-4 flex items-center=">
+                            <p class="mt-1 mb-4 flex items-center" *ngIf="!details">
                                 <mat-icon
                                     class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                                    svgIcon="mat:add_box"></mat-icon>
+                                    svgIcon="mat:add_circle"></mat-icon>
+                            </p>
+                            <p class="mt-1 mb-4 flex items-center" *ngIf="details">
+                                <mat-icon
+                                    class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
+                                    svgIcon="mat:remove_circle"></mat-icon>
                             </p>
                         </a>
                     </span>
-                </p>
-
+                </div>
             </div>
-
         </div>
     </div>
 </div>
+
 <div *ngIf="details">
-    <vex-dropdown-card [commentaire] = "commentaire" [reponse]="reponse"></vex-dropdown-card>
+    <vex-dropdown-card 
+        [commentaire]="demande.messageInitial"
+        [dateCreation]="demande.dateCreation + ' ' + demande.heureCreation " 
+        [reponse]="demande.reponseGestionnaire"
+        [dateReponse]="demande.dateReponse + ' ' + demande.heureReponse">
+    </vex-dropdown-card>
 </div>

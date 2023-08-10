@@ -8,4 +8,6 @@ import { Component, Input } from '@angular/core';
 export class DropdownCardComponent {
   @Input() commentaire:string
   @Input() reponse:string
+  @Input() dateCreation:string
+  @Input() dateReponse:string
 }
