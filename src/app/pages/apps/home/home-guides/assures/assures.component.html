@@ -1,28 +1,96 @@
 
+
 <div *ngIf ="authObj.typeContrat !='A'" class="card max-w-full overflow-hidden p-3">
-    <mat-nav-list>
-      <div class="px-gutter py-4 border-b">
-        <h2 class="title m-0">Mes assurés</h2>
-      </div>
-
-
-      <a  *ngFor="let beneficiaire of listBeneficiaire;" class="rounded overflow-hidden" mat-list-item>
-        <mat-icon class="icon-sm" svgIcon="mat:account_circle"></mat-icon>
-        <!-- <div matListItemTitle>{{ guide.label }} </div> -->
-        <table class="table w-full ">
-       <tbody>
-          <tr>
-            <td class="py-6 border-b text-left">{{ beneficiaire.nom }} {{beneficiaire.prenom}}</td>
-            <td class="py-6 border-b bg-foreground rounded-lg text-primary text-right ">{{ beneficiaire.type }}</td>
-          </tr>
-        </tbody>
-       </table>
-     </a>
-      <a class="flex justify-end">
-        <button (click)="gotoDetails(listBeneficiaire)" color="primary" mat-raised-button type="button">
-          Details
-        </button>
-      </a>
- </mat-nav-list>
-  
+  <div class="px-gutter py-4 border-b">
+    <h2 class="title m-0 text-black"><strong>Mes assurés et garanties</strong></h2>
   </div>
+  <div *ngFor="let beneficiaire of listBeneficiaire;">
+  <div class="card bg-primary flex" style="background-color: rgba(var(--color-primary), 0.1);">
+    <div class="p-4 ml-4 flex-none self-center hidden sm:block">
+
+      <div
+      class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+      <mat-icon class="icon-sm" svgIcon="mat:account_circle"></mat-icon>
+    </div>
+
+        <!-- <img src="assets/img/demo/6.jpg" style="height: 80px; width: 72px"> -->
+    </div>
+
+    <div class="p-6 text-primary-contrast flex-auto">
+       <!--  <div class="flex justify-between items-center ">
+            <h2 class="headline m-0  text-black">Assures et Garanties</h2>
+        </div> -->
+        <div class="mt-4 flex items-center">
+            <!-- <div class="p-1 flex items-center"></div> -->
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-11 sm:gap-4">
+                <p class="col-span-5 p-1 flex items-center text-black">
+                    <span class="body-2 cursor-pointer">
+                        <table>
+                            <tr>
+                                <td colspan=1 align='left'><strong>{{beneficiaire.nom}} {{beneficiaire.prenom}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan=1 align='left'>{{beneficiaire.type}}</td>
+                            </tr>
+                        </table>
+                    </span>
+                </p>
+                <p class="col-span-2 p-1 flex items-center text-black">
+                    <span class="body-2 cursor-pointer">
+                        <table>
+                            <tr>
+                                <td colspan=1 align='left'> <strong></strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan=1 align='left'></td>
+                            </tr>
+                        </table>
+                        <!-- État : Non traitée -->
+                    </span>
+                </p>
+                <p class="col-span-2 p-1 flex items-center text-black">
+                    <span class="body-2 cursor-pointer">
+                        <table>
+                            <tr>
+                                <td colspan=1 align='left'><strong>N° Sécurité</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan=1 align='left'>{{beneficiaire.idfnss}}</td>
+                            </tr>
+                        </table>
+                    </span>
+                </p>
+                <p class="col-span-1 p-1 flex items-center">
+                    <span class="body-2 cursor-pointer"></span>
+                </p>
+                <p class="col-span-1 p-1 flex items-center">
+                    <span class="body-2 cursor-pointer">
+                        <a (click)="getDetails(beneficiaire)">
+                            <p class="mt-1 mb-4 flex items-center text-right">
+                                <mat-icon
+                                    class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
+                                    svgIcon="mat:add_box"></mat-icon>
+                            </p>
+                           
+                        </a>
+                   
+                    </span>
+                </p>
+             
+            </div>
+           
+          
+        </div>
+     
+    </div>
+   
+
+</div>
+<div *ngIf="details">
+  <vex-card-assures [dateNaissance] ="dateNaissance" [regass]="regass" [idfnss] ="idfnss"></vex-card-assures>
+<br>
+</div>
+
+</div>
+
+</div>

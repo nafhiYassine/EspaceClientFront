@@ -1,0 +1,39 @@
+
+<div class="card bg-primary flex" style="background-color: rgba(var(--color-primary), 0.1);">
+    <div class="p-6 text-primary-contrast flex-auto">
+        <div class="mt-4 flex items-center">
+            <!-- <div class="p-1 flex items-center"></div> -->
+          
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-5 sm:gap-4">
+
+                 <p class="col-span-2 p-1 flex items-center text-black">
+                    <span class="body-2 cursor-pointer"> 
+                       
+
+                        <table class="table w-full border-collapse border border-black-600">
+                            <thead>
+                              <tr class="bg-gray-200">
+                                <th class="border border-gray-300 py-2 px-4 text-black"><strong>Numéro de sécurité social</strong></th>
+                                <th class="border border-gray-300 py-2 px-4 text-black"><strong>Date de naissance</strong></th>
+                                <th class="border border-gray-300 py-2 px-4 text-black"><strong>Regime social</strong></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="hover:bg-gray-100">
+                                <td class="border border-gray-300 py-2 px-4 text-black">{{idfnss}}</td>
+                                <td class="border border-gray-300 py-2 px-4 text-black">{{dateNaissance}}</td>
+                                <td class="border border-gray-300 py-2 px-4 text-black">{{regass}}</td>
+                              </tr>
+                              <!-- Add more rows as needed -->
+                            </tbody>
+                          </table>
+
+                  </span>
+                </p> 
+
+               
+                
+            </div>
+        </div>
+    </div>
+</div>

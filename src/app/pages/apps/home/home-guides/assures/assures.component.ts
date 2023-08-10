@@ -19,23 +19,38 @@ export class AssuresComponent implements OnInit {
 
   listBeneficiaire:Beneficiaire[]=[];
 
-  gotoDetails(listBeneficiaire:Beneficiaire[]){
+/*   gotoDetails(listBeneficiaire:Beneficiaire[]){
     console.log("******go To Details ")
     const encodedDataList=encodeURIComponent(JSON.stringify(this.listBeneficiaire))
   //  this.router.navigateByUrl("/apps/home/mon-contrat/details")
      this.router.navigate(['/apps/home/mon-contrat/details'],{queryParams:{data:encodedDataList}})
 
-  }
+  } */
 
   @Input()
   data:Data ;
   constructor(private router:Router,private layoutService: LayoutService){
 
   }
+
+  details = false;
+  regass: string="MALADIE";
+  dateNaissance : string ="18/07/1991";
+  idfnss:string;
+  getDetails(beneficiaire) {
+    this.dateNaissance=beneficiaire.dateNaissance;
+    this.regass=beneficiaire.regass;
+    this.idfnss=beneficiaire.idfnss;
+    this.details = !this.details;
+    console.log("details called",this.idfnss)
+  }
+
+
   ngOnInit(): void {
 
     this.listBeneficiaire=(this.data.listeContrats[0] as ContratSante ).listeBeneficiaire;
-
+  
+  
     console.log("fjlkjklbenef",JSON.stringify( (this.data.listeContrats[0] as ContratSante ).listeBeneficiaire))
     console.log("contrats",JSON.stringify( (this.data.listeContrats[0] as ContratSante )))
     this.isDesktop$.pipe(
