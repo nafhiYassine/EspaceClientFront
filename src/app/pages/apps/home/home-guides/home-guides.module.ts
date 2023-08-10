@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeGuidesRoutingModule } from './home-guides-routing.module';
 import { HomeGuidesComponent } from './home-guides.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
+import { MatListModule, MatNavList } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeGuidesGuideComponent } from './home-guides-guide/home-guides-guide.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -17,10 +17,14 @@ import { AssuresComponent } from './assures/assures.component';
 import { CotisationsComponent } from './cotisations/cotisations.component';
 import { DocumentHomeComponent } from './document-home/document-home.component';
 import { CardAssuresComponent } from './assures/card-assures/card-assures.component';
+import { InfosBancairesComponent } from './infos-bancaires/infos-bancaires.component';
+import { MatAccordion } from '@angular/material/expansion';
+import { CardDownAssuresComponent } from './assures/card-assures/card-down-assures/card-down-assures.component';
+
 
 
 @NgModule({
-  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent, ContratsComponent, SouscripteurComponent, ContratSanteComponent, ContratAnimalComponent, AssuresComponent, CotisationsComponent, DocumentHomeComponent, CardAssuresComponent],
+  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent, ContratsComponent, SouscripteurComponent, ContratSanteComponent, ContratAnimalComponent, AssuresComponent, CotisationsComponent, InfosBancairesComponent,DocumentHomeComponent,CardAssuresComponent, CardDownAssuresComponent],
   imports: [
     CommonModule,
     HomeGuidesRoutingModule,
@@ -29,7 +33,7 @@ import { CardAssuresComponent } from './assures/card-assures/card-assures.compon
     MatListModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   schemas: [NO_ERRORS_SCHEMA]
 

@@ -1,6 +1,7 @@
 import { ContratSante } from "./ContratSante";
 import { IContrat } from "./IContrat";
-import { Souscripteur } from "./Souscripteur";
+import { Compte } from "./Compte";
+import { Souscripteur } from "./souscripteur";
 
 export class Data{
 

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { saveAs } from 'file-saver';
-import { LayoutService } from 'src/@vex/services/layout.service';
 import { DocumentResponse } from 'src/app/models/DocumentsResponse';
 import { DocumentsService } from 'src/app/services/documents.service';
 import { TokenStorageService } from 'src/app/token-storage-service';
 import jwt_decode from 'jwt-decode';
+import { LayoutService } from 'src/@vex/services/layout.service';
+
+
 
 @Component({
   selector: 'vex-document-home',
