@@ -1,3 +1,5 @@
+import { Compte } from "./Compte";
+
 export class Souscripteur {
   id?:number;
   idpolice?:number;
@@ -10,4 +12,6 @@ export class Souscripteur {
   numeroTel?:String;
   dateNaissance?:String;
   adressePostale?:String;
+  infosBancaires?:Compte;
+
 }
