@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AioTableRoutingModule } from './demandes-routing.module';
-import { AioTableComponent } from './demandes.component';
+import { DemandesComponent } from './demandes.component';
 import { PageLayoutModule } from '../../../../../../@vex/components/page-layout/page-layout.module';
 import { BreadcrumbsModule } from '../../../../../../@vex/components/breadcrumbs/breadcrumbs.module';
 import { CustomerCreateUpdateModule } from './customer-create-update/customer-create-update.module';
@@ -22,7 +22,7 @@ import { DropdownCardComponent } from './card/dropdown-card/dropdown-card.compon
 
 
 @NgModule({
-  declarations: [AioTableComponent, CardComponent, DropdownCardComponent],
+  declarations: [DemandesComponent, CardComponent, DropdownCardComponent],
   imports: [
     CommonModule,
     AioTableRoutingModule,

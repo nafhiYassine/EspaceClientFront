@@ -2,12 +2,12 @@
     <div class="p-6 text-primary-contrast flex-auto">
         <div class="mt-4 flex items-center">
             <!-- <div class="p-1 flex items-center"></div> -->
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-5 sm:gap-4">
-                <p class="col-span-2 p-1 flex items-center text-black">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-6 sm:gap-4">
+                <p class="col-span-3 sm:col-span-3 p-1 items-center text-black">
                     <span class="body-2 cursor-pointer">
                         <table>
                             <tr>
-                                <td colspan=1 align='left'><strong>Commentaire</strong></td>
+                                <td colspan=1 align='left'><u  class="underline-text"><strong>Commentaire :</strong> le {{dateCreation}}</u></td>
                             </tr>
                             <tr>
                                 <td colspan=1 align='left'>{{commentaire}}</td>
@@ -15,11 +15,11 @@
                         </table>
                     </span>
                 </p>
-                <p class="col-span-3 p-1 flex items-center text-black">
+                <p class="col-span-3 sm:col-span-3 p-1 items-center text-black">
                     <span class="body-2 cursor-pointer">
                         <table>
                             <tr>
-                                <td colspan=1 align='left'> <strong>Réponse</strong></td>
+                                <td colspan=1 align='left'> <u  class="underline-text"><strong>Réponse :</strong> le {{dateReponse}}</u></td>
                             </tr>
                             <tr>
                                 <td colspan=1 align='left'>{{reponse}}</td>

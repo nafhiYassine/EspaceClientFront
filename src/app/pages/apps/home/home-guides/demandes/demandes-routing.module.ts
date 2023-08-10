@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { VexRoutes } from '../../../../../../@vex/interfaces/vex-route.interface';
-import { AioTableComponent } from './demandes.component';
+import { DemandesComponent } from './demandes.component';
 
 
 const routes: VexRoutes = [
   {
     path: '',
-    component: AioTableComponent,
+    component: DemandesComponent,
     data: {
       toolbarShadowEnabled: false
     }
