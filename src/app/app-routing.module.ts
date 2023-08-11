@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/pages/auth/login/login.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { LoginModule } from './pages/pages/auth/login/login.module';
 import { DocumentMobileComponent } from './pages/apps/home/document-mobile/document-mobile.component';
+import { NouvelleDemandeComponent } from './pages/apps/home/home-guides/demandes/nouvelle-demande/nouvelle-demande.component';
 
 const routes: VexRoutes = [
   {
@@ -26,6 +27,7 @@ const routes: VexRoutes = [
     path: '',
     component: CustomLayoutComponent,canActivate: [AuthGuard],
     children: [
+      { path: 'nouvelle-demande', component: NouvelleDemandeComponent },
       {
         path: 'dashboards/analytics',
         redirectTo: '/',
@@ -44,7 +46,7 @@ const routes: VexRoutes = [
           },
           {
             path: 'aio-table',
-            loadChildren: () => import('./pages/apps/home/home-guides/demandes/demandes.module').then(m => m.AioTableModule),
+            loadChildren: () => import('./pages/apps/home/home-guides/demandes/demandes.module').then(m => m.DemandesModule),
           },
           {
             path: 'home',

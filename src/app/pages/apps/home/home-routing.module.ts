@@ -45,7 +45,7 @@ const routes: VexRoutes = [
       },
       {
         path: 'demandes',
-        loadChildren: () => import('./home-guides/demandes/demandes.module').then(m => m.AioTableModule)
+        loadChildren: () => import('./home-guides/demandes/demandes.module').then(m => m.DemandesModule)
       }
     
      

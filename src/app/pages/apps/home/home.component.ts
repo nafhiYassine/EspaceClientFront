@@ -137,12 +137,9 @@ export class HomeComponent implements OnInit {
           this.links = this.linksAnimal;
         }
         else {
-          console.log("NOT ANIMAL")
           this.isAnimal = false;
         }
-
         this.isBool = true;
-
       } else {
         this.isBool = false;
         this.links = this.mobileLinks;

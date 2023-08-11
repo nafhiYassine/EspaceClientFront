@@ -26,7 +26,7 @@
 </div>
 
 
-<router-outlet style="display: none;"></router-outlet>
-<!-- <div *ngIf="!isBool" class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6"
+<router-outlet *ngIf="isBool" style="display: none;"></router-outlet>
+<div *ngIf="!isBool" class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6"
   style="padding-top: 2rem ;">
-</div> -->
+</div>

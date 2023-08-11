@@ -1,14 +1,12 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Observable, of, ReplaySubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { Customer } from './interfaces/customer.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { TableColumn } from '../../../../../../@vex/interfaces/table-column.interface';
 import { aioTableData, aioTableLabels } from '../../../../../../static-data/aio-table-data';
-import { CustomerCreateUpdateComponent } from './customer-create-update/customer-create-update.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { fadeInUp400ms } from '../../../../../../@vex/animations/fade-in-up.animation';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';

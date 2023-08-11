@@ -1,41 +1,40 @@
 <!-- <div class="container mx-auto px-4 py-8"> -->
 <div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
   <div class="card p-6 flex-auto">
-    <table class="mb-6">
-      <tr>
-        <td>
-          <p class="vertical-bar flex justify-between items-center"></p>
-        </td>
-        <td>
-          <div class="flex justify-between items-center ">
-            <h2 class="headline m-0  text-black"><strong>Mes demandes et réclamations</strong></h2>
-          </div>
-        </td>
-      </tr>
-    </table>
-
-    <!-- --------------------------------------------------------------- -->
-
-    <div class="card bg-primary flex" style="background-color: rgba(var(--color-primary), 0.1); cursor: pointer;" (click)="ajouterDemande()">
-      <div class="p-2 sm:p-6 text-primary-contrast flex-auto">
-        <div class="mt-4">
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-4">
-            <div class="col-span-1 sm:col-span-1 p-1 flex items-center justify-center">
-              <span class="body-2 cursor-pointer">
-                <div class="mt-1 mb-4 flex items-center" >
-                  <h2 class="headline m-0 text-black">Ajouter une demande </h2>
-                  <mat-icon class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                            svgIcon="mat:add_circle"></mat-icon>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4">
+      <div class="col-span-1 sm:col-span-1">
+        <div class="p-1 items-center text-black">
+          <table class="mb-6">
+            <tr>
+              <td>
+                <p class="vertical-bar flex justify-between items-center"></p>
+              </td>
+              <td>
+                <div class="flex justify-between items-center">
+                  <h2 class="headline m-0 text-black"><strong>Mes demandes et réclamations</strong></h2>
                 </div>
-                
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-span-1 sm:col-span-1" style="cursor: pointer;" (click)="ajouterDemande()">
+        <div class="p-1 items-center text-black">
+          <div class="flex justify-end " style="padding-top: 0.27rem;"> 
+            <button class="flex items-center justify-center py-2 rounded-l-lg text-white p-2"
+              style="background-color: rgba(var(--color-primary));">
+              <mat-icon class="text-lg ml-2" svgIcon="mat:add"></mat-icon>
+            </button>
+            <button class="flex items-center justify-center py-2 rounded-r-lg text-white p-4"
+              style="background-color: rgba(var(--color-primary),0.9);">
+              <span class="mr-2">
+                <h2 style="font-size: 20px;">Ajouter une demande</h2>
               </span>
-            </div>
+            </button>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- --------------------------------------------------------------- -->
 
     <div *ngFor="let demande of demandes" style="padding-top : 20px;">
       <vex-card [demande]="demande"></vex-card>
