@@ -48,8 +48,29 @@
         </div>
 
         <div>
-          <p class="m-0 body-1">Maladie</p>
-          <p class="m-0 caption text-hint">Régime sociale</p>
+          <p class="m-0 body-1">{{data.souscripteur.dateNaissance}}</p>
+          <p class="m-0 caption text-hint">Date de naissance</p>
+        </div>
+      </div>
+      <div class="py-3 flex items-center">
+        <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+          <mat-icon class="icon-sm" svgIcon="mat:favorite_border"></mat-icon>
+        </div>
+
+        <div>
+          <p class="m-0 body-1">{{data.souscripteur.username}}</p>
+          <p class="m-0 caption text-hint">Email</p>
+        </div>
+      </div> <div class="py-3 flex items-center">
+        <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+          <mat-icon class="icon-sm" svgIcon="mat:favorite_border"></mat-icon>
+        </div>
+
+        <div>
+          <p class="m-0 body-1">{{data.souscripteur.numeroTel}}</p>
+          <p class="m-0 caption text-hint">Numéro de téléphone</p>
         </div>
       </div>
       <div>

@@ -31,8 +31,10 @@ export class ContratAnimalComponent implements OnInit {
       for (const contrat of this.data.listeContrats as ContratAnimal[]) {
         let animal = contrat.animal ;
         animal.numeroContrat = contrat.numeroContrat ;
-        this.listeAnimaux.push(animal);
+        animal.statut=contrat.statut;
+        for (let index = 0; index < 5; index++) {
+          this.listeAnimaux.push(JSON.parse(JSON.stringify(animal)));
+        }
       }
   }
-
 }

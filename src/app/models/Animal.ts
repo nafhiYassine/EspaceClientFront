@@ -6,4 +6,5 @@ export class Animal{
     dateNaissance:String;
     statutVacc:String;
     numeroContrat?:String;
+    statut?:String;
 }
