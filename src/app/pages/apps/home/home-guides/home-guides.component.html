@@ -3,48 +3,24 @@
 <div *ngIf="data" class="my-12 container grid grid-cols-1 sm:grid-cols-2 gap-6">
   <div class="card max-w-full overflow-hidden p-3">
     <mat-nav-list >
-   <!--  <vex-contrats *ngIf="data?.listeContrats && data?.listeContrats?.length" [authObj]="authObj" [data]="data" ></vex-contrats>
-   -->
+
    <vex-contrat-sante *ngIf="data?.listeContrats && data?.listeContrats?.length && authObj.typeContrat !='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-sante>
    <vex-infos-bancaires  *ngIf ="data?.souscripteur && authObj.typeContrat =='A'"  [data]="data"></vex-infos-bancaires>
 
   </mat-nav-list>
-
-   <vex-infos-bancaires  *ngIf ="authObj.typeContrat =='A'"  [data]="data"></vex-infos-bancaires>
-
-  </div>
-<vex-souscripteur  [data]="data"></vex-souscripteur>
-<vex-contrat-animal *ngIf ="authObj.typeContrat =='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-animal>
+</div>
 
 
-<<<<<<< Updated upstream
-=======
-<vex-souscripteur  *ngIf ="data?.souscripteur" [authObj]="authObj" [data]="data"></vex-souscripteur>
- <!--   <vex-contrat-sante *ngIf ="data?.listeContrats && data?.listeContrats?.length && authObj.typeContrat !='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-sante>-->
-   <!-- <vex-contrat-animal *ngIf ="authObj.typeContrat =='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-animal> -->
 
-   <!-- <vex-contrat-sante *ngIf="data?.listeContrats && data?.listeContrats?.length && authObj.typeContrat !='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-sante> -->
-
-  <!-- </mat-nav-list> -->
-
-   <!-- <vex-infos-bancaires  *ngIf ="authObj.typeContrat =='A'"  [data]="data"></vex-infos-bancaires> -->
+   <vex-souscripteur *ngIf ="data?.souscripteur"  [authObj]="authObj"  [data]="data"></vex-souscripteur>
    <vex-document-home *ngIf ="authObj.typeContrat =='I'"></vex-document-home>
    <vex-cotisations *ngIf ="authObj.typeContrat =='I'" [authObj]="authObj" [data]="data"></vex-cotisations>
 
 
 
 
-<!-- <vex-assures [authObj]="authObj" [data]="data"></vex-assures> -->
-<!-- <vex-cotisations [authObj]="authObj" [data]="data"></vex-cotisations> -->
-<!-- <vex-contrat-animal *ngIf ="authObj.typeContrat =='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-animal> -->
-
-
-
->>>>>>> Stashed changes
 
 
 </div>
-<vex-assures *ngIf ="authObj.typeContrat =='I' && data?.listeContrats && data?.listeContrats?.length"[authObj]="authObj" [data]="data"></vex-assures>
-
 <vex-contrat-animal *ngIf ="data?.listeContrats && data?.listeContrats?.length && authObj.typeContrat =='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-animal>
 <vex-assures *ngIf ="authObj.typeContrat =='I' && data?.listeContrats && data?.listeContrats?.length"[authObj]="authObj" [data]="data"></vex-assures>
