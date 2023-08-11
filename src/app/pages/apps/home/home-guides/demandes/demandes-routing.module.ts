@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { VexRoutes } from '../../../../../../@vex/interfaces/vex-route.interface';
 import { DemandesComponent } from './demandes.component';
+import { NouvelleDemandeComponent } from './nouvelle-demande/nouvelle-demande.component';
 
 
 const routes: VexRoutes = [
@@ -15,9 +16,10 @@ const routes: VexRoutes = [
   }
 ];
 
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule, QuicklinkModule]
 })
-export class AioTableRoutingModule {
+export class DemandesRoutingModule {
 }
