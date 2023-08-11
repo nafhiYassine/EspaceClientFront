@@ -1,36 +1,87 @@
-
 <div class="card bg-primary flex" style="background-color: rgba(var(--color-primary), 0.1);">
-    <div class="p-6 text-primary-contrast flex-auto">
-        <div class="mt-4 flex items-center">
-            <!-- <div class="p-1 flex items-center"></div> -->
-          
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-5 sm:gap-4">
 
-                 <p class="col-span-2 p-1 flex items-center text-black">
-                    <span class="body-2 cursor-pointer"> 
-                       
+    <div class="p-4 ml-4 flex-none left  sm:block">
+        <img *ngIf="beneficiaire.type=='Souscripteur'" src="assets/img/insurance/bonhomme.png" style="height: 80px">
+        <img *ngIf="beneficiaire.type=='Conjoint'" src="assets/img/insurance/bague.png" style="height: 80px">
+        <img *ngIf="beneficiaire.type=='Enfant'" src="assets/img/insurance/childd.png" style="height: 80px">
+    </div>
 
-                        <table class="table w-full border-collapse border border-black-600">
-                            <thead>
-                              <tr class="bg-gray-200">
-                                <th class="border border-gray-300 py-2 px-4 text-black"><strong>Numéro de sécurité social</strong></th>
-                                <th class="border border-gray-300 py-2 px-4 text-black"><strong>Date de naissance</strong></th>
-                                <th class="border border-gray-300 py-2 px-4 text-black"><strong>Regime social</strong></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr class="hover:bg-gray-100">
-                                <td class="border border-gray-300 py-2 px-4 text-black">{{idfnss}}</td>
-                                <td class="border border-gray-300 py-2 px-4 text-black">{{dateNaissance}}</td>
-                                <td class="border border-gray-300 py-2 px-4 text-black">{{regass}}</td>
-                              </tr>
-                              <!-- Add more rows as needed -->
-                            </tbody>
-                          </table>
-
-                  </span>
-                </p> 
+    <div class="p-2 sm:p-6 text-primary-contrast flex-auto">
+        <table class="mb-6">
+            <tr>
+                <td>
+                    <p class="vertical-bar flex justify-between items-center"></p>
+                </td>
+                <td>
+                    <div class="flex justify-between items-center ">
+                        <h2 class="headline m-0  text-black">{{beneficiaire.nom}} {{beneficiaire.prenom}}</h2>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="mt-4">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-12 sm:gap-4">
+                <div class="col-span-5 sm:col-span-6">
+                    <p class="p-1 items-center text-black">
+                        <span class="body-2 cursor-pointer">
+                            <table>
+                                <tr>
+                                    <td colspan=1 align='left'><strong>{{beneficiaire.type}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan=1 align='left'>{{beneficiaire.dateNaissance}}</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </p>
+                </div>
+                <div class="col-span-2 p-1 items-center text-black">
+                    <span class="body-2 cursor-pointer">
+                        <table>
+                            <tr>
+                                <td colspan=1 align='left'> <strong>Numéro de sécurité sociale</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan=1 align='left'>{{beneficiaire.idfnss}}</td>
+                            </tr>
+                        </table>
+                        <!-- État : Non traitée -->
+                    </span>
+                </div>
+                <div class="col-span-3 p-1 items-center text-black">
+                    <span class="body-2 cursor-pointer">
+                        <table>
+                            <tr>
+                                <td colspan=1 align='left'><strong>Rang Assuré</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan=1 align='left'>{{beneficiaire.regass}}</td>
+                            </tr>
+                        </table>
+                    </span>
+                </div>
+                <div class="col-span-5 sm:col-span-1 p-1 flex items-center justify-center">
+                    <span class="body-2 cursor-pointer">
+                        <a (click)="getDetails(beneficiaire)">
+                            <p class="mt-1 mb-4 flex items-center" *ngIf="!details">
+                                <mat-icon
+                                    class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
+                                    svgIcon="mat:add_circle"></mat-icon>
+                            </p>
+                            <p class="mt-1 mb-4 flex items-center" *ngIf="details">
+                                <mat-icon
+                                    class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
+                                    svgIcon="mat:remove_circle"></mat-icon>
+                            </p>
+                        </a>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
 </div>
+  
+  <div *ngIf="details">
+    <vex-card-down-assures [dateNaissance] ="dateNaissance" [regass]="regass" [idfnss] ="idfnss"></vex-card-down-assures>
+  </div>
+

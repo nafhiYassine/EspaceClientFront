@@ -15,16 +15,15 @@
 
    <!-- <vex-infos-bancaires  *ngIf ="authObj.typeContrat =='A'"  [data]="data"></vex-infos-bancaires> -->
    <vex-souscripteur  [data]="data"></vex-souscripteur>
-   <vex-document-home></vex-document-home>
-   <vex-assures [authObj]="authObj" [data]="data"></vex-assures>
-   <vex-cotisations [authObj]="authObj" [data]="data"></vex-cotisations>
+   <vex-document-home *ngIf ="authObj.typeContrat =='I'"></vex-document-home>
+   <vex-cotisations *ngIf ="authObj.typeContrat =='I'" [authObj]="authObj" [data]="data"></vex-cotisations>
 
+   
   </div>
-
+  <vex-assures *ngIf ="authObj.typeContrat =='I' && data?.listeContrats && data?.listeContrats?.length"[authObj]="authObj" [data]="data"></vex-assures>
 
 <!-- <vex-assures [authObj]="authObj" [data]="data"></vex-assures> -->
 <!-- <vex-cotisations [authObj]="authObj" [data]="data"></vex-cotisations> -->
-
 <!-- <vex-contrat-animal *ngIf ="authObj.typeContrat =='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-animal> -->
 
 
