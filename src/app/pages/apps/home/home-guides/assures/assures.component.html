@@ -1,29 +1,35 @@
-
-<div *ngIf ="authObj.typeContrat !='A'" class="card max-w-full overflow-hidden p-3">
-    <mat-nav-list>
-      <div class="px-gutter py-4 border-b">
-        <h2 class="title m-0">Mes assurés</h2>
-      </div>
-
-
-      <a  *ngFor="let beneficiaire of listBeneficiaire;" class="rounded overflow-hidden" mat-list-item>
-        <mat-icon class="icon-sm" svgIcon="mat:account_circle"></mat-icon>
-        <!-- <div matListItemTitle>{{ guide.label }} </div> -->
-        <table class="table w-full ">
-       <tbody>
-          <tr>
-            <td class="py-6 border-b text-left">{{ beneficiaire.nom }} {{beneficiaire.prenom}}</td>
-            <td class="py-6 border-b bg-foreground rounded-lg text-primary text-right ">{{ beneficiaire.type }}</td>
-          </tr>
-        </tbody>
-       </table>
-
-      </a>
-      <a class="text-right">
-        <button (click)="gotoDetails(listBeneficiaire)" color="primary" mat-raised-button type="button" class="">
-          Details
-        </button>
-      </a>
-
-    </mat-nav-list>
+<div *ngIf ="authObj.typeContrat !='A'" class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
+<div class="card p-6 flex-auto">
+ <table class="mb-6">
+   <tr>
+    <td>
+     <p class="vertical-bar"></p>
+   </td>
+     <td>
+       <h2 class="mb-2 headline mt-0">Mes assurés et garanties</h2>
+   </td>
+    </tr>
+  </table>
+  <div *ngFor="let beneficiaire of listBeneficiaire" style="padding-top : 20px;">
+    <vex-card-assures [beneficiaire]="beneficiaire"></vex-card-assures>
   </div>
+ </div>
+</div>
+
+
+
+
+
+<!-- 
+<div *ngIf ="authObj.typeContrat !='A'" class="card max-w-full overflow-hidden p-3">
+  <div class="px-gutter py-4 border-b">
+    <h2 class="title m-0 text-black">Mes assurés et garanties</h2>
+  </div>
+  
+
+<div *ngFor="let beneficiaire of listBeneficiaire" style="padding-top : 20px;">
+  <vex-card-assures [beneficiaire]="beneficiaire"></vex-card-assures>
+</div>
+
+</div>
+ -->

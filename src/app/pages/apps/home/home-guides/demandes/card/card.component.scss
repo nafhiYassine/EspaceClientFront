@@ -1,0 +1,12 @@
+.vertical-bar:before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 54px;
+    background-color: rgba(0,0,0,0.1); /* Adjust the color as per your preference */
+    margin-right: 10px; /* Adjust the spacing between the vertical bar and the title */
+  }
+
+.body-2, h6{
+  font-size: 16px !important ;
+}

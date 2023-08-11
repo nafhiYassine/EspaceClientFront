@@ -1,6 +1,9 @@
 <div class="card bg-primary flex" style="background-color: rgba(var(--color-primary), 0.1);">
-    <div class="p-4 ml-4 flex-none pt-10 hidden sm:block">
-        <img src="assets/img/illustrations/checklist.svg" style="height: 80px; width: 72px">
+
+    <div class="p-4 ml-4 flex-none left  sm:block">
+        <img *ngIf="beneficiaire.type=='Souscripteur'" src="assets/img/insurance/bonhomme.png" style="height: 80px">
+        <img *ngIf="beneficiaire.type=='Conjoint'" src="assets/img/insurance/bague.png" style="height: 80px">
+        <img *ngIf="beneficiaire.type=='Enfant'" src="assets/img/insurance/childd.png" style="height: 80px">
     </div>
 
     <div class="p-2 sm:p-6 text-primary-contrast flex-auto">
@@ -11,7 +14,7 @@
                 </td>
                 <td>
                     <div class="flex justify-between items-center ">
-                        <h2 class="headline m-0  text-black">{{demande.sujet}}</h2>
+                        <h2 class="headline m-0  text-black">{{beneficiaire.nom}} {{beneficiaire.prenom}}</h2>
                     </div>
                 </td>
             </tr>
@@ -23,10 +26,10 @@
                         <span class="body-2 cursor-pointer">
                             <table>
                                 <tr>
-                                    <td colspan=1 align='left'><strong>Motif</strong></td>
+                                    <td colspan=1 align='left'><strong>{{beneficiaire.type}}</strong></td>
                                 </tr>
                                 <tr>
-                                    <td colspan=1 align='left'>{{demande.motif}}</td>
+                                    <td colspan=1 align='left'>{{beneficiaire.dateNaissance}}</td>
                                 </tr>
                             </table>
                         </span>
@@ -36,10 +39,10 @@
                     <span class="body-2 cursor-pointer">
                         <table>
                             <tr>
-                                <td colspan=1 align='left'> <strong>État</strong></td>
+                                <td colspan=1 align='left'> <strong>Numéro de sécurité sociale</strong></td>
                             </tr>
                             <tr>
-                                <td colspan=1 align='left'>{{demande.etat}}</td>
+                                <td colspan=1 align='left'>{{beneficiaire.idfnss}}</td>
                             </tr>
                         </table>
                         <!-- État : Non traitée -->
@@ -49,17 +52,17 @@
                     <span class="body-2 cursor-pointer">
                         <table>
                             <tr>
-                                <td colspan=1 align='left'><strong>Date</strong></td>
+                                <td colspan=1 align='left'><strong>Rang Assuré</strong></td>
                             </tr>
                             <tr>
-                                <td colspan=1 align='left'>{{demande.dateCreation +' '+ demande.heureCreation }}</td>
+                                <td colspan=1 align='left'>{{beneficiaire.regass}}</td>
                             </tr>
                         </table>
                     </span>
                 </div>
                 <div class="col-span-5 sm:col-span-1 p-1 flex items-center justify-center">
                     <span class="body-2 cursor-pointer">
-                        <a (click)="getDetails()">
+                        <a (click)="getDetails(beneficiaire)">
                             <p class="mt-1 mb-4 flex items-center" *ngIf="!details">
                                 <mat-icon
                                     class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
@@ -77,12 +80,8 @@
         </div>
     </div>
 </div>
+  
+  <div *ngIf="details">
+    <vex-card-down-assures [dateNaissance] ="dateNaissance" [regass]="regass" [idfnss] ="idfnss"></vex-card-down-assures>
+  </div>
 
-<div *ngIf="details">
-    <vex-dropdown-card 
-        [commentaire]="demande.messageInitial"
-        [dateCreation]="demande.dateCreation + ' ' + demande.heureCreation " 
-        [reponse]="demande.reponseGestionnaire"
-        [dateReponse]="demande.dateReponse + ' ' + demande.heureReponse">
-    </vex-dropdown-card>
-</div>
