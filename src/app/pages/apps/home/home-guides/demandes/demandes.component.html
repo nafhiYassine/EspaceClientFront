@@ -18,15 +18,15 @@
           </table>
         </div>
       </div>
-      <div class="col-span-1 sm:col-span-1" style="cursor: pointer;" (click)="ajouterDemande()">
+      <div class="col-span-1 sm:col-span-1" >
         <div class="p-1 items-center text-black">
           <div class="flex justify-end " style="padding-top: 0.27rem;"> 
             <button class="flex items-center justify-center py-2 rounded-l-lg text-white p-2"
-              style="background-color: rgba(var(--color-primary));">
+              style="background-color: rgba(var(--color-primary));" (click)="ajouterDemande()">
               <mat-icon class="text-lg ml-2" svgIcon="mat:add"></mat-icon>
             </button>
             <button class="flex items-center justify-center py-2 rounded-r-lg text-white p-4"
-              style="background-color: rgba(var(--color-primary),0.9);">
+              style="background-color: rgba(var(--color-primary),0.9);" (click)="ajouterDemande()">
               <span class="mr-2">
                 <h2 style="font-size: 20px;">Ajouter une demande</h2>
               </span>

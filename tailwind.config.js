@@ -80,6 +80,7 @@ module.exports = {
       },
       spacing: {
         gutter: 'var(--padding-gutter)',
+        '20': '5rem',
       },
       backgroundColor: theme => ({
         ...theme('colors'),
