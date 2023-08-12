@@ -8,12 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthObject } from 'src/app/models/AuthObject';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from 'src/app/token-storage-service';
-import { Souscripteur } from 'src/app/models/Souscripteur';
+import { Souscripteur } from 'src/app/models/souscripteur';
 import { Data } from '../../../../models/Data';
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 import { SECRET_KEY } from '../../../../commons/url.constants';
 import { IContrat } from 'src/app/models/IContrat';
+import { MatNavList } from '@angular/material/list';
 
 export enum GuideCategory {
   firstSteps,

@@ -1,0 +1,103 @@
+<div *ngFor="let animal of listeAnimaux;" class="card bg-primary flex" style="background-color: rgba(var(--color-primary), 0.1);">
+  <div class="p-4 ml-4 flex-none left  sm:block">
+      <img *ngIf ="animal.genre== 'Chien' " src="assets/img/animaux/chat.png" style="height: 80px">
+     <img *ngIf ="animal.genre== 'chat' " src="assets/img/animaux/chat.png" style="height: 80px">
+
+      <div style="width: 100%;text-align: center;">{{animal.nom}}</div>
+  </div>
+  <div class="p-4 ml-4 flex-none left  sm:block">
+    <div class="tag">100% ACCIDENT</div>
+    <div class="tag">PACK BIEN ETRE 100%</div>
+    <div class="tag">CAPITAL DECES 300£</div>
+
+
+</div>
+
+  <div class="p-2 sm:p-6 text-primary-contrast flex-auto">
+
+      <div class="mt-4 flex items-center " style="margin-top:0">
+          <!-- <div class="p-1 flex items-center"></div> -->
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-12  sm:gap-4">
+              <p class="col-span-2 p-1 flex items-center text-black">
+                  <span class="body-2 cursor-pointer">
+                      <table>
+                          <tr>
+                              <td colspan=1 align='left'><strong>Numero de contrat</strong></td>
+                          </tr>
+                          <tr>
+                              <td colspan=1 align='left'>{{animal.numeroContrat}}</td>
+                          </tr>
+                      </table>
+                  </span>
+              </p>
+              <p class="col-span-2 p-1 items-center text-black">
+                  <span class="body-2 cursor-pointer">
+                      <table>
+                          <tr>
+                              <td colspan=1 align='left'> <strong>Type</strong></td>
+                          </tr>
+                          <tr>
+                              <td colspan=1 align='left'>{{animal.genre}}</td>
+                          </tr>
+                      </table>
+                      <!-- État : Non traitée -->
+                  </span>
+              </p>
+              <p class="col-span-2 p-1 items-center text-black">
+                  <span class="body-2 cursor-pointer">
+                      <table>
+                          <tr>
+                              <td colspan=1 align='left'><strong>Sexe</strong></td>
+                          </tr>
+                          <tr>
+                              <td colspan=1 align='left'>{{animal.sexe}}</td>
+                          </tr>
+                      </table>
+                  </span>
+              </p>
+              <p class="col-span-2 p-1 items-center text-black">
+                <span class="body-2 cursor-pointer">
+                    <table>
+                        <tr>
+                            <td colspan=1 align='left'><strong>Vaccination</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan=1 align='left'>{{animal.statutVacc}}</td>
+                        </tr>
+                    </table>
+                </span>
+            </p> <p class="col-span-2 p-1 items-center text-black">
+              <span class="body-2 cursor-pointer">
+                  <table>
+                      <tr>
+                          <td colspan=1 align='left'><strong>Date Naissance </strong></td>
+                      </tr>
+                      <tr>
+                          <td colspan=1 align='left'>{{animal.dateNaissance}}</td>
+                      </tr>
+                  </table>
+              </span>
+          </p> <p class="col-span-2 p-1 items-center text-black">
+            <span class="body-2 cursor-pointer">
+                <table>
+                    <tr>
+                        <td colspan=1 align='left'><strong>Statut</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan=1 align='left'>{{animal.statut}}</td>
+                    </tr>
+                </table>
+            </span>
+        </p>
+
+
+
+          </div>
+
+      </div>
+  </div>
+</div>
+
+<!-- <div *ngIf="details">
+  <vex-dropdown-card [commentaire] = "commentaire" [reponse]="reponse"></vex-dropdown-card>
+</div> -->
