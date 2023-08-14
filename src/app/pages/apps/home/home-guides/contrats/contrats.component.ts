@@ -49,7 +49,7 @@ export class ContratsComponent implements OnInit {
       if(this.authObj.typeContrat=='A'){
         for (const contrat of this.data.listeContrats as ContratAnimal[]) {
           let animal = contrat.animal ;
-          animal.numeroContrat = contrat.numeroContrat ;
+          //animal.numeroContrat = contrat.numeroContrat ;
           this.listeAnimaux.push(animal);
         }
       }else if(this.authObj.typeContrat=='I'){

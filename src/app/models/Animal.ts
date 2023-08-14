@@ -5,6 +5,4 @@ export class Animal{
     genre:String;
     dateNaissance:String;
     statutVacc:String;
-    numeroContrat?:String;
-    statut?:String;
 }

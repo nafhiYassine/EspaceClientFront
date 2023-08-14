@@ -1,11 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Animal } from 'src/app/models/Animal';
 
 @Component({
   selector: 'vex-card-animal',
   templateUrl: './card-animal.component.html',
   styleUrls: ['./card-animal.component.scss']
 })
-export class CardAnimalComponent {
+export class CardAnimalComponent implements OnInit{
+
 @Input()
-listeAnimaux;
+data;
+
+listeContrats ;
+
+
+ngOnInit(): void {
+  this.listeContrats = this.data.listeContrats;
+
+}
+
 }
