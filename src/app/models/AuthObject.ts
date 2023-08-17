@@ -4,4 +4,5 @@ export class AuthObject{
     compo?:string;
     typeContrat?:string;
     username?:string;
+    idfpol?:string;
 }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AuthObject } from 'src/app/models/AuthObject';
 import { Data } from 'src/app/models/Data';
 
 @Component({
@@ -10,5 +11,8 @@ export class SouscripteurComponent {
 
   @Input()
   data :Data={
+  };
+  @Input()
+  authObj :AuthObject={
   };
 }

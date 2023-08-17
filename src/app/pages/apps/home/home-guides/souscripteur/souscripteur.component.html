@@ -1,8 +1,22 @@
 <div *ngIf="data?.souscripteur?.nom" class="card max-w-full overflow-hidden p-3">
   <mat-nav-list>
+  <!--  <p class="vertical-bar "></p>
+
     <div class="px-gutter py-4 border-b">
       <h2 class="title m-0">Souscripteur</h2>
     </div>
+  -->
+    <table class="mb-6" class="px-gutter py-4 border-b">
+      <tr>
+        <td>
+          <p class="vertical-bar "></p>
+        </td>
+        <td>
+          <h2 class="mb-2 headline mt-0"><strong>Souscripteur</strong></h2>
+        </td>
+      </tr>
+    </table>
+
 
     <div class="px-gutter py-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div class="py-3 flex items-center">
@@ -48,14 +62,36 @@
         </div>
 
         <div>
-          <p class="m-0 body-1">Maladie</p>
-          <p class="m-0 caption text-hint">Régime sociale</p>
+          <p class="m-0 body-1">{{data.souscripteur.dateNaissance}}</p>
+          <p class="m-0 caption text-hint">Date de naissance</p>
+        </div>
+      </div>
+      <div *ngIf ="data?.souscripteur && authObj.typeContrat =='A'" class="py-3 flex items-center">
+        <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+          <mat-icon class="icon-sm" svgIcon="mat:favorite_border"></mat-icon>
+        </div>
+
+        <div >
+          <p class="m-0 body-1">{{data.souscripteur.username}}</p>
+          <p class="m-0 caption text-hint">Email</p>
+        </div>
+      </div>
+
+      <div *ngIf ="authObj.typeContrat =='A'" class="py-3 flex items-center">
+        <div
+          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+          <mat-icon class="icon-sm" svgIcon="mat:favorite_border"></mat-icon>
+        </div>
+
+        <div >
+          <p class="m-0 body-1">{{data.souscripteur.numeroTel}}</p>
+          <p class="m-0 caption text-hint">Numéro de téléphone</p>
         </div>
       </div>
 
 
-
-      <div  class="py-3 flex items-center">
+      <div *ngIf =" authObj.typeContrat =='I'" class="py-3 flex items-center">
         <div
           class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
           <mat-icon class="icon-sm" svgIcon="mat:euro_symbol"></mat-icon>
@@ -68,7 +104,7 @@
       </div>
 
 
-      <div class="py-3 flex items-center">
+      <div *ngIf ="authObj.typeContrat =='I'" class="py-3 flex items-center">
         <div
           class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
           <mat-icon class="icon-sm" svgIcon="mat:euro_symbol"></mat-icon>
@@ -82,7 +118,7 @@
 
 
 
-      <div class="py-3 flex items-center">
+      <div *ngIf ="authObj.typeContrat =='I'" class="py-3 flex items-center">
         <div
           class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
           <mat-icon class="icon-sm" svgIcon="mat:chrome_reader_mode"></mat-icon>
@@ -94,7 +130,7 @@
         </div>
       </div>
 
-  <div class="py-3 flex items-center">
+  <div *ngIf =" authObj.typeContrat =='I'" class="py-3 flex items-center">
         <div
           class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
           <mat-icon class="icon-sm" svgIcon="mat:date_range"></mat-icon>
@@ -106,9 +142,7 @@
         </div>
       </div>
 
-  <div>
 
-      </div>
 
 
     </div>

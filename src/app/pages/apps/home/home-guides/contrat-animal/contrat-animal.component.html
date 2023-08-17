@@ -1,4 +1,4 @@
-<div *ngIf="listeAnimaux.length">
+<!--<div *ngIf="listeAnimaux.length">
   <div class="px-gutter py-4 border-b">
     <h2 class="title m-0">Mes animaux</h2>
   </div>
@@ -14,7 +14,7 @@
       <tr mat-row *matRowDef="let row; columns: afficherColonnes"></tr>
     </table>
   </div>
-</div>
+</div>-->
 
 <div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
   <div class="card p-6 flex-auto">
@@ -24,17 +24,13 @@
           <p class="vertical-bar "></p>
         </td>
         <td>
-          <h2 class="mb-2 headline mt-0"><strong>Mes demandes et réclamations</strong></h2>
+          <h2 class="mb-2 headline mt-0"><strong>Mes animaux</strong></h2>
         </td>
       </tr>
     </table>
-    <vex-card></vex-card>
-    <br>
-    <vex-card></vex-card>
-    <br>
-    <vex-card></vex-card>
-    <br>
-    <br>
+    <div>
+    <vex-card-animal [data]="data"></vex-card-animal>
+   </div>
   </div>
 </div>
 

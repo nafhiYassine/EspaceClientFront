@@ -4,6 +4,7 @@ import { API_HOST } from '../commons/url.constants';
 import { Observable, catchError, map, tap } from 'rxjs';
 import { AuthObject } from '../models/AuthObject';
 import { Demande } from '../models/Demande';
+import { DemandeRequest } from '../models/DemandeRequest';
 
 
 @Injectable({
@@ -33,6 +34,9 @@ export class DemandeService {
       })
     );
   }
+
+  
+  
   
 
   private getHeaders(): HttpHeaders {

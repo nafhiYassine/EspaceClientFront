@@ -1,8 +1,17 @@
-<div *ngIf="data?.souscripteur?.nom" class="card max-w-full overflow-hidden p-3">
-  <mat-nav-list>
-    <div class="px-gutter py-4 border-b">
-      <h2 class="title m-0">Mes informations bancaires </h2>
-    </div>
+<div *ngIf="data?.souscripteur?.infosBancaires">
+   <!-- <div class="px-gutter py-4 border-b">
+      <h2 class="title m-0"></h2>
+    </div>-->
+    <table class="mb-6" class="px-gutter py-4 border-b">
+      <tr>
+        <td>
+          <p class="vertical-bar "></p>
+        </td>
+        <td>
+          <h2 class="mb-2 headline mt-0"><strong>Mes informations bancaires </strong></h2>
+        </td>
+      </tr>
+    </table>
 
     <div class="px-gutter py-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div class="py-3 flex items-center">
@@ -53,9 +62,8 @@
         </div>
       </div>
       <div class="py-3 flex items-center">
-        <div
-          class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
-          <mat-icon class="icon-sm" svgIcon="mat:favorite_border"></mat-icon>
+        <div class="w-10 h-10 rounded-full bg-primary/10 text-primary ltr:mr-3 rtl:ml-3 flex items-center justify-center">
+          <mat-icon class="icon-sm" svgIcon="mat:date_range"></mat-icon>
         </div>
 
         <div>
@@ -69,5 +77,4 @@
 
 
     </div>
-  </mat-nav-list>
 </div>

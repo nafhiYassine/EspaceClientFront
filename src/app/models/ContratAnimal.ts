@@ -8,5 +8,6 @@ export class ContratAnimal extends IContrat{
     listAnimal:Animal[];
     infosBancaires:Compte;
     listPrestation:Prestation[];
+    formules:string[];
 
 }
