@@ -1,5 +1,6 @@
 import { Component,Input } from '@angular/core';
 import { Beneficiaire } from 'src/app/models/Beneficiaire';
+import { Product } from 'src/app/models/Product';
 
 
 @Component({
@@ -15,17 +16,21 @@ export class CardAssuresComponent {
   regass: string="MALADIE";
   dateNaissance : string ="18/07/1991";
   idfnss:string;
+  droit_carte_tp:string;
+  droit_teletransmission:string;
+  listProducts:Product[];
   getDetails(beneficiaire) {
     this.dateNaissance=beneficiaire.dateNaissance;
     this.regass=beneficiaire.regass;
     this.idfnss=beneficiaire.idfnss;
+    this.droit_carte_tp=beneficiaire.droit_carte_tp;
+    this.droit_teletransmission=beneficiaire.droit_teletransmission;
     this.details = !this.details;
-    console.log("details called",this.idfnss)
+    this.listProducts=beneficiaire.listProducts;
+    console.log("details called",this.droit_carte_tp)
   }
 
 
-/*   @Input() dateNaissance:string
-  @Input() regass:string
-  @Input() idfnss:string */
+
 
 }

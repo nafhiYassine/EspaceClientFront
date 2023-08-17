@@ -35,7 +35,7 @@
                         </span>
                     </p>
                 </div>
-                <div class="col-span-2 p-1 items-center text-black">
+                <div class="col-span-5 p-1 items-center text-black">
                     <span class="body-2 cursor-pointer">
                         <table>
                             <tr>
@@ -48,30 +48,30 @@
                         <!-- État : Non traitée -->
                     </span>
                 </div>
-                <div class="col-span-3 p-1 items-center text-black">
-                    <span class="body-2 cursor-pointer">
-                        <table>
+                <!-- <div class="col-span-3 p-1 items-center text-black">
+                    <span class="body-2 cursor-pointer"> -->
+                 <!--        <table>
                             <tr>
                                 <td colspan=1 align='left'><strong>Rang Assuré</strong></td>
                             </tr>
                             <tr>
                                 <td colspan=1 align='left'>{{beneficiaire.regass}}</td>
                             </tr>
-                        </table>
-                    </span>
-                </div>
+                        </table> -->
+              <!--       </span>
+                </div> -->
                 <div class="col-span-5 sm:col-span-1 p-1 flex items-center justify-center">
                     <span class="body-2 cursor-pointer">
                         <a (click)="getDetails(beneficiaire)">
                             <p class="mt-1 mb-4 flex items-center" *ngIf="!details">
                                 <mat-icon
                                     class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                                    svgIcon="mat:add_circle"></mat-icon>
+                                    svgIcon="mat:keyboard_arrow_down"></mat-icon>
                             </p>
                             <p class="mt-1 mb-4 flex items-center" *ngIf="details">
                                 <mat-icon
                                     class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                                    svgIcon="mat:remove_circle"></mat-icon>
+                                    svgIcon="mat:keyboard_arrow_up"></mat-icon>
                             </p>
                         </a>
                     </span>
@@ -82,6 +82,6 @@
 </div>
   
   <div *ngIf="details">
-    <vex-card-down-assures [dateNaissance] ="dateNaissance" [regass]="regass" [idfnss] ="idfnss"></vex-card-down-assures>
+    <vex-card-down-assures [dateNaissance] ="dateNaissance" [regass]="regass" [droit_carte_tp]="droit_carte_tp" [droit_teletransmission]="droit_teletransmission" [idfnss] ="idfnss" [listProducts]="listProducts"></vex-card-down-assures>
   </div>
 
