@@ -17,6 +17,8 @@ export class CardDownAssuresComponent {
   @Input() idfnss:string 
   @Input() droit_carte_tp:string;
   @Input() droit_teletransmission:string;
+  @Input() regime_sociale:string;
+  
 
   @Input() listProducts:Product[];
   

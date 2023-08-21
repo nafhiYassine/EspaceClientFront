@@ -1,35 +1,95 @@
-<div *ngIf ="authObj.typeContrat !='A'" class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
-<div class="card p-6 flex-auto">
- <table class="mb-6">
-   <tr>
-    <td>
-     <p class="vertical-bar"></p>
-   </td>
-     <td>
-       <h2 class="mb-2 headline mt-0">Mes assurés et garanties</h2>
-   </td>
-    </tr>
-  </table>
+<!-- <div *ngIf ="authObj.typeContrat !='A'" class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6"> -->
+
+   <div *ngIf ="authObj.typeContrat !='A'" class="my-20 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6"> 
+    <div class="card p-6 flex-auto">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4">
+        <div class="col-span-1 sm:col-span-1">
+          <div class="p-1 items-center text-black">
+            <table class="mb-6">
+              <tr>
+                <td>
+                  <p class="vertical-bar flex justify-between items-center"></p>
+                </td>
+                <td>
+                  <div class="flex justify-between items-center">
+                    <h2 class="headline m-0 text-black">Mes assurés</h2>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-1" >
+          <div class="p-1 items-center text-black">
+            <div class="flex justify-end " style="padding-top: 0.27rem;"> 
+              <button class="flex items-center justify-center py-2 rounded-l-lg text-white p-2"
+                style="background-color: rgba(var(--color-primary));" >
+                <mat-icon class="text-lg ml-2" svgIcon="mat:add"></mat-icon>
+              </button>
+              <button class="flex items-center justify-center py-2 rounded-r-lg text-white p-4"
+                style="background-color: rgba(var(--color-primary),0.9);" >
+                <span class="mr-2">
+                  <h2 style="font-size: 20px;">Details</h2>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
   <div *ngFor="let beneficiaire of listBeneficiaire" style="padding-top : 20px;">
     <vex-card-assures [beneficiaire]="beneficiaire"></vex-card-assures>
   </div>
- </div>
+
+
+
 </div>
+
+
+
+
+
+
 
 
 
 
 
 <!-- 
-<div *ngIf ="authObj.typeContrat !='A'" class="card max-w-full overflow-hidden p-3">
-  <div class="px-gutter py-4 border-b">
-    <h2 class="title m-0 text-black">Mes assurés et garanties</h2>
-  </div>
-  
+<div class="card p-6 flex-auto"> -->
+  <!-- <div class="grid-container">
+    <p class="vertical-bar"></p>
+    <h2 class="mb-2 headline mt-0"> Mes assurés </h2>
+    <h2 class="mb-2 headline mt-0" style="margin-left: auto;"> Mes tests </h2>
+</div>  -->
+ <!-- <table class="grid grid-cols-2 gap-4" >
+   <tr>
+    <td>
+      <div >
+        <p class="vertical-bar"></p>
+      </div>
+    </td>
 
-<div *ngFor="let beneficiaire of listBeneficiaire" style="padding-top : 20px;">
-  <vex-card-assures [beneficiaire]="beneficiaire"></vex-card-assures>
-</div>
+    <td>
+      <div >
+        <h2 class="mb-2 headline mt-0"> Mes assurés </h2>
+      </div>
+   </td>
+   <td>
+    <div >
+      <h2 class="mb-2 headline mt-0 text-right"> </h2>
+    </div>
+ </td>
 
-</div>
- -->
+
+    </tr>
+  </table> -->
+
+
+
+<!-- </div> -->
+
+
+
