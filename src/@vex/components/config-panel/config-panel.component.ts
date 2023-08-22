@@ -1,4 +1,4 @@
-import { Component, Inject,OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ConfigService } from '../../config/config.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { map } from 'rxjs/operators';
@@ -13,6 +13,9 @@ import { VexConfig } from '../../config/vex-config.interface';
 import { CSSValue } from '../../interfaces/css-value.type';
 import { isNil } from '../../utils/isNil';
 import { defaultRoundedButtonBorderRadius } from '../../config/constants';
+import { SECRET_KEY } from 'src/app/commons/url.constants';
+import * as CryptoJS from 'crypto-js';
+
 
 @Component({
   selector: 'vex-config-panel',
@@ -41,6 +44,8 @@ export class ConfigPanelComponent {
   ConfigName = VexConfigName;
   ColorSchemeName = ColorSchemeName;
   selectedColor = colorVariables.blue;
+
+  rgbColor : string
 
   roundedCornerValues: CSSValue[] = [
     {
@@ -79,12 +84,26 @@ export class ConfigPanelComponent {
 
   roundedButtonValue: CSSValue = defaultRoundedButtonBorderRadius;
   ngOnInit() {
-   this.setConfig(VexConfigName.ikaros, ColorSchemeName.light)
-  }  
-  constructor(private configService: ConfigService,
-              private layoutService: LayoutService,
-              @Inject(DOCUMENT) private document: Document) { }
+    let configs: VexConfig[] = this.configService.configs;
 
+    if (localStorage.getItem('webconf')) {
+      const serializedWebConf: string = localStorage.getItem('webconf');
+      const decryptedBytes = CryptoJS.AES.decrypt(serializedWebConf, SECRET_KEY);
+      const decryptedWebConf = decryptedBytes.toString(CryptoJS.enc.Utf8);
+      this.rgbColor = this.hexToRgb(JSON.parse(decryptedWebConf).color);
+      console.log("this.rgbColor : " + this.rgbColor)
+    }
+
+    configs[0].style.colors.primary = {
+      default: this.rgbColor,
+      contrast: 'rgb(255, 255, 255)'
+    }
+    this.setConfig(VexConfigName.ikaros, ColorSchemeName.light)
+  }
+  constructor(private configService: ConfigService,
+    private layoutService: LayoutService,
+    @Inject(DOCUMENT) private document: Document) { }
+  
   setConfig(layout: VexConfigName, colorScheme: ColorSchemeName): void {
     this.configService.setConfig(layout);
     this.configService.updateConfig({
@@ -106,6 +125,19 @@ export class ConfigPanelComponent {
         }
       }
     });
+  }
+  
+  hexToRgb(hex: string): string {
+    // Remove the '#' character if present
+    hex = hex.replace('#', '');
+
+    // Parse the hex values for red, green, and blue components
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+
+    // Create the "rgb(X, Y, Z)" string
+    return `rgb(${r}, ${g}, ${b})`;
   }
 
   isSelectedColor(color: ColorVariable): boolean {

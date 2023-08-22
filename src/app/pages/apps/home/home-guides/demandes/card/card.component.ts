@@ -14,7 +14,6 @@ export class CardComponent implements OnInit {
     console.log("details called")
   }
   ngOnInit() {
-    console.log("this.demande.reponseGestionnaire " + this.demande.reponseGestionnaire)
   }
 
 }
