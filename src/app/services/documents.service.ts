@@ -24,6 +24,16 @@ export class DocumentsService {
       .set('param2', param2);
       return this.http.get<DocumentResponse>(`${this.apiUrl}/documentTest2`, { params });
   }
+
+  getDocumentsSolution1(param1: string, param2: string,typDoc:string): Observable<DocumentResponse> {
+    // const headers = this.getHeaders();
+    const params = new HttpParams()
+      .set('param1', param1)
+      .set('param2', param2)
+      .set('typDoc', typDoc);
+      return this.http.get<DocumentResponse>(`${this.apiUrl}/Soluction1`, { params });
+  }
+
   private getHeaders() {
     const token = this.tokenStorageService.getToken() // Retrieve the token from storage
     const headers = new HttpHeaders({
@@ -67,10 +77,12 @@ export class DocumentsService {
     return throwError('Something went wrong; please try again later.');
   }
 
-  getDocumentsGenerique(): Observable<DocumentResponse> {
-   
-    const headers = this.getHeaders();
-    return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`,{ headers });
+  getDocumentsGenerique(envir: string ,idfass : string): Observable<DocumentResponse> {
+    const params = new HttpParams()
+    .set('envir', envir)
+    .set('IDfass', idfass);
+  
+    return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`,{ params });
 
   }
 

@@ -67,19 +67,19 @@ export class DocumentMobileComponent {
       }
     );
     
-    this.documentService.getDocumentsGenerique().subscribe(
-      (documentResponse: DocumentResponse) => {
-        this.documentsGene = Object.keys(documentResponse).map((fileName, index) => {
-          return {
-            base64: documentResponse[fileName],
-            name: fileName 
-          };
-        });
-      },
-      (error) => {
-        console.error('Error fetching documents:', error);
-      }
-    );
+    // this.documentService.getDocumentsGenerique().subscribe(
+    //   (documentResponse: DocumentResponse) => {
+    //     this.documentsGene = Object.keys(documentResponse).map((fileName, index) => {
+    //       return {
+    //         base64: documentResponse[fileName],
+    //         name: fileName 
+    //       };
+    //     });
+    //   },
+    //   (error) => {
+    //     console.error('Error fetching documents:', error);
+    //   }
+    // );
 
   }
 
