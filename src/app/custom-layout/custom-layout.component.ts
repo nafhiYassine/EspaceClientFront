@@ -3,15 +3,12 @@ import { LayoutService } from '../../@vex/services/layout.service';
 import { filter, map, startWith } from 'rxjs/operators';
 import { Data, NavigationEnd, Router } from '@angular/router';
 import { checkRouterChildsData } from '../../@vex/utils/check-router-childs-data';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { ConfigService } from '../../@vex/config/config.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SidebarComponent } from '../../@vex/components/sidebar/sidebar.component';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from '../token-storage-service';
 import { AuthObject } from '../models/AuthObject';
-import { DataService } from '../services/data.service';
-import { SECRET_KEY } from '../commons/url.constants';
 
 
 
@@ -31,6 +28,9 @@ export class CustomLayoutComponent implements OnInit {
   decodedToken: any = jwt_decode(this.tokenStorage.getToken());
   data: Data;
   authObj: AuthObject = new AuthObject;
+  icone: string;
+  imageSrc: string;
+
 
   toolbarShadowEnabled$ = this.router.events.pipe(
     filter(event => event instanceof NavigationEnd),
@@ -41,10 +41,8 @@ export class CustomLayoutComponent implements OnInit {
 
   constructor(private layoutService: LayoutService,
     private configService: ConfigService,
-    private breakpointObserver: BreakpointObserver,
     private router: Router,
-    private tokenStorage: TokenStorageService,
-    private dataService: DataService) { }
+    private tokenStorage: TokenStorageService,) { }
 
   ngOnInit() {
     this.layoutService.configpanelOpen$.pipe(
@@ -58,6 +56,15 @@ export class CustomLayoutComponent implements OnInit {
         this.isBool = false;
       }
     });
+  }
 
+  dataURLtoBlob(dataURL: string, extension: string): Blob {
+    const bstr = atob(dataURL);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: "image/" + extension });
   }
 }
