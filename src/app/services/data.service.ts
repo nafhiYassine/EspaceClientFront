@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { API_HOST } from '../commons/url.constants';
+import { API_HOST, SECRET_KEY } from '../commons/url.constants';
 import { Observable, catchError, map, tap } from 'rxjs';
 import { AuthObject } from '../models/AuthObject';
 import { Data } from '../models/Data';
+import jwt_decode from 'jwt-decode';
+import * as CryptoJS from 'crypto-js';
+import { TokenStorageService } from './token-storage-service';
 
 
 @Injectable({
@@ -11,7 +14,11 @@ import { Data } from '../models/Data';
 })
 export class DataService {
   data: Data;
-  constructor(private httpClient: HttpClient) { }
+  authObj: AuthObject = new AuthObject;
+  decodedToken: any = jwt_decode(this.tokenStorage.getToken());
+  constructor(
+    private httpClient: HttpClient,
+    private tokenStorage : TokenStorageService) { }
   private tenantId; // Replace this with your actual tenant ID
 
   public findData(authObj: AuthObject): Observable<Data> {
@@ -33,4 +40,6 @@ export class DataService {
       'X-TENANTID': this.tenantId
     });
   }
+
+
 }

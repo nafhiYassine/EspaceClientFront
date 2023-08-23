@@ -10,6 +10,9 @@ import { TokenStorageService } from 'src/app/services/token-storage-service';
 import jwt_decode from 'jwt-decode';
 import { Data } from '@angular/router';
 import { AuthObject } from 'src/app/models/AuthObject';
+import { SECRET_KEY } from 'src/app/commons/url.constants';
+import * as CryptoJS from 'crypto-js';
+
 
 @Component({
   selector: 'vex-social-profile',
@@ -26,47 +29,72 @@ export class SocialProfileComponent implements OnInit {
 
   decodedToken: any = jwt_decode(this.tokenStorage.getToken());
 
-  data :Data={
+  data: Data = {
 
   };
 
-  authObj:AuthObject={
+  authObj: AuthObject = {
 
   };
 
 
   suggestions = friendSuggestions;
 
-  constructor(private dataService:DataService,private tokenStorage:TokenStorageService) { }
+  constructor(private dataService: DataService, private tokenStorage: TokenStorageService) { }
 
-  ngOnInit(): void {
+  // ngOnInit(): void {
 
-    this.authObj.idfass=this.decodedToken.jti;
-    this.authObj.envir=this.decodedToken.aud;
-    this.authObj.compo=this.decodedToken.compo;
-    this.authObj.typeContrat=this.decodedToken.typcrm;
-    this.authObj.username=this.decodedToken.iss;
+  //   this.authObj.idfass = this.decodedToken.jti;
+  //   this.authObj.envir = this.decodedToken.aud;
+  //   this.authObj.compo = this.decodedToken.compo;
+  //   this.authObj.typeContrat = this.decodedToken.typcrm;
+  //   this.authObj.username = this.decodedToken.iss;
 
-    this.dataService.findData(this.authObj).subscribe
-    (
-      (data)=>{
+  //   this.dataService.findData(this.authObj).subscribe ((data) => {
+  //     this.data = data;
+  //   })
 
-        this.data=data;
+    ngOnInit() {
+      this.retrieveData();
+    }
+    private retrieveData() {
+      this.authObj.idfass = this.decodedToken.jti;
+      this.authObj.envir = this.decodedToken.aud;
+      this.authObj.compo = this.decodedToken.compo;
+      this.authObj.typeContrat = this.decodedToken.typcrm;
+      this.authObj.username = this.decodedToken.iss;
+      if (localStorage.getItem('data')) {
+        const serializedData: string = localStorage.getItem('data');
+        const decryptedBytes = CryptoJS.AES.decrypt(serializedData, SECRET_KEY);
+        const decryptedDataString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+        this.data = JSON.parse(decryptedDataString);
       }
-    )
+      else {
+        this.initializeData();
+      }
+    }
 
+    private initializeData() {
 
+      this.dataService.findData(this.authObj).subscribe(
+        (data: Data) => {
+          this.data = data;
+          const encryptedData : string = CryptoJS.AES.encrypt(JSON.stringify(this.data), SECRET_KEY).toString()
+          localStorage.setItem('data',encryptedData)
+        }
+      );
+
+    }
+
+    addFriend(friend: FriendSuggestion) {
+      friend.added = true;
+    }
+
+    removeFriend(friend: FriendSuggestion) {
+      friend.added = false;
+    }
+
+    trackByName(index: number, friend: FriendSuggestion) {
+      return friend.name;
+    }
   }
-
-  addFriend(friend: FriendSuggestion) {
-    friend.added = true;
-  }
-
-  removeFriend(friend: FriendSuggestion) {
-    friend.added = false;
-  }
-
-  trackByName(index: number, friend: FriendSuggestion) {
-    return friend.name;
-  }
-}
