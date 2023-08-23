@@ -14,25 +14,27 @@ export class CardAssuresComponent implements OnInit {
 
   ngOnInit(): void {
       this.listProducts=this.beneficiaire.listProducts;
+      this.dateNaissance=this.beneficiaire.dateNaissance;
+      this.regass=this.beneficiaire.regass;
+      this.idfnss=this.beneficiaire.idfnss;
+      this.droit_carte_tp=this.beneficiaire.droit_carte_tp;
+      this.droit_teletransmission=this.beneficiaire.droit_teletransmission;
+      this.regime_sociale=this.beneficiaire.regime_sociale;
+  
+
   }
   details = false;
-  regass: string="MALADIE";
-  dateNaissance : string ="18/07/1991";
-  idfnss:string;
-  droit_carte_tp:string;
-  droit_teletransmission:string;
+  regass: String="MALADIE";
+  dateNaissance : String ;
+  idfnss:String;
+  droit_carte_tp:String;
+  droit_teletransmission:String;
   listProducts:Product[];
-  regime_sociale:string;
+  regime_sociale:String;
+  kcle:String;
   
   getDetails(beneficiaire) {
-    this.dateNaissance=beneficiaire.dateNaissance;
-    this.regass=beneficiaire.regass;
-    this.idfnss=beneficiaire.idfnss;
-    this.droit_carte_tp=beneficiaire.droit_carte_tp;
-    this.droit_teletransmission=beneficiaire.droit_teletransmission;
-    this.details = !this.details;
-    this.listProducts=beneficiaire.listProducts;
-    this.regime_sociale=beneficiaire.regime_sociale;
+   
     console.log("details called",this.listProducts)
     
   }

@@ -8,4 +8,5 @@ export class Product{
     date_debut:String;
     date_fin:String;
     motif_fin:String;
+    kcle:String;
 }
