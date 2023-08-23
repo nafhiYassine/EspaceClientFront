@@ -79,13 +79,24 @@ export class DocumentsService {
     console.error('Error fetching documents:', error);
     return throwError('Something went wrong; please try again later.');
   }
+
+
   getDocumentsGenerique(envir: string ,idfass : string): Observable<DocumentResponse> {
     const params = new HttpParams()
     .set('envir', envir)
     .set('IDfass', idfass);
   
     return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`,{ params });
+
   }
+
+//   getDocumentsGenerique(): Observable<DocumentResponse> {
+//     const headers = this.getHeaders();
+//     return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`,{ headers });
+// >>>>>>> 4b4bf3d17c6ac69172fc48c23f4fab2a1c3280f1
+
+// >>>>>>> ce7797591cdd678ea9df6a2e3a98455385642c2d
+//   }
 
   // getDocumentsGenerique(): Observable<DocumentResponse> {
   //   const headers = this.getHeaders();
