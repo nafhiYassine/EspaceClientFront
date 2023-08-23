@@ -15,9 +15,7 @@ export class ContratsComponent implements OnInit {
 
 
 
-  @Input()
-  data :Data={
-  };
+  @Input() data :Data;
 
   @Input()
   authObj:AuthObject={
