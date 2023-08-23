@@ -7,7 +7,7 @@ import { ConfigService } from '../../@vex/config/config.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SidebarComponent } from '../../@vex/components/sidebar/sidebar.component';
 import jwt_decode from 'jwt-decode';
-import { TokenStorageService } from '../token-storage-service';
+import { TokenStorageService } from '../services/token-storage-service';
 import { AuthObject } from '../models/AuthObject';
 
 

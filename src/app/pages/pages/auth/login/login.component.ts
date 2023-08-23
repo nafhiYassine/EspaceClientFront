@@ -6,7 +6,7 @@ import { fadeInUp400ms } from '../../../../../@vex/animations/fade-in-up.animati
 import { UserService } from '../../../../services/user.service';
 import { User } from '../../../../../app/models/User';
 import { AuthService } from '../../../../../app/services/Auth.service'
-import { TokenStorageService } from '../../../../../app/token-storage-service'
+import { TokenStorageService } from '../../../../services/token-storage-service'
 import jwt_decode from "jwt-decode";
 
 @Component({

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
-import { AuthObject } from './models/AuthObject';
+import { AuthObject } from '../models/AuthObject';
 
 const TOKEN_KEY = 'JWTToken';
 const REFRESH_TOKEN = 'REFRESH_TOKEN';
@@ -28,12 +28,6 @@ export class TokenStorageService {
     window.sessionStorage.setItem(TYPECRM, typcrm);
   }
 
-
-  public getRole(){
-       return jwt_decode(sessionStorage.getItem(TOKEN_KEY))['roles'][0];
-
-   }
-
   public getToken(): string {
     return sessionStorage.getItem(TOKEN_KEY);
   }
@@ -57,6 +51,16 @@ export class TokenStorageService {
       console.log('Decoded Token: ', decodedToken);
       console.log('Issuer: ', decodedToken.iss);
       console.log('Issuer 2: ', issuer);
+    } catch (error) {
+      console.error('Error decoding JWT:', error);
+    }
+  }
+
+  public getFullName(): string {
+    try {
+      const decodedToken: any = jwt_decode(this.getToken());
+      return( decodedToken.prenom + " " + decodedToken.nom);
+
     } catch (error) {
       console.error('Error decoding JWT:', error);
     }

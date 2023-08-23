@@ -2,7 +2,7 @@ import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/Auth.service';
-import { TokenStorageService } from '../token-storage-service';
+import { TokenStorageService } from '../services/token-storage-service';
 
 
 

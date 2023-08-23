@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { API_HOST } from '../commons/url.constants';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 // import { Observable } from 'rxjs/internal/Observable';
-import { TokenStorageService } from '../token-storage-service';
+import { TokenStorageService } from './token-storage-service';
 import { DocumentResponse } from '../models/DocumentsResponse';
 import { catchError, throwError, Observable, map, tap } from 'rxjs';
 import { WebConf } from '../models/WebConf';

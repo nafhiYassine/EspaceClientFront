@@ -35,6 +35,7 @@
         </div>
       </div>
     </div>
+    <mat-progress-spinner style="margin: auto; margin-bottom: 40px;"  *ngIf="demandes.length == 0"  mode="indeterminate" ></mat-progress-spinner>
 
     <div *ngFor="let demande of demandes" style="padding-top : 20px;">
       <vex-card [demande]="demande"></vex-card>
