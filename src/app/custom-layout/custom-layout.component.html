@@ -3,8 +3,8 @@
 </ng-template>
 
 <ng-template #toolbarRef>
-  <vex-toolbar [hasShadow]="toolbarShadowEnabled$ | async" [mobileQuery]="!(isDesktop$ | async)"
-    class="vex-toolbar"></vex-toolbar>
+    <vex-toolbar [hasShadow]="toolbarShadowEnabled$ | async" [mobileQuery]="!(isDesktop$ | async)"
+      class="vex-toolbar"></vex-toolbar>
   <hr>
   <div *ngIf="(isDesktop$ | async)">
     <vex-second-toolbar></vex-second-toolbar>

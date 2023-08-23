@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { API_HOST } from '../commons/url.constants';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
+// import { Observable } from 'rxjs/internal/Observable';
 import { TokenStorageService } from '../token-storage-service';
 import { DocumentResponse } from '../models/DocumentsResponse';
-import { catchError, throwError } from 'rxjs';
+import { catchError, throwError, Observable, map, tap } from 'rxjs';
+import { WebConf } from '../models/WebConf';
+
 
 
 
@@ -15,6 +17,7 @@ import { catchError, throwError } from 'rxjs';
 export class DocumentsService {
   private apiUrl = API_HOST+'/doc';
   base64Document: string;
+  webConf : WebConf
   constructor(private http: HttpClient ,private tokenStorageService: TokenStorageService) { }
 
   getDocuments(param1: string, param2: string): Observable<DocumentResponse> {
@@ -24,6 +27,16 @@ export class DocumentsService {
       .set('param2', param2);
       return this.http.get<DocumentResponse>(`${this.apiUrl}/documentTest2`, { params });
   }
+
+  getDocumentsSolution1(param1: string, param2: string,typDoc:string): Observable<DocumentResponse> {
+    // const headers = this.getHeaders();
+    const params = new HttpParams()
+      .set('param1', param1)
+      .set('param2', param2)
+      .set('typDoc', typDoc);
+      return this.http.get<DocumentResponse>(`${this.apiUrl}/Soluction1`, { params });
+  }
+
   private getHeaders() {
     const token = this.tokenStorageService.getToken() // Retrieve the token from storage
     const headers = new HttpHeaders({
@@ -67,12 +80,47 @@ export class DocumentsService {
     return throwError('Something went wrong; please try again later.');
   }
 
-  getDocumentsGenerique(): Observable<DocumentResponse> {
-   
-    const headers = this.getHeaders();
-    return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`,{ headers });
+
+  getDocumentsGenerique(envir: string ,idfass : string): Observable<DocumentResponse> {
+    const params = new HttpParams()
+    .set('envir', envir)
+    .set('IDfass', idfass);
+  
+    return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`,{ params });
 
   }
+
+//   getDocumentsGenerique(): Observable<DocumentResponse> {
+//     const headers = this.getHeaders();
+//     return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`,{ headers });
+// >>>>>>> 4b4bf3d17c6ac69172fc48c23f4fab2a1c3280f1
+
+// >>>>>>> ce7797591cdd678ea9df6a2e3a98455385642c2d
+//   }
+
+  // getDocumentsGenerique(): Observable<DocumentResponse> {
+  //   const headers = this.getHeaders();
+  //   return this.http.get<DocumentResponse>(`${this.apiUrl}/Documentgeneriques`,{ headers });
+ 
+
+  // }
+
+  getWebConf(idfass: string, envir: string): Observable<WebConf> {
+    const params = new HttpParams()
+    .set('idfass', idfass)
+    .set('envir', envir)
+    const headers = this.getHeaders();
+    return this.http.get<WebConf>(`${this.apiUrl}/webConf`,{params, headers}).pipe(tap((response: WebConf) => {
+      this.webConf = response;
+    }),
+      catchError((error: any) => {
+        throw error;
+      })
+    );;
+
+  }
+
+
 
 /*   getDocumentsHGenerique(param1: string, param2: string): Observable<DocumentResponse> {
     const params = new HttpParams()

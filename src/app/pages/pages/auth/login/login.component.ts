@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, NgForm, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { fadeInUp400ms } from '../../../../../@vex/animations/fade-in-up.animation';
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   issuer: string;
   id: string;
   compo: string;
+  captcha : NgForm;
 
   /*authObj:AuthObj={
 
@@ -52,9 +53,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async logInFormOpen() {
+  async logInFormOpen(event) {
     this.user = this.form.value;
-    if (this.form.valid) {
+    this.captcha = event;
+    if (this.form.valid && this.captcha.valid) {
       (await this.authService.authenticate(this.user)).subscribe(
         async (data: { authorization: string; refreshToken: string }) => {
           if (data.authorization == null) {

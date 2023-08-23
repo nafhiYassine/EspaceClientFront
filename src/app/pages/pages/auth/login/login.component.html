@@ -27,6 +27,7 @@
             <mat-icon *ngIf="!visible" svgIcon="mat:visibility_off"></mat-icon>
           </button>
           <mat-hint>Cliquez sur l'œil pour basculer la visibilité</mat-hint>
+          <!-- <app-captcha (eventEmitter)="resetPasswordFormOpen($event,forgotPasswordForm)"></app-captcha> -->
           <mat-error *ngIf="form.get('password').hasError('required')">Nous avons besoin d'un mot de passe pour vous connecter</mat-error>
         </mat-form-field>
       </div>
@@ -35,10 +36,12 @@
         <mat-checkbox class="caption" color="primary">Rester connecté</mat-checkbox>
         <a [routerLink]="['/forgot-password']" class="caption">Mot de passe oublié</a>
       </div>
+      
+      <app-captcha (eventEmitter)="logInFormOpen($event)"></app-captcha>
 
-      <button (click)="logInFormOpen()" color="primary" mat-raised-button type="button">
+      <!-- <button (click)="logInFormOpen()" color="primary" mat-raised-button type="button">
         Se connecter
-      </button>
+      </button> -->
 
       <p class="text-secondary text-center">
         <br>
