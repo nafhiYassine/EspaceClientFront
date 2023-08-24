@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Link } from '../../../../@vex/interfaces/link.interface';
 import { scaleIn400ms } from '../../../../@vex/animations/scale-in.animation';
 import { fadeInRight400ms } from '../../../../@vex/animations/fade-in-right.animation';
+import { TokenStorageService } from 'src/app/services/token-storage-service';
 
 export interface FriendSuggestion {
   name: string;
@@ -9,6 +10,7 @@ export interface FriendSuggestion {
   friends: number;
   added: boolean;
 }
+
 
 @Component({
   selector: 'vex-social',
@@ -20,6 +22,8 @@ export interface FriendSuggestion {
   ]
 })
 export class SocialComponent implements OnInit {
+  
+  fullName : string
 
   links: Link[] = [
     {
@@ -43,8 +47,9 @@ export class SocialComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor( private tokenStorage : TokenStorageService) { }
 
   ngOnInit() {
+    this.fullName = this.tokenStorage.getFullName()
   }
 }

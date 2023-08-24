@@ -10,7 +10,9 @@
 }
 
 .dropdown-header {
-  @apply bg-primary text-primary-contrast py-4 pr-4 pl-3 shadow;
+  @apply bg-primary text-primary-contrast pr-4 pl-3 shadow;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 .dropdown-heading-icon {

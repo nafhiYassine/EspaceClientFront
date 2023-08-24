@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 import { DocumentsService } from 'src/app/services/documents.service';
 import { WebConf } from 'src/app/models/WebConf';
 import { AuthObject } from 'src/app/models/AuthObject';
-import { TokenStorageService } from 'src/app/token-storage-service';
+import { TokenStorageService } from 'src/app/services/token-storage-service';
 import jwt_decode from 'jwt-decode';
 import * as CryptoJS from 'crypto-js';
 import { SECRET_KEY } from '../../../app/commons/url.constants';

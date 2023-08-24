@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import { LayoutService } from "src/@vex/services/layout.service";
 import { DemandeWebConf } from "src/app/models/DemandeWebConf";
 import { DemandeWebConfService } from "src/app/services/demandeWebConf.service";
-import { TokenStorageService } from "src/app/token-storage-service";
+import { TokenStorageService } from "src/app/services/token-storage-service";
 import jwt_decode from 'jwt-decode';
 import { FileData } from "src/app/models/FileData";
 import { DemandeRequest } from "src/app/models/DemandeRequest";

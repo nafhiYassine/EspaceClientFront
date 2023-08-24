@@ -5,7 +5,7 @@ import { fadeInUp400ms } from '../../../../@vex/animations/fade-in-up.animation'
 import { stagger40ms } from '../../../../@vex/animations/stagger.animation';
 import { LayoutService } from 'src/@vex/services/layout.service';
 import { link } from 'fs';
-import { TokenStorageService } from 'src/app/token-storage-service';
+import { TokenStorageService } from 'src/app/services/token-storage-service';
 import jwt_decode from 'jwt-decode';
 import { APP_BASE_HREF } from '@angular/common';
 

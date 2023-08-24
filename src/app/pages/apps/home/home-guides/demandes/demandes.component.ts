@@ -17,7 +17,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { DemandeService } from 'src/app/services/demandes.service';
 import jwt_decode from 'jwt-decode';
 import { Demande } from 'src/app/models/Demande';
-import { TokenStorageService } from 'src/app/token-storage-service';
+import { TokenStorageService } from 'src/app/services/token-storage-service';
 import { SECRET_KEY } from '../../../../../commons/url.constants';
 import * as CryptoJS from 'crypto-js';
 import { Router } from '@angular/router';
@@ -33,7 +33,7 @@ import { Router } from '@angular/router';
 export class DemandesComponent implements OnInit{
   decodedToken: any = jwt_decode(this.tokenStorage.getToken());
   showHelloWorldCard = false;
-  demandes : Demande[];
+  demandes : Demande[] = [];
   toggleHelloWorldCard() {
     this.showHelloWorldCard = !this.showHelloWorldCard;
   }
