@@ -6,7 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cotisations.component.scss']
 })
 export class CotisationsComponent {
-  @Input()
-  authObj;
+  @Input() authObj;
 
 }
