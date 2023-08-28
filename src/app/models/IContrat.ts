@@ -6,4 +6,5 @@ export class IContrat{
     dateFin:String;
     motifFin:String;
     idfpol:String;
+    solde:String;
 }

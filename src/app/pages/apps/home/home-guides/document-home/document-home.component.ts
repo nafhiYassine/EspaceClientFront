@@ -22,7 +22,10 @@ export class DocumentHomeComponent {
   documents: string[]
   constructor(private documentService: DocumentsService,private tokenStorage : TokenStorageService ,private layoutService: LayoutService) {}
   isDesktop$ = this.layoutService.isDesktop$;
-
+   resultToken = this.getDecodedAccessToken(this.tokenStorage.getToken());
+   envir = this.resultToken.aud
+    idfass = this.resultToken.jti
+    idfpol = this.resultToken.idfpol
 
   ngOnInit(): void {
     
@@ -86,19 +89,19 @@ export class DocumentHomeComponent {
       }
     );
     
-    // this.documentService.getDocumentsGenerique().subscribe(
-    //   (documentResponse: DocumentResponse) => {
-    //     this.documentsGene = Object.keys(documentResponse).map((fileName, index) => {
-    //       return {
-    //         base64: documentResponse[fileName],
-    //         name: fileName 
-    //       };
-    //     });
-    //   },
-    //   (error) => {
-    //     console.error('Error fetching documents:', error);
-    //   }
-    // );
+    this.documentService.getDocumentsGenerique(envir,idfass).subscribe(
+      (documentResponse: DocumentResponse) => {
+        this.documentsGene = Object.keys(documentResponse).map((fileName, index) => {
+          return {
+            base64: documentResponse[fileName],
+            name: fileName 
+          };
+        });
+      },
+      (error) => {
+        console.error('Error fetching documents:', error);
+      }
+    );
 
   }
 
