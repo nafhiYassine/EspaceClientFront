@@ -17,13 +17,14 @@ export class ForgotPasswordComponent implements OnInit {
     email: [null, Validators.required]
   });
   emailPattern   : string = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
-
+  envir :string;
 
   constructor(
     private router: Router,
     private fb: UntypedFormBuilder,
     private formBuilder : FormBuilder,
     private forgotPassword :ForgotPassword
+   
   ) { }
 
   ngOnInit() {
@@ -31,21 +32,23 @@ export class ForgotPasswordComponent implements OnInit {
 			email:["",[Validators.required,Validators.pattern(this.emailPattern)]],
 		})
 		const timeoutId = setTimeout(this.resetPasswordFormOpen, 5000);
+    console.log("---------------->this is bib",this.envir)
   }
 
   send() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/SucessSend']);
   }
 
-  resetPasswordFormOpen(event,forgotPasswordForm){
-    console.log("------------>",event);
+  async resetPasswordFormOpen(event,forgotPasswordForm){
+    // console.log("------------>",event);
 		this.formForgot = event;
 		console.log(forgotPasswordForm.value.email);
 		if(this.formForgot.valid && forgotPasswordForm.valid){
-			this.forgotPassword.sendEmail(forgotPasswordForm.value.email).subscribe((check: any) => {
+     
+			(await this.forgotPassword.sendEmail(forgotPasswordForm.value.email)).subscribe((check: any) => {
 						console.log(check);
 				})
-			this.router.navigate(['session/success-page']);
+			this.router.navigate(['/SucessSend']);
 		}
   }
 

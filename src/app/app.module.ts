@@ -8,17 +8,28 @@ import { VexModule } from '../@vex/vex.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CustomLayoutModule } from './custom-layout/custom-layout.module';
 import { AuthInterceptorService } from './Interceptors/auth-interceptor.service';
+import { ResetPasswordComponent } from './pages/pages/auth/reset-password/reset-password.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { SuccessSendComponent } from './pages/pages/auth/success-send/success-send.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ResetPasswordComponent, SuccessSendComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // Vex
+    MatInputModule,
+    MatIconModule,
     VexModule,
-    CustomLayoutModule
+    CustomLayoutModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
