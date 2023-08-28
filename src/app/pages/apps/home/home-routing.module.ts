@@ -3,17 +3,18 @@ import { RouterModule } from '@angular/router';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { HomeComponent } from './home.component';
 import { VexRoutes } from '../../../../@vex/interfaces/vex-route.interface';
+import { RemboursementsComponent } from './home-guides/remboursements/remboursements.component';
 
 
 const routes: VexRoutes = [
- 
+
   {
-   
-    
+
+
     path: '',
     component: HomeComponent,
-    
-    
+
+
     data: {
       toolbarShadowEnabled: true
     },
@@ -37,7 +38,7 @@ const routes: VexRoutes = [
       },
       {
         path: 'remboursements',
-        loadChildren: () => import('./home-faq/home-faq.module').then(m => m.HomeFaqModule)
+        component:RemboursementsComponent,
       },
       {
         path: 'pec',
@@ -47,8 +48,8 @@ const routes: VexRoutes = [
         path: 'demandes',
         loadChildren: () => import('./home-guides/demandes/demandes.module').then(m => m.DemandesModule)
       }
-    
-     
+
+
     ]
   }
 ];

@@ -1,3 +1,5 @@
+
+
 <mat-progress-spinner *ngIf="!data" style="margin-left: 46%; margin-top: 140px;" mode="indeterminate"
   color="accent"></mat-progress-spinner>
 <div *ngIf="data" class="my-12 container grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -19,5 +21,7 @@
 </div>
 <vex-contrat-animal *ngIf="data?.listeContrats && data?.listeContrats?.length && authObj.typeContrat =='A'"
   [authObj]="authObj" [data]="data"></vex-contrat-animal>
+
 <vex-assures *ngIf="authObj.typeContrat =='I' && data?.listeContrats && data?.listeContrats?.length" [authObj]="authObj"
   [data]="data"></vex-assures>
+<router-outlet></router-outlet>

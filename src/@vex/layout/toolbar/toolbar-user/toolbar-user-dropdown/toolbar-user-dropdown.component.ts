@@ -3,6 +3,7 @@ import { MenuItem } from '../interfaces/menu-item.interface';
 import { trackById } from '../../../../utils/track-by';
 import { PopoverRef } from '../../../../components/popover/popover-ref';
 import { TokenStorageService } from 'src/app/token-storage-service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 export interface OnlineStatus {
   id: 'online' | 'away' | 'dnd' | 'offline';
@@ -87,7 +88,8 @@ export class ToolbarUserDropdownComponent implements OnInit {
 
   constructor(private cd: ChangeDetectorRef,
               private popoverRef: PopoverRef<ToolbarUserDropdownComponent>,
-              private tokenStorage : TokenStorageService) { }
+              private tokenStorage : TokenStorageService,
+              private sharedDataService:SharedDataService) { }
 
   ngOnInit() {
   }
@@ -102,6 +104,7 @@ export class ToolbarUserDropdownComponent implements OnInit {
   }
 
   logout() {
+    this.sharedDataService.clearAuthObj();
     this.tokenStorage.signOut();
   }
 }

@@ -1,0 +1,35 @@
+<div class="card bg-primary flex flex-col sm:flex-row sm:items-center sm:justify-between sm:space-x-4"
+  style="background-color: rgba(var(--color-primary), 0.1);">
+
+  <div  class="sm:p-12 text-primary-contrast">
+
+    <div class="sm:col-span-8 col-span-8" >
+
+      <button type="submit" (click)="getDocument(prestation)" style="cursor: pointer;" class="text-black">
+        <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
+      </button>
+
+    </div>
+
+    <div *ngFor="let acte of listActes" class="grid grid-cols-12 grid-cols-12 gap-8 sm:gap-8">
+      <div class="sm:col-span-4 col-span-4 text-black">
+      {{acte?.libelle}}
+
+      </div>
+      <div class="sm:col-span-2 col-span-2 text-black">
+       Montant Reglé : <span style="color:blue">{{acte?.montantRegleCergap}}</span>
+
+      </div>
+      <div class="sm:col-span-3 col-span-3 text-black">
+      Viré le    {{acte?.dateVirementRbt}}
+
+      </div>
+      <div  class="sm:col-span-3 col-span-3 text-black">
+       Montant Reste à charge <span style="color:blue"> {{acte?.montantRstChrg}}</span>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

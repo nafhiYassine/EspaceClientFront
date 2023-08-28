@@ -1,7 +1,13 @@
+import { Animal } from "./Animal";
+import { Beneficiaire } from "./Beneficiaire";
+import { Acte } from "./acte";
+
 export class Prestation{
-    dateVirementRbt:String;
-    montantFacture:String;
-    montantRegleCergap:String;
-    montantRstChrg:String;
-    libelle:String;
+  numeroSinistre:String;
+  actes:Acte[] ;
+  total:number;
+  santeBenef:Beneficiaire;
+  animal:Animal;
+
+
 }
