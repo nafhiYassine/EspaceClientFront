@@ -61,16 +61,16 @@ export class AppComponent {
       }
     );
 
-    //  this.configService.updateConfig({
-    //    sidenav: {
-    //      title: 'Custom App',
-    //      imageUrl: '//placehold.it/100x100',
-    //      showCollapsePin: false
-    //    },
-    //    footer: {
-    //      visible: false
-    //    }
-    //  });
+     this.configService.updateConfig({
+       sidenav: {
+         title: 'Espace clients',
+         imageUrl: 'assets/img/demo/logo.png',
+         showCollapsePin: false
+       },
+       footer: {
+         visible: false
+       }
+     });
     
 
     /**
@@ -125,7 +125,7 @@ export class AppComponent {
           {
             type: 'link',
             label: 'Ma carte de tiers payant',
-            route: '/apps/home/pricing'
+            route: '/apps/home/ctp'
           },
           {
             type: 'link',
@@ -135,12 +135,17 @@ export class AppComponent {
           {
             type: 'link',
             label: 'Mes remoboursements',
-            route: '/apps/home/faq'
+            route: '/apps/home/remboursements'
           },
           {
             type: 'link',
             label: 'Mes prises en charge',
             route: '/apps/home/pec'
+          },
+          {
+            type: 'link',
+            label: 'Mes demandes et réclamations',
+            route: '/apps/home/demandes',
           }
         ]
       },
