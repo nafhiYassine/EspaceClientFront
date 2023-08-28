@@ -2,12 +2,12 @@
 <div class="card bg-primary flex grid grid-cols-3 gap-4 sm:grid-cols-12 sm:gap-4"  style="background-color: rgba(var(--color-primary), 0.1);">
 
     <div class="p-4 ml-4 flex-none left  sm:block col-span-2 sm:col-span-2">
-        <img *ngIf="beneficiaire.type=='Souscripteur'" src="assets/img/insurance/bonhomme.png" style="height: 80px">
-        <img *ngIf="beneficiaire.type=='Conjoint'" src="assets/img/insurance/droit.png" style="height: 80px">
-        <img *ngIf="beneficiaire.type=='Enfant'" src="assets/img/insurance/childd.png" style="height: 80px">
-        <img *ngIf="beneficiaire.type=='Ayant Droit'" src="assets/img/insurance/benef.png" style="height: 80px">
+        <img *ngIf="beneficiaire.type=='Souscripteur'" src="assets/img/insurance/bonhomme.png" style="height: 80px" class="mx-auto">
+        <img *ngIf="beneficiaire.type=='Conjoint'" src="assets/img/insurance/droit.png" style="height: 80px" class="mx-auto">
+        <img *ngIf="beneficiaire.type=='Enfant'" src="assets/img/insurance/childd.png" style="height: 80px" class="mx-auto">
+        <img *ngIf="beneficiaire.type=='Ayant Droit'" src="assets/img/insurance/benef.png" style="height: 80px" class="mx-auto">
 
-        <div  style="width: 100%;" class="mt-2 sm-pl-17"><strong>{{beneficiaire.type}}</strong></div>
+        <div  style="width: 100%;" class="mt-2 sm-pl-17 text-center"><strong>{{beneficiaire.type}}</strong></div>
     </div>
 
     <div class="p-2 sm:p-6 text-primary-contrast flex-auto col-span-5 sm:col-span-5">
