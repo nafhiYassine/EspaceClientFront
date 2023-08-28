@@ -15,8 +15,7 @@
    <!-- </mat-nav-list>  -->
 
    <vex-souscripteur [authObj]="authObj" [data]="data"></vex-souscripteur>
-   <vex-document-home *ngIf ="authObj.typeContrat =='I'"></vex-document-home>
-   <vex-cotisations *ngIf ="authObj.typeContrat =='I'" [authObj]="authObj" [data]="data"></vex-cotisations>
+
 
   </div>
   <vex-contrat-animal *ngIf ="authObj.typeContrat =='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-animal> 
@@ -27,6 +26,9 @@
 <!-- <vex-cotisations [authObj]="authObj" [data]="data"></vex-cotisations> -->
 <!-- <vex-contrat-animal *ngIf ="authObj.typeContrat =='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-animal> -->
 
-
+<div *ngIf="data" class="my-12 container grid grid-cols-1 sm:grid-cols-2 gap-6">
+  <vex-document-home *ngIf ="authObj.typeContrat =='I'"></vex-document-home>
+  <vex-cotisations *ngIf ="authObj.typeContrat =='I'" [authObj]="authObj" [data]="data"></vex-cotisations>
+</div>
 
 
