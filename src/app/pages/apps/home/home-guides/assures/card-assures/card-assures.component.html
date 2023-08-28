@@ -7,7 +7,7 @@
         <img *ngIf="beneficiaire.type=='Enfant'" src="assets/img/insurance/childd.png" style="height: 80px">
         <img *ngIf="beneficiaire.type=='Ayant Droit'" src="assets/img/insurance/benef.png" style="height: 80px">
 
-        <div  style="width: 100%;" class="mt-2 sm-pl-17 text-center"><strong>{{beneficiaire.type}}</strong></div>
+        <div  style="width: 100%;" class="mt-2 sm-pl-17"><strong>{{beneficiaire.type}}</strong></div>
     </div>
 
     <div class="p-2 sm:p-6 text-primary-contrast flex-auto col-span-5 sm:col-span-5">
@@ -18,7 +18,7 @@
                 </td>
                 <td>
                     <div class="flex justify-between items-center ">
-                        <h2 class="headline m-0  text-black">{{beneficiaire.nom}} {{beneficiaire.prenom}}</h2>
+                        <h2 class="headline m-0 text-black">{{beneficiaire.nom}} {{beneficiaire.prenom}}</h2>
                     </div>
                 </td>
            </tr>
@@ -30,8 +30,7 @@
                                 <p class="items-center text-black">
                                      <span  class="body-2 cursor-pointer"> 
                                             <div  class="sm:col-span-2 col-span-4 text-black ">
-            
-                                                <div  class="tag">{{product.produit_nom}}
+                                              <div  class="tag">{{product.produit_nom}}
                                                 </div>
                                             </div>
                                          
