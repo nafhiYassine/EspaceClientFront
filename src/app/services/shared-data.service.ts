@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Data } from '../models/Data';
 import { AuthObject } from '../models/AuthObject';
-import { TokenStorageService } from '../token-storage-service';
 import jwt_decode from 'jwt-decode';
+import { TokenStorageService } from './token-storage-service';
 
 @Injectable({
   providedIn: 'root'
