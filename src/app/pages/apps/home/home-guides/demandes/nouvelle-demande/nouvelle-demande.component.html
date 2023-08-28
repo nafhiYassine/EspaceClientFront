@@ -4,10 +4,24 @@
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-4">
             <div class="col-span-1 sm:col-span-1">
                 <div class="p-1 items-center text-black">
-                    <div class="flex justify-center items-center">
-                        <h2 class="headline m-0 text-black"><strong>Ajouter une demande et réclamation</strong></h2>
+                    <div class="flex items-center">
+
                     </div>
                     <div style="padding-left: 10%; padding-right: 10%;" class="pt-6" *ngIf="isBool">
+                        <table class="mb-6">
+                            <tr>
+                                <td>
+                                    <p class="vertical-bar flex justify-between items-center"></p>
+                                </td>
+                                <td>
+                                    <div class="flex justify-between items-center ">
+                                        <h2 class="headline m-0 text-black">
+                                            <strong style="font-size: 24px;">Ajouter une demande et réclamation</strong>
+                                        </h2>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                         Un gestionnaire sera averti de votre demande et vous pourrez suivre l'avancement de la
                         réponse
                         directement dans la rubrique “Mes demandes”. Dès qu'une demande sera clôturée par un
@@ -16,8 +30,20 @@
                     <div class="grid grid-cols-1 sm:grid-cols-1 pt-6">
                         <div class="flex justify-center">
                             <div class="w-full sm:w-full md:w-10/12 px-4">
-                                <h2 class="pb-4" style="font-size: 16px;"><strong>Le sujet de votre demande</strong>
-                                </h2>
+                                <table class="mb-6">
+                                    <tr>
+                                        <td>
+                                            <p class="vertical-bar-small flex justify-between items-center"></p>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-between items-center ">
+                                                <h2 class="headline m-0 text-black">
+                                                    <strong>Le sujet de votre demande</strong>
+                                                </h2>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <div class="relative text-left mb-8">
                                     <select (change)="onSelectSujet($event)"
                                         class="block text-black appearance-none w-full px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline  border border-black">
@@ -33,9 +59,20 @@
                                         </svg>
                                     </div>
                                 </div>
-
-
-                                <h2 class="pb-4" style="font-size: 16px;" *ngIf="sujetOn"><strong>Theme</strong></h2>
+                                <table class="mb-6" *ngIf="sujetOn">
+                                    <tr>
+                                        <td>
+                                            <p class="vertical-bar-small flex justify-between items-center"></p>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-between items-center ">
+                                                <h2 class="headline m-0 text-black">
+                                                    <strong>Theme</strong>
+                                                </h2>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <div class="relative text-left mb-8" *ngIf="sujetOn">
                                     <select (change)="onSelectTheme($event)"
                                         class="block text-black appearance-none w-full px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline  border border-black">
@@ -51,9 +88,20 @@
                                         </svg>
                                     </div>
                                 </div>
-
-                                <h2 class="pb-4" style="font-size: 16px;" *ngIf="themeOn"><strong>Votre message
-                                    </strong></h2>
+                                <table class="mb-6" *ngIf="themeOn">
+                                    <tr>
+                                        <td>
+                                            <p class="vertical-bar-small flex justify-between items-center"></p>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-between items-center ">
+                                                <h2 class="headline m-0 text-black">
+                                                    <strong>Votre message</strong>
+                                                </h2>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <div class="relative text-left mb-8" *ngIf="themeOn">
                                     <textarea style="height: 100px" [value]="commentaire"
                                         class="block text-black appearance-none w-full px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline  border border-black">
@@ -89,10 +137,20 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div *ngIf="themeOn" class="w-full mb-8">
+                                    <div *ngFor="let e of filesdata" class="flex items-center justify-between px-4 py-2 border border-black 
+                                    rounded focus:outline-none focus:shadow-outline" style="margin-bottom: 6px;">
+                                        <div class="text-black">{{e.name}}</div>
+                                        <div class="text-red">
+                                            <p (click)="deleteFile(e.name)" style="cursor: pointer;" ><mat-icon svgIcon="mat:delete" class="icon-sm"></mat-icon></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <div class="relative text-left mb-8" *ngIf="themeOn">
                                     <button (click)="allow()"
                                         class="block text-center text-white appearance-none w-full px-4 py-2 pr-8 rounded focus:outline-none focus:shadow-outline  border border-black">
-                                    Envoyer la demande
+                                        Envoyer la demande
                                     </button>
                                 </div>
                             </div>
