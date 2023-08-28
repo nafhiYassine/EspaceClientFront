@@ -1,87 +1,79 @@
-<div class="card bg-primary flex" style="background-color: rgba(var(--color-primary), 0.1);">
 
-    <div class="p-4 ml-4 flex-none left  sm:block">
-        <img *ngIf="beneficiaire.type=='Souscripteur'" src="assets/img/insurance/bonhomme.png" style="height: 80px">
-        <img *ngIf="beneficiaire.type=='Conjoint'" src="assets/img/insurance/bague.png" style="height: 80px">
-        <img *ngIf="beneficiaire.type=='Enfant'" src="assets/img/insurance/childd.png" style="height: 80px">
+<div class="card bg-primary flex grid grid-cols-3 gap-4 sm:grid-cols-12 sm:gap-4"  style="background-color: rgba(var(--color-primary), 0.1);">
+
+    <div class="p-4 ml-4 flex-none left  sm:block col-span-2 sm:col-span-2">
+        <img *ngIf="beneficiaire.type=='Souscripteur'" src="assets/img/insurance/bonhomme.png" style="height: 80px" class="mx-auto">
+        <img *ngIf="beneficiaire.type=='Conjoint'" src="assets/img/insurance/droit.png" style="height: 80px" class="mx-auto">
+        <img *ngIf="beneficiaire.type=='Enfant'" src="assets/img/insurance/childd.png" style="height: 80px" class="mx-auto">
+        <img *ngIf="beneficiaire.type=='Ayant Droit'" src="assets/img/insurance/benef.png" style="height: 80px" class="mx-auto">
+
+        <div  style="width: 100%;" class="mt-2 sm-pl-17 text-center"><strong>{{beneficiaire.type}}</strong></div>
     </div>
 
-    <div class="p-2 sm:p-6 text-primary-contrast flex-auto">
-        <table class="mb-6">
+    <div class="p-2 sm:p-6 text-primary-contrast flex-auto col-span-5 sm:col-span-5">
+        <table class="mb-1">
             <tr>
                 <td>
                     <p class="vertical-bar flex justify-between items-center"></p>
                 </td>
                 <td>
                     <div class="flex justify-between items-center ">
-                        <h2 class="headline m-0  text-black">{{beneficiaire.nom}} {{beneficiaire.prenom}}</h2>
+                        <h2 class="headline m-0 text-black">{{beneficiaire.nom}} {{beneficiaire.prenom}}</h2>
                     </div>
                 </td>
-            </tr>
+           </tr>
         </table>
-        <div class="mt-4">
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-12 sm:gap-4">
-                <div class="col-span-5 sm:col-span-6">
-                    <p class="p-1 items-center text-black">
-                        <span class="body-2 cursor-pointer">
-                            <table>
-                                <tr>
-                                    <td colspan=1 align='left'><strong>{{beneficiaire.type}}</strong></td>
-                                </tr>
-                                <tr>
-                                    <td colspan=1 align='left'>{{beneficiaire.dateNaissance}}</td>
-                                </tr>
-                            </table>
-                        </span>
-                    </p>
-                </div>
-                <div class="col-span-2 p-1 items-center text-black">
-                    <span class="body-2 cursor-pointer">
-                        <table>
-                            <tr>
-                                <td colspan=1 align='left'> <strong>Numéro de sécurité sociale</strong></td>
-                            </tr>
-                            <tr>
-                                <td colspan=1 align='left'>{{beneficiaire.idfnss}}</td>
-                            </tr>
-                        </table>
-                        <!-- État : Non traitée -->
-                    </span>
-                </div>
-                <div class="col-span-3 p-1 items-center text-black">
-                    <span class="body-2 cursor-pointer">
-                        <table>
-                            <tr>
-                                <td colspan=1 align='left'><strong>Rang Assuré</strong></td>
-                            </tr>
-                            <tr>
-                                <td colspan=1 align='left'>{{beneficiaire.regass}}</td>
-                            </tr>
-                        </table>
-                    </span>
-                </div>
-                <div class="col-span-5 sm:col-span-1 p-1 flex items-center justify-center">
-                    <span class="body-2 cursor-pointer">
-                        <a (click)="getDetails(beneficiaire)">
-                            <p class="mt-1 mb-4 flex items-center" *ngIf="!details">
-                                <mat-icon
-                                    class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                                    svgIcon="mat:add_circle"></mat-icon>
-                            </p>
-                            <p class="mt-1 mb-4 flex items-center" *ngIf="details">
-                                <mat-icon
-                                    class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                                    svgIcon="mat:remove_circle"></mat-icon>
-                            </p>
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
+        <div class="mt-3 col-span-5 sm:col-span-5">
+            
+                        <div *ngFor="let product of listProducts" class="grid grid-cols-3 gap-4 sm:grid-cols-12 sm:gap-4">
+                            <div *ngIf="product.kcle=='OB'" class="col-span-6 sm:col-span-6">
+                                <p class="items-center text-black">
+                                     <span  class="body-2 cursor-pointer"> 
+                                            <div  class="sm:col-span-2 col-span-4 text-black ">
+                                              <div  class="tag">{{product.produit_nom}}
+                                                </div>
+                                            </div>
+                                         
+                                       </span>
+                                   </p>
+                            </div>
+                            <div *ngIf="product.kcle=='OB'" class="col-span-6  sm:col-span-6 p-1 items-center text-black">
+                                    <div>  <strong>Du </strong> {{product.date_debut}} <strong> au </strong> {{product.date_fin}}</div>
+                           </div>
+                           </div>
+                     </div>
+
+     </div>
+
+        <div class="mt-12 p-4 ml-6 col-span-5  sm:col-span-5 p-1 items-center text-black">
+            <p class=" items-center text-black">   
+             <span>
+                 <table>
+                     <tr>
+                         <td colspan=1 align='left'><strong>Date de naissance :</strong> {{dateNaissance}}</td>
+                     </tr>
+                     <tr>
+                         <td colspan=1 align='left'><strong>Regime social :</strong> {{regime_sociale}}</td>
+                     </tr>
+                     <tr>
+                         <td colspan=1 align='left'><strong>Numéro de sécurité social : </strong> {{idfnss}}</td>
+                     </tr>
+                     
+                     <tr>
+                         <td colspan=1 align='left'><strong>Droit à la carte TP :</strong> {{droit_carte_tp}}</td>
+                     </tr>
+                     <tr>
+                         <td colspan=1 align='left'><strong>Droit à la télétransmission :</strong> {{droit_teletransmission}}</td>
+                     </tr>
+            </table>
+             </span>
+         </p>
 </div>
+
+    </div>
+
   
-  <div *ngIf="details">
-    <vex-card-down-assures [dateNaissance] ="dateNaissance" [regass]="regass" [idfnss] ="idfnss"></vex-card-down-assures>
-  </div>
+  <!-- <div *ngIf="details">
+    <vex-card-down-assures [dateNaissance] ="dateNaissance" [regime_sociale]="regime_sociale" [regass]="regass" [droit_carte_tp]="droit_carte_tp" [droit_teletransmission]="droit_teletransmission" [idfnss] ="idfnss" [listProducts]="listProducts"></vex-card-down-assures>
+  </div> -->
 

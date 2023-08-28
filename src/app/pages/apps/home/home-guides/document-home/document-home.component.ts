@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { saveAs } from 'file-saver';
 import { DocumentResponse } from 'src/app/models/DocumentsResponse';
 import { DocumentsService } from 'src/app/services/documents.service';
-import { TokenStorageService } from 'src/app/token-storage-service';
+import { TokenStorageService } from 'src/app/services/token-storage-service';
 import jwt_decode from 'jwt-decode';
 import { LayoutService } from 'src/@vex/services/layout.service';
 
@@ -22,7 +22,10 @@ export class DocumentHomeComponent {
   documents: string[]
   constructor(private documentService: DocumentsService,private tokenStorage : TokenStorageService ,private layoutService: LayoutService) {}
   isDesktop$ = this.layoutService.isDesktop$;
-
+   resultToken = this.getDecodedAccessToken(this.tokenStorage.getToken());
+   envir = this.resultToken.aud
+    idfass = this.resultToken.jti
+    idfpol = this.resultToken.idfpol
 
   ngOnInit(): void {
     
@@ -86,7 +89,7 @@ export class DocumentHomeComponent {
       }
     );
     
-    this.documentService.getDocumentsGenerique().subscribe(
+    this.documentService.getDocumentsGenerique(envir,idfass).subscribe(
       (documentResponse: DocumentResponse) => {
         this.documentsGene = Object.keys(documentResponse).map((fileName, index) => {
           return {

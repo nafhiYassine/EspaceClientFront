@@ -16,7 +16,7 @@
   </div>
 </div>-->
 
-<div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
+<div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6" *ngIf="data.souscripteur" >
   <div class="card p-6 flex-auto">
     <table class="mb-6">
       <tr>
@@ -29,8 +29,7 @@
       </tr>
     </table>
     <div>
-    <vex-card-animal [data]="data"></vex-card-animal>
-   </div>
+      <vex-card-animal [data]="data"></vex-card-animal>
+    </div>
   </div>
 </div>
-

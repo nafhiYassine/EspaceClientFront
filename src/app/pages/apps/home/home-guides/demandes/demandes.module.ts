@@ -18,6 +18,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CardComponent } from './card/card.component';
 import { DropdownCardComponent } from './card/dropdown-card/dropdown-card.component';
 import { NouvelleDemandeComponent } from './nouvelle-demande/nouvelle-demande.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { NouvelleDemandeComponent } from './nouvelle-demande/nouvelle-demande.co
     ReactiveFormsModule,
     MatSelectModule,
     MatButtonToggleModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class DemandesModule {

@@ -1,22 +1,129 @@
 <div *ngIf ="authObj.typeContrat !='A'" class="card max-w-full overflow-hidden p-3">
   <mat-nav-list>
-    <div class="px-gutter py-4 border-b">
-      <h2 class="title m-0">Mes cotisations</h2>
+    <table class="mb-4">
+      <tr>
+        <td>
+          <p class="vertical-bar "></p>
+        </td>
+        <td>
+          <h2 class="mb-2 headline mt-0">Mes cotisations</h2>
+        </td>
+      </tr>
+    </table>
+
+
+    <!-- max-w-md -->
+<div class=" mx-auto bg-white shadow-md rounded-lg overflow-hidden" > 
+   <!-- <div class="px-6 py-4">
+    <h2 class="text-lg font-semibold text-gray-800">Card Title</h2>
+  </div>  -->
+  <!-- <div class="px-6 py-4">
+    <table class="table-auto" >
+      <thead>
+        <tr>
+          <th class="px-4 py-2 bg-primary text-white">Mois</th>
+          <th class="px-4 py-2 bg-primary text-white">Année</th>
+          <th class="px-4 py-2 bg-primary text-white">Montant</th>
+          <th class="px-4 py-2 bg-primary text-white">Date Facture</th>
+          <th class="px-4 py-2 bg-primary text-white">Date Régularisation</th>
+    </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cotisation of listCotisations">
+          <td class="px-4 py-2">{{cotisation.mois}}</td>
+          <td class="px-4 py-2">{{cotisation.annee}}</td>
+          <td class="px-4 py-2">{{cotisation.montant}}</td>
+          <td class="px-4 py-2">{{cotisation.date_facture}}</td>
+          <td class="px-4 py-2">{{cotisation.date_regularisation}}</td>
+    </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div> -->
+
+<div class="flex flex-col">
+  <div class="flex font-bold " style="background-color: rgba(var(--color-primary), 0.1);">
+    <div class="flex-1 p-1 border text-center">Mois/Année</div>
+    <!-- <div class="flex-1 p-1 border text-center">Année</div> -->
+    <div class="flex-1 p-1 border text-center">Montant</div>
+    <div class="flex-1 p-1 border text-center">Facture</div>
+    <div class="flex-1 p-1 border text-center">Réglement</div>
+  </div>
+  <div *ngFor="let cotisation of listCotisations" class="flex bg-white">
+    <div class="flex-1 p-1 border">{{cotisation.mois}} {{cotisation.annee}}</div>
+    <!-- <div class="flex-1 p-1 border text-center"></div> -->
+   <div *ngIf="cotisation.statut=='Payée'" class="flex-1 p-1 border text-center">{{cotisation.montant}} </div>
+   <div *ngIf="cotisation.statut=='Impayée'" class=" flex-1 p-1 border text-red text-center">{{cotisation.montant}}</div>
+   <div class="flex-1 p-1 border text-center">{{cotisation.date_facture}}</div>
+    <div class="flex-1 p-1 border text-center">{{cotisation.date_regularisation}}</div>
+ 
+  <!-- <div class="flex bg-white">
+    <div class="flex-1 p-2 border">Data 4</div>
+    <div class="flex-1 p-2 border">Data 5</div>
+    <div class="flex-1 p-2 border">Data 6</div>
+  </div> -->
+  <!-- Add more rows as needed -->
+
+</div>
+
+</div>
+
+  
+</div>
+
+
+<!-- card-table.component.html -->
+<!-- <div class="flex items-center justify-center h-screen">
+  <div class="max-w-md w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="px-6 py-4 bg-gray-200">
+      <h2 class="text-lg font-semibold text-gray-800">Card Title</h2>
     </div>
-    <a
+    <div class="px-6 py-4">
+      <table class="w-full table-auto">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 bg-primary text-white">Mois</th>
+            <th class="px-4 py-2 bg-primary text-white">Année</th>
+            <th class="px-4 py-2 bg-primary text-white">Montant</th>
+            <th class="px-4 py-2 bg-primary text-white">Date Facture</th>
+            <th class="px-4 py-2 bg-primary text-white">Date Régularisation</th>
+  
+  
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cotisation of listCotisations">
+            <td class="px-4 py-2">{{cotisation.mois}}</td>
+            <td class="px-4 py-2">{{cotisation.annee}}</td>
+            <td class="px-4 py-2">{{cotisation.montant}}</td>
+            <td class="px-4 py-2">{{cotisation.date_facture}}</td>
+            <td class="px-4 py-2">{{cotisation.date_regularisation}}</td>
+      </tr>
+  
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> -->
+
+
+
+    <!-- <a  *ngFor="let cotisation of listCotisations"
       class="rounded overflow-hidden" mat-list-item>
       <mat-icon
        matListItemIcon></mat-icon>
-      <!-- <div matListItemTitle>{{ guide.label }} </div> -->
+       <div matListItemTitle>{{ cotisation.aPayer }} </div> 
       <table class="table w-full ">
-        <tbody>
-          <tr>
-            <td class="py-6 border-b"> guide.label </td>
+        <tbody >
+          <tr >
+            <td class="py-6 border-b text-black"> {{cotisation.aPayer}}</td>
             <td class="py-6 border-b bg-foreground rounded-lg text-primary text-center "> guide.amount £</td>
 
           </tr>
         </tbody>
       </table>
-    </a>
+    </a> -->
+
   </mat-nav-list>
 </div>

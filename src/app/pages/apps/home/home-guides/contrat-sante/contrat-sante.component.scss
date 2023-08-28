@@ -1,0 +1,21 @@
+.vertical-bar:before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 54px;
+    background-color: var(--color-primary-rgb); /* Adjust the color as per your preference */
+    margin-right: 10px; /* Adjust the spacing between the vertical bar and the title */
+  }
+  .tag {
+
+    background: var(--color-primary-rgb);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.4rem;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    margin-top: 7px;
+    text-align: center;
+
+}

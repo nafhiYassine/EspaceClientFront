@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PopoverService } from '../../../components/popover/popover.service';
 import { ToolbarUserDropdownComponent } from './toolbar-user-dropdown/toolbar-user-dropdown.component';
+import { TokenStorageService } from 'src/app/services/token-storage-service';
 
 @Component({
   selector: 'vex-toolbar-user',
@@ -10,11 +11,14 @@ import { ToolbarUserDropdownComponent } from './toolbar-user-dropdown/toolbar-us
 export class ToolbarUserComponent implements OnInit {
 
   dropdownOpen: boolean;
+  fullName : string;
 
   constructor(private popover: PopoverService,
-              private cd: ChangeDetectorRef) { }
+              private cd: ChangeDetectorRef,
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
+    this.fullName = this.tokenStorage.getFullName()
   }
 
   showPopover(originRef: HTMLElement) {

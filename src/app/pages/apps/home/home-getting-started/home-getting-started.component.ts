@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DocumentsService } from 'src/app/services/documents.service';
 import { saveAs } from 'file-saver';
-import { TokenStorageService } from 'src/app/token-storage-service';
+import { TokenStorageService } from 'src/app/services/token-storage-service';
 import { DocumentResponse } from 'src/app/models/DocumentsResponse';
 import jwt_decode from 'jwt-decode';
 import { LayoutService } from 'src/@vex/services/layout.service';
+
 
 @Component({
   selector: 'vex-home-getting-started',
@@ -17,11 +18,25 @@ export class HomeGettingStartedComponent implements OnInit {
   documentsNor: any[] = [];
   DocEcheancier: { base64: string, name: string }[] = [];
   documents: string[]
+  // resultToken :string[]
+  detailsTab: boolean[] = [false, false, false,false,false,false]; 
+  cardData = [
+    { title: 'Mes Attestations', type: 'ATT',typfile :'ATTEST' },
+    { title: 'Certificat', type: 'CAD' ,typfile :'CERTIFAD' },
+    { title: 'Echéancier annuel', type: 'LAU', typfile :'COURAUGM' },
+    { title: 'Lettres Types', type: 'LET', typfile :'LETTYP' }, 
+    { title: 'Rejet CEPAM', type: 'RNO', typfile :'SIGNANOE' },  
+    { title: 'Documents signés', type: 'ADH', typfile :'ADH' } 
+  ];
   constructor(private documentService: DocumentsService, private tokenStorage: TokenStorageService, private layoutService: LayoutService) { }
   isDesktop$ = this.layoutService.isDesktop$;
 
+    resultToken = this.getDecodedAccessToken(this.tokenStorage.getToken());
+    envir = this.resultToken.aud
+     idfass = this.resultToken.jti
+     idfpol = this.resultToken.idfpol
   ngOnInit(): void {
-
+    console.log("idfpolll->",this.idfass)
     this.isDesktop$.pipe(
     ).subscribe(isDesktop => {
       if (isDesktop) {
@@ -31,55 +46,56 @@ export class HomeGettingStartedComponent implements OnInit {
       }
     });
 
-    // console.log("----------@",this.getDecodedAccessToken(this.tokenStorage.getToken()));
-    const resultToken = this.getDecodedAccessToken(this.tokenStorage.getToken());
-    const envir = resultToken.aud
-    const idfass = resultToken.jti
-    const idfpol = resultToken.idfpol
+  //   const resultToken = this.getDecodedAccessToken(this.tokenStorage.getToken());
+  //   const envir = resultToken.aud
+  //   const idfass = resultToken.jti
+  //   const idfpol = resultToken.idfpol
+  //   // console.log("----------@",this.getDecodedAccessToken(this.tokenStorage.getToken()));
+  
 
-    // this.documentService.EcheancierDoc(idfpol, idfass, envir).subscribe(
-    //   (base64Doc: string) => {
-    //     this.DocEcheancier = [{
-    //       base64: base64Doc,
-    //       name: `Document.pdf` // You can customize the name based on your data
-    //     }];
-    //   },
-    //   (error) => {
-    //     console.error('Error fetching documents:', error);
-    //   }
-    // );
+  //   // this.documentService.EcheancierDoc(idfpol, idfass, envir).subscribe(
+  //   //   (base64Doc: string) => {
+  //   //     this.DocEcheancier = [{
+  //   //       base64: base64Doc,
+  //   //       name: `Document.pdf` // You can customize the name based on your data
+  //   //     }];
+  //   //   },
+  //   //   (error) => {
+  //   //     console.error('Error fetching documents:', error);
+  //   //   }
+  //   // );
 
-    this.documentService.getEcheancierDoc(idfpol, idfass, envir).subscribe(
-      (base64Docs: string[]) => {
-        this.DocEcheancier = base64Docs.map((base64Doc, index) => {
-          return {
-            base64: base64Doc,
-            name: `Document echeancier.pdf` // You can customize the name based on your data
-          };
-        });
-      },
-      (error) => {
-        console.error('Error fetching documents:', error);
-      }
-    );
+  //   this.documentService.getEcheancierDoc(idfpol, idfass, envir).subscribe(
+  //     (base64Docs: string[]) => {
+  //       this.DocEcheancier = base64Docs.map((base64Doc, index) => {
+  //         return {
+  //           base64: base64Doc,
+  //           name: `Document echeancier.pdf` // You can customize the name based on your data
+  //         };
+  //       });
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching documents:', error);
+  //     }
+  //   );
 
 
-    this.documentService.getDocuments(envir, idfass).subscribe(
-      (documentResponse: DocumentResponse) => {
-        this.documentsNor = Object.keys(documentResponse).map((fileName, index) => {
-          return {
-            base64: documentResponse[fileName],
-            name: fileName
+  //   this.documentService.getDocuments(envir, idfass).subscribe(
+  //     (documentResponse: DocumentResponse) => {
+  //       this.documentsNor = Object.keys(documentResponse).map((fileName, index) => {
+  //         return {
+  //           base64: documentResponse[fileName],
+  //           name: fileName
 
-          };
-        });
-      },
-      (error) => {
-        console.error('Error fetching documents:', error);
-      }
-    );
+  //         };
+  //       });
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching documents:', error);
+  //     }
+  //   );
 
-    this.documentService.getDocumentsGenerique().subscribe(
+    this.documentService.getDocumentsGenerique(this.envir,this.idfass).subscribe(
       (documentResponse: DocumentResponse) => {
         this.documentsGene = Object.keys(documentResponse).map((fileName, index) => {
           return {
@@ -137,4 +153,33 @@ export class HomeGettingStartedComponent implements OnInit {
       return null;
     }
   }
+
+
+  Solution1(typDoc :string,number :Number ){
+    this.detailsTab = this.detailsTab.map((detail, i) => i === number ? !detail : false);
+
+ 
+
+    this.documentService.getDocumentsSolution1(this.envir, this.idfass,typDoc).subscribe(
+      //   const resultToken = this.getDecodedAccessToken(this.tokenStorage.getToken());
+  //   const envir = resultToken.aud
+  //   const idfass = resultToken.jti
+  //   const idfpol = resultToken.idfpol
+      (documentResponse: DocumentResponse) => {
+        
+        this.documentsNor = Object.keys(documentResponse).map((fileName, index) => {
+          return {
+            base64: documentResponse[fileName],
+            name: fileName
+
+          };
+        });
+      },
+      (error) => {
+        console.error('Error fetching documents:', error);
+      }
+    );
+ }
+
+ 
 }

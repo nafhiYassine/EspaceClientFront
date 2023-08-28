@@ -4,6 +4,7 @@ import { LayoutService } from 'src/@vex/services/layout.service';
 import { Beneficiaire } from 'src/app/models/Beneficiaire';
 import { ContratSante } from 'src/app/models/ContratSante';
 import { Data } from 'src/app/models/Data';
+import { Product } from 'src/app/models/Product';
 
 @Component({
   selector: 'vex-assures',
@@ -18,6 +19,7 @@ export class AssuresComponent implements OnInit {
   authObj;
 
   listBeneficiaire:Beneficiaire[]=[];
+  listProducts:Product[]=[];
 
   @Input()
   data:Data ;

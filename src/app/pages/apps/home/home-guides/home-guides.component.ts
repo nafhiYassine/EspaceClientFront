@@ -7,7 +7,7 @@ import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthObject } from 'src/app/models/AuthObject';
 import jwt_decode from 'jwt-decode';
-import { TokenStorageService } from 'src/app/token-storage-service';
+import { TokenStorageService } from 'src/app/services/token-storage-service';
 import { Souscripteur } from 'src/app/models/souscripteur';
 import { Data } from '../../../../models/Data';
 import { Observable } from 'rxjs';

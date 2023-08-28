@@ -1,8 +1,15 @@
  <div class="card max-w-full overflow-hidden p-3">
     <mat-nav-list>
-    <div class="px-gutter py-4 border-b">
-        <h2 class="title m-0">Mes documents contractuels</h2>
-      </div>
+      <table class="mb-6">
+        <tr>
+          <td>
+            <p class="vertical-bar "></p>
+          </td>
+          <td>
+            <h2 class="mb-2 headline mt-0">Mes documents contractuels</h2>
+          </td>
+        </tr>
+      </table>
 
       <mat-accordion *ngIf="isBool" displayMode="flat">
         <mat-progress-spinner [diameter]="70" style="margin: auto; margin-top: 10%;  margin-bottom: 10%;"  *ngIf="documentsGene.length == 0" mode="indeterminate"></mat-progress-spinner>
@@ -18,7 +25,7 @@
         </mat-accordion>
 
         <div class="mobileVersion" *ngIf="!isBool">
-            <mat-progress-spinner style="margin: auto;"  *ngIf="documentsGene.length == 0"  mode="indeterminate" ></mat-progress-spinner>
+            <mat-progress-spinner [diameter]="50" style="margin: auto;"  *ngIf="documentsGene.length == 0"  mode="indeterminate" ></mat-progress-spinner>
   
             <div *ngFor="let doc of documentsGene">
               

@@ -10,3 +10,26 @@
     background-color: var(--color-primary-rgb); /* Adjust the color as per your preference */
     margin-right: 10px; /* Adjust the spacing between the vertical bar and the title */
   }
+
+  .grid-container {
+
+    display: grid;
+  
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust column width as needed */
+  
+    gap: 20px; /* Adjust gap between cards */
+  
+  }
+  .tag {
+
+    background: var(--color-primary-rgb);
+    color: #ffffff;
+    font-size: 0.80rem;
+    font-weight: 600;
+    padding: 0.5rem 0.6rem;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    margin-top: 7px;
+    text-align: center;
+
+}

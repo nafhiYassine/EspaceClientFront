@@ -12,6 +12,10 @@ import { HomeModule } from '../home.module';
 import { ComponentsOverviewProgressSpinnerModule } from 'src/app/pages/ui/components/components-overview/components/components-overview-progress-spinner/components-overview-progress-spinner.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HighlightModule } from 'src/@vex/components/highlight/highlight.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+
 
 
 @NgModule({
@@ -23,7 +27,9 @@ import { HighlightModule } from 'src/@vex/components/highlight/highlight.module'
     FlexLayoutModule,
     ComponentsOverviewProgressSpinnerModule,
     MatProgressSpinnerModule,
-    HighlightModule
+    HighlightModule,
+    MatIconModule,MatGridListModule,
+    MatCardModule
 
     // HomeModule
   ]

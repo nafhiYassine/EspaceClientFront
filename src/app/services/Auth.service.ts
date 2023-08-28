@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../models/User';
 import { of } from 'rxjs';
-import { TokenStorageService } from '../../app/token-storage-service';
+import { TokenStorageService } from './token-storage-service';
 import { API_HOST } from '../commons/url.constants';
 import { SharedDataService } from './shared-data.service';
 
@@ -94,10 +94,6 @@ export class AuthService {
 	setLocalUserProfile(value) {
 		localStorage.setItem("userProfileData", JSON.stringify(value));
 		this.isLoggedIn = true;
-	}
-	getRole() {
-		this.roleAs = this.tokenStorageService.getRole();
-		return this.roleAs;
 	}
 }
 

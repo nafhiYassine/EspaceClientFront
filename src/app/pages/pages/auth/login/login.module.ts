@@ -10,6 +10,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CaptchaComponent } from '../forgot-password/captcha/captcha.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import { environment } from './../../../../../../src/environments/environment';
+import { ForgotPasswordModule } from '../forgot-password/forgot-password.module';
 
 
 @NgModule({
@@ -23,8 +28,21 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSnackBarModule,
     MatTooltipModule,
     MatButtonModule,
-    MatCheckboxModule
-  ]
+    MatCheckboxModule,
+    ForgotPasswordModule
+
+    ],
+  providers: [
+    {
+        provide: RECAPTCHA_SETTINGS,
+        useValue: {
+          siteKey: environment.recaptcha.siteKey,
+        } as RecaptchaSettings,
+      },
+    ],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ]
 })
 export class LoginModule {
 }

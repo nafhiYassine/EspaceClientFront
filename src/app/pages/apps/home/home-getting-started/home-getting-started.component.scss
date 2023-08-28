@@ -8,7 +8,12 @@
     border-top: 1px solid var(--foreground-divider);
   }
 }
-.button-grid {
+
+.mat-card {
+  box-shadow: none;
+  width: 400px;
+}
+.Test-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* 3 columns in the grid */
@@ -20,7 +25,7 @@
 button {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  /* justify-content: center; 
   font-size: 100%;
   width: 100%;
   /* To make buttons fill the grid cells */
@@ -31,7 +36,11 @@ button {
   background-color: transparent;
   border: none;
 }
-
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust column width as needed */
+  gap: 20px; /* Adjust gap between cards */
+}
 img {
   width: 20px;
   height: 30px;
@@ -43,4 +52,48 @@ img {
 button:hover {
   background-color: #ddd;
   /* Change background color when hovering */
+}
+// .flat-card {
+//   background-color: #f2f2f2;
+//   border-radius: 5px;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//   margin: 20px;
+//   box-shadow: none;
+// }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Align the icon to the right */
+  background-color: #3498db;
+  color: #fff;
+  padding: 2px 10px; /* Adjust the padding to further minimize height */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: whitesmoke;
+}
+
+.card-header h2 {
+  margin: 0; /* Remove margin to prevent extra spacing */
+  font-size: 14px; /* Adjust the font size */
+}
+
+.card-content {
+  padding: 10px;
+  background-color: ghostwhite;
+}
+
+/* .iconCom {
+  font-size: 2.5rem;
+    height: 1.5rem;
+    width: 2.5rem;
+    line-height: 2.5rem;
+    color: black;
+    MARGIN-TOP: 3px;
+} */
+:root :is(.icon-3xl), :root :is(.icon-3xl svg) {
+    font-size: 2.5rem;
+    height: 1.5rem;
+    width: 2.5rem;
+    line-height: 2.5rem;
 }

@@ -8,6 +8,8 @@ import { AuthGuard } from './services/auth-guard.service';
 import { LoginModule } from './pages/pages/auth/login/login.module';
 import { DocumentMobileComponent } from './pages/apps/home/document-mobile/document-mobile.component';
 import { NouvelleDemandeComponent } from './pages/apps/home/home-guides/demandes/nouvelle-demande/nouvelle-demande.component';
+import { ResetPasswordComponent } from './pages/pages/auth/reset-password/reset-password.component';
+import { SuccessSendComponent } from './pages/pages/auth/success-send/success-send.component';
 
 const routes: VexRoutes = [
   {
@@ -22,6 +24,15 @@ const routes: VexRoutes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./pages/pages/auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule),
+  },
+  ,
+  {
+    path: 'resetPassword',
+    component : ResetPasswordComponent
+  },
+  {
+    path: 'SucessSend',
+    component : SuccessSendComponent
   },
   {
     path: '',

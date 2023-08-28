@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DocumentsService } from 'src/app/services/documents.service';
 import { saveAs } from 'file-saver';
-import { TokenStorageService } from 'src/app/token-storage-service';
+import { TokenStorageService } from 'src/app/services/token-storage-service';
 import { DocumentResponse } from 'src/app/models/DocumentsResponse';
 import jwt_decode from 'jwt-decode';
 import { LayoutService } from 'src/@vex/services/layout.service';
@@ -67,19 +67,19 @@ export class DocumentMobileComponent {
       }
     );
     
-    this.documentService.getDocumentsGenerique().subscribe(
-      (documentResponse: DocumentResponse) => {
-        this.documentsGene = Object.keys(documentResponse).map((fileName, index) => {
-          return {
-            base64: documentResponse[fileName],
-            name: fileName 
-          };
-        });
-      },
-      (error) => {
-        console.error('Error fetching documents:', error);
-      }
-    );
+    // this.documentService.getDocumentsGenerique().subscribe(
+    //   (documentResponse: DocumentResponse) => {
+    //     this.documentsGene = Object.keys(documentResponse).map((fileName, index) => {
+    //       return {
+    //         base64: documentResponse[fileName],
+    //         name: fileName 
+    //       };
+    //     });
+    //   },
+    //   (error) => {
+    //     console.error('Error fetching documents:', error);
+    //   }
+    // );
 
   }
 
