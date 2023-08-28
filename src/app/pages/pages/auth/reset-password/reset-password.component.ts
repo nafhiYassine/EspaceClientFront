@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import { fadeInUp400ms } from '../../../../../@vex/animations/fade-in-up.animation';
 import { Token } from '@angular/compiler';
@@ -30,9 +30,9 @@ export class ResetPasswordComponent {
 
   ngOnInit() {
     this.form = this.fb.group({
-      password: ['', Validators.required],  
+      password: ['', [Validators.required, Validators.minLength(5),Validators.maxLength(10)]],
       passwordConfirm: ['', Validators.required]
-    });
+    },{ validators: this.passwordsMatchValidator });
     this.route.queryParams
 			  .subscribe(params => {
 				this.tokenParam=params.token;
@@ -41,13 +41,14 @@ export class ResetPasswordComponent {
   }
 
   send() {
-    if(this.form.value.passwordConfirm == this.form.value.password && this.tokenParam !="" && this.form.valid){
+    if(this.form.valid){
       this.passwordModel=this.form.value.password;
       this.forgotService.changePassword(this.tokenParam,this.passwordModel).subscribe({
-
+        
       })
-    }else{this.err=!this.err}
-
+      this.router.navigate(["/login"]);
+   
+  }
   }
 
   toggleVisibility() {
@@ -61,4 +62,15 @@ export class ResetPasswordComponent {
       this.cd.markForCheck();
     }
   }
+  passwordsMatchValidator(control: AbstractControl) {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('passwordConfirm')?.value;
+    if (password !== confirmPassword) {
+      control.get('passwordConfirm')?.setErrors({ passwordsMismatch: true });
+    } else {
+      control.get('passwordConfirm')?.setErrors(null);
+    }
+    return null;
+  }
+
 }

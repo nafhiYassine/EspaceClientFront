@@ -23,23 +23,22 @@ export class ForgotPassword {
   
   //   return this.http.post(API_HOST + '/email/getBIB?to=' + email, null, options);
   // }
-  public getEnvir(email: string ): Observable<string> {
-		const apiEndpoint = API_HOST + '/email/getBIB?to=';
-	  
-		return this.http.post(API_HOST + '/email/getBIB?to=' + email, { responseType: 'text' }).pipe(
-		  tap((response: string) => {
-			this.envir = response;
-		  }),
-		  catchError((error: any) => {
-			console.error('Error retrieving data from the backend:', error);
-			throw error;
-		  })
-		);
-	}
-  public async sendEmail(email): Promise<Observable<any>> { 
+  public getEnvir(email: string): Observable<string> {
+    return this.http.post(API_HOST + '/email/getBIB?to=' + email, null, { responseType: 'text' }).pipe(
+      tap((response: string) => {
+        this.envir = response;
+      }),
+      catchError((error: any) => {
+        console.error('ERROR RETURN TYPE', error);
+        throw error;
+      })
+    );
+  }
+
+  public async sendEmail(email: string): Promise<Observable<any>> { 
     await this.getEnvir(email).toPromise();
     const headers = new HttpHeaders().set('X-TenantID', this.envir);
-    return this.http.post(API_HOST + '/email/sendMail?to=' + email, {headers, observe: 'response' });
+    return this.http.post(API_HOST + '/email/sendMail?to=' + email, null, { headers, observe: 'response' });
   }
 
 

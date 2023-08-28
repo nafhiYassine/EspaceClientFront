@@ -29,7 +29,7 @@ export class CaptchaComponent implements OnInit {
       return;
     }
     this.eventEmitter.emit(form);
-    console.log(`Token [${this.token}] generated`);
+    // console.log(`Token [${this.token}] generated`);
   }
 
 }

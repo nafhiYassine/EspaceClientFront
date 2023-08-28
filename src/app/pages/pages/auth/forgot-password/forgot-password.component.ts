@@ -31,8 +31,8 @@ export class ForgotPasswordComponent implements OnInit {
     this.forgotPasswordForm = this.formBuilder.group({
 			email:["",[Validators.required,Validators.pattern(this.emailPattern)]],
 		})
-		const timeoutId = setTimeout(this.resetPasswordFormOpen, 5000);
-    console.log("---------------->this is bib",this.envir)
+		// const timeoutId = setTimeout(this.resetPasswordFormOpen, 5000);
+    // console.log("---------------->this is bib",this.envir)
   }
 
   send() {
@@ -44,6 +44,9 @@ export class ForgotPasswordComponent implements OnInit {
 		this.formForgot = event;
 		console.log(forgotPasswordForm.value.email);
 		if(this.formForgot.valid && forgotPasswordForm.valid){
+      // this.forgotPassword.getEnvir(forgotPasswordForm.value.email ).subscribe((returnBack : any) =>{
+      //   console.log(returnBack)
+      // })
      
 			(await this.forgotPassword.sendEmail(forgotPasswordForm.value.email)).subscribe((check: any) => {
 						console.log(check);
