@@ -44,17 +44,17 @@
 
 <div class="flex flex-col">
   <div class="flex font-bold " style="background-color: rgba(var(--color-primary), 0.1);">
-    <div class="flex-1 p-1 border text-center">Mois/Année</div>
+    <div class="flex-1 p-1 border text-center">Période</div>
     <!-- <div class="flex-1 p-1 border text-center">Année</div> -->
     <div class="flex-1 p-1 border text-center">Montant</div>
-    <div class="flex-1 p-1 border text-center">Facture</div>
+    <div class="flex-1 p-1 border text-center">Emission</div>
     <div class="flex-1 p-1 border text-center">Réglement</div>
   </div>
   <div *ngFor="let cotisation of listCotisations" class="flex bg-white">
     <div class="flex-1 p-1 border">{{cotisation.mois}} {{cotisation.annee}}</div>
     <!-- <div class="flex-1 p-1 border text-center"></div> -->
-   <div *ngIf="cotisation.statut=='Payée'" class="flex-1 p-1 border text-center">{{cotisation.montant}} </div>
-   <div *ngIf="cotisation.statut=='Impayée'" class=" flex-1 p-1 border text-red text-center">{{cotisation.montant}}</div>
+   <div *ngIf="cotisation.statut=='Payée'" class="flex-1 p-1 border text-center">{{cotisation.montant|decimalTransformer }}€ </div>
+   <div *ngIf="cotisation.statut=='Impayée'" class=" flex-1 p-1 border text-red text-center">{{cotisation.montant}}€</div>
    <div class="flex-1 p-1 border text-center">{{cotisation.date_facture}}</div>
     <div class="flex-1 p-1 border text-center">{{cotisation.date_regularisation}}</div>
  
