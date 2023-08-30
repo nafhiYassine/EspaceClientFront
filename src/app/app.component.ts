@@ -112,11 +112,11 @@ export class AppComponent {
     });
     
     this.navigationService.items = [
-      {
-        type: 'dropdown',
-        label: 'Home',
-        icon: 'mat:explore',
-        children: [
+      // {
+        // type: 'dropdown',
+        // label: 'Home',
+        // icon: 'mat:explore',
+        // children: [
           {
             type: 'link',
             label: 'Mon contrat',
@@ -147,8 +147,8 @@ export class AppComponent {
             label: 'Mes demandes et réclamations',
             route: '/apps/home/demandes',
           }
-        ]
-      },
+        // ]
+      // },
       
     ];
   }

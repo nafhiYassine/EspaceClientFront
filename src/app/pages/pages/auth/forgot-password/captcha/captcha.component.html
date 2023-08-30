@@ -1,7 +1,6 @@
 <div class="container-fluid py-3">  
     <form #form="ngForm" exportAs="myForm" >
-      <div class="row mt-3">
-        <div class="col-sm-12 mb-2">
+      <div class="flex justify-center items-center mt-3">        <div class="col-sm-12 mb-2">
           <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
           <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" class="invalid-feedback">
             <div *ngIf="recaptcha.errors?.['required']">This field is required.</div>

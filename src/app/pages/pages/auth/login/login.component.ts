@@ -8,6 +8,9 @@ import { User } from '../../../../../app/models/User';
 import { AuthService } from '../../../../../app/services/Auth.service'
 import { TokenStorageService } from '../../../../services/token-storage-service'
 import jwt_decode from "jwt-decode";
+import { SECRET_KEY } from 'src/app/commons/url.constants';
+import * as CryptoJS from 'crypto-js';
+
 
 @Component({
   selector: 'vex-login',
@@ -32,18 +35,13 @@ export class LoginComponent implements OnInit {
   compo: string;
   captcha : NgForm;
 
-  /*authObj:AuthObj={
-
-  }*/
-
-
   constructor(private router: Router,
     private fb: FormBuilder,
     public authService: AuthService,
     private cd: ChangeDetectorRef,
     private tokenStorage: TokenStorageService,
     private userServices: UserService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -53,10 +51,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async logInFormOpen(event) {
+  async logInFormOpen(
+    // event
+    ) {
     this.user = this.form.value;
-    this.captcha = event;
-    if (this.form.valid && this.captcha.valid) {
+    // this.captcha = event;
+    if (this.form.valid 
+      // && this.captcha.valid
+      ) {
       (await this.authService.authenticate(this.user)).subscribe(
         async (data: { authorization: string; refreshToken: string }) => {
           if (data.authorization == null) {
@@ -66,24 +68,6 @@ export class LoginComponent implements OnInit {
             });
           } else {
             this.tokenStorage.storeSessionData(data.authorization, data.refreshToken);
-        /*    const decodedToken: any = jwt_decode(this.tokenStorage.getToken());
-            this.authObj.idfass=decodedToken.jti
-            this.authObj.envir=decodedToken.aud
-            this.authObj.compo=decodedToken.compo
-            this.authObj.typeContrat=decodedToken.typcrm;
-            this.authObj.username=decodedToken.iss
-
-         (await   this.contratService.findContrats(this.authObj).subscribe
-            (
-              (data)=>{
-                console.log("data",data)
-
-                this.contrat=data[0];
-                console.log('data:',JSON.stringify(data[0]));
-
-                console.log('this.contrat:',JSON.stringify(this.contrat));
-              }
-            ))*/
             this.router.navigate(['/apps/home/mon-contrat']);
           }
         },
@@ -95,7 +79,6 @@ export class LoginComponent implements OnInit {
       }
     }
   }
-
 
   asyncPasswordValidator(control: AbstractControl): Promise<ValidationErrors | null> {
     return new Promise((resolve, reject) => {

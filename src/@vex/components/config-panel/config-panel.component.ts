@@ -106,9 +106,16 @@ export class ConfigPanelComponent {
   
   setConfig(layout: VexConfigName, colorScheme: ColorSchemeName): void {
     this.configService.setConfig(layout);
+    console.log("@@@@@@  this.rgbColor : " +  this.rgbColor )
     this.configService.updateConfig({
       style: {
-        colorScheme
+        colorScheme: colorScheme,
+        colors: {
+          primary: {
+            default: this.rgbColor,
+            contrast: 'rgb(255, 255, 255)'
+          }
+        }
       }
     });
   }

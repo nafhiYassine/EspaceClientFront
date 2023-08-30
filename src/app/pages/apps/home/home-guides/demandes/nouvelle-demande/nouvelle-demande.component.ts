@@ -106,7 +106,6 @@ export class NouvelleDemandeComponent implements OnInit{
   }
 
   deleteFile(fileName : string){
-    console.log("hello")
     this.filesdata = this.filesdata.filter(file => file.name !== fileName);
   }
 

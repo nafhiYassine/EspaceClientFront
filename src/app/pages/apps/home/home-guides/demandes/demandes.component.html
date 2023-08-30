@@ -36,9 +36,31 @@
       </div>
     </div>
     <mat-progress-spinner style="margin: auto; margin-bottom: 40px;"  *ngIf="demandes.length == 0"  mode="indeterminate" ></mat-progress-spinner>
-
-    <div *ngFor="let demande of demandes" style="padding-top : 20px;">
-      <vex-card [demande]="demande"></vex-card>
-    </div>
+    <vex-page-layout *ngIf="demandes.length != 0">
+      <vex-page-layout-content class="p-0 container">
+        <mat-tab-group>
+          <mat-tab label="Demandes web">
+            <div class="p-6">
+              <div *ngFor="let demande of demandes" style="padding-top : 20px;">
+                <vex-card [demande]="demande"></vex-card>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Demandes TTK">
+            <div class="p-6">
+              <vex-page-layout-demo></vex-page-layout-demo>
+            </div>
+          </mat-tab>
+          <mat-tab label="Demandes mail/courrier">
+            <div class="p-6">
+              <vex-page-layout-demo></vex-page-layout-demo>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </vex-page-layout-content>
+    
+    </vex-page-layout>
+    
   </div>
 </div>
+
