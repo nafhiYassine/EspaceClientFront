@@ -1,378 +1,58 @@
-
-<style>
- .flex {
-    display: flex;
-    /* justify-content: center; Center horizontally */
-    /* align-items: center; Center vertically */
-    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
-  }
-
-  .card-spacing {
-    margin-right: 20px; /* Adjust the spacing as needed */
-    width: 310px; /* Fixed width for each card */
-    margin-bottom: 20px; /* Add margin at the bottom for spacing */
-  }
-
-  @media (max-width: 768px) {
-    /* Adjust the max-width value based on your desired breakpoint */
-    .card-spacing {
-      width: calc(50% - 20px); /* 50% width minus margin for two cards in a row */
-    }
-  }
-
-</style>
-<!-- 
-<mat-progress-spinner style="margin: auto; margin-top: 140px;" *ngIf="documentsGene.length == 0 || documentsNor.length == 0 || DocEcheancier.length == 0 "
-  mode="indeterminate"></mat-progress-spinner>
-<div *ngIf="documentsGene.length != 0 && documentsNor.length != 0 && DocEcheancier.length != 0 "
-  class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
+<div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
   <div class="card p-6 flex-auto">
-    <h4 class="headline mt-0 mb-6">Documents</h4>
-
-    <mat-accordion displayMode="flat">
-      <mat-expansion-panel >
+     <h4 class="headline mt-0 mb-6">Documents</h4>
+     <mat-expansion-panel  >
         <mat-expansion-panel-header>
-          <mat-panel-title>Documents génériques</mat-panel-title>
+           <mat-panel-title>Documents contractuels</mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="button-grid" *ngIf="isBool">
-
-          <div *ngFor="let doc of documentsGene">
-            
-            <button type="submit" (click)="downloadDocumentGenerique(doc)" style="cursor: pointer;">
+        <mat-progress-spinner style="margin: auto;width: 2.5rem;" *ngIf="documentsGene.length ==0 " mode="indeterminate"></mat-progress-spinner>
+        <div class="Test-grid" >
+           <div *ngFor="let doc of documentsGene">
+              <button type="submit" (click)="downloadDocumentGenerique(doc)" style="cursor: pointer;">
               <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
               {{ doc.name }}
-          </button> 
-          </div>
+              </button> 
+           </div>
         </div>
-        <div class="mobileVersion" *ngIf="!isBool">
-          <div *ngFor="let doc of documentsGene">
-            
-            <button type="submit" (click)="downloadDocumentGenerique(doc)" style="cursor: pointer;">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-              {{ doc.name }}
-          </button> 
-          </div>
-        </div>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>Autre Documents</mat-panel-title>
-        </mat-expansion-panel-header>
-        
-        <div class="button-grid" *ngIf="isBool" >
-          
-
-          <div *ngFor="let doc of documentsNor">
-            
-              <button type="submit" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-                <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-                {{ doc.name }}
-            </button> 
-          </div>
-          <div *ngFor="let doc of DocEcheancier">
-            
-            <button type="submit" (click)="echeancierDoc(doc)" style="cursor: pointer;">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-              {{ doc.name }}
-          </button> 
-        </div>
-      </div>
-        <div class="ismobile" *ngIf="!isBool">
-          <div *ngFor="let doc of documentsNor">
-                
-            <button type="submit" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-              {{ doc.name }}
-          </button> 
-          </div>
-          <div *ngFor="let doc of DocEcheancier">
-            
-            <button type="submit" (click)="echeancierDoc(doc)" style="cursor: pointer;">
-              <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-              {{ doc.name }}
-          </button> 
-          </div>
-        </div>
-      </mat-expansion-panel>
-
-    </mat-accordion>
+     </mat-expansion-panel>
+     <mat-accordion displayMode="flat">
+        <mat-expansion-panel [expanded]="true" >
+           <mat-expansion-panel-header>
+              <mat-panel-title>Autre Documents</mat-panel-title>
+           </mat-expansion-panel-header>
+           <div class="flex justify-center">
+              <div class="h-56 grid grid-cols-3 gap-4 content-end">
+                 <ng-container *ngFor="let card of cardData; let i = index" >
+                    <div class="flat-card card-spacing ">
+                       <div class="card-header">
+                          <h2 class="text-black">{{ card.titcou }}</h2>
+                          <span class="body-2 cursor-pointer">
+                             <a (click)="Solution1(card.enviro, i)">
+                                <p class="mt-1 mb-4 flex items-center" *ngIf="!detailsTab[i]">
+                                   <mat-icon class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color" svgIcon="mat:arrow_drop_down"></mat-icon>
+                                </p>
+                                <p class="mt-1 mb-4 flex items-center" *ngIf="detailsTab[i]">
+                                   <mat-icon class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color" svgIcon="mat:arrow_drop_up"></mat-icon>
+                                </p>
+                             </a>
+                          </span>
+                       </div>
+                       <div class="card-content" *ngIf="detailsTab[i]">
+                          <div *ngFor="let doc of documentsNor">
+                             <mat-progress-spinner style="margin: auto;width: 2.5rem;" *ngIf="documentsNor.length === 0" mode="indeterminate"></mat-progress-spinner>
+                             <ng-container>
+                                <button type="submit" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
+                                <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
+                                <span>{{ doc.name.split('/')[1] }}</span>
+                                </button>
+                             </ng-container>
+                          </div>
+                       </div>
+                    </div>
+                 </ng-container>
+              </div>
+           </div>
+        </mat-expansion-panel>
+     </mat-accordion>
   </div>
-
-</div> -->
-
-      
-
-
-
-
-
-
-
- <div
-  class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
-  <div class="card p-6 flex-auto">
-    <h4 class="headline mt-0 mb-6">Documents</h4>
-    <mat-expansion-panel  >
-      <mat-expansion-panel-header>
-        <mat-panel-title>Autre Documents</mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-progress-spinner style="margin: auto;width: 2.5rem;" *ngIf="documentsGene.length == 0" mode="indeterminate"></mat-progress-spinner>
-
-      <div class="Test-grid" >
-
-        <div *ngFor="let doc of documentsGene">
-          
-          <button type="submit" (click)="downloadDocumentGenerique(doc)" style="cursor: pointer;">
-            <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-            {{ doc.name }}
-          </button> 
-        </div>
-      </div>
-    </mat-expansion-panel>
-    <mat-accordion displayMode="flat">
-      <mat-expansion-panel [expanded]="true" >
-        <mat-expansion-panel-header>
-          <mat-panel-title>Documents contractuels</mat-panel-title>
-        </mat-expansion-panel-header>
-    
-        <div class="flex">
-          <ng-container *ngFor="let card of cardData; let i = index">
-            <div class="flat-card card-spacing">
-              <div class="card-header">
-                <h2 style="color: black;">{{ card.title }}</h2>
-                <span class="body-2 cursor-pointer">
-                  <a (click)="Solution1(card.type, i)">
-                    <p class="mt-1 mb-4 flex items-center" *ngIf="!detailsTab[i]"><mat-icon class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color" svgIcon="mat:arrow_drop_down"></mat-icon></p>
-                    <p class="mt-1 mb-4 flex items-center" *ngIf="detailsTab[i]"><mat-icon class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color" svgIcon="mat:arrow_drop_up"></mat-icon></p>
-                  </a>
-                </span>
-              </div>
-              <div class="card-content" *ngIf="detailsTab[i]">    
-                
-                <div *ngFor="let doc of documentsNor">
-                  <mat-progress-spinner style="margin: auto;width: 2.5rem;" *ngIf="doc.name.split('/')[0]!=card.typfile" mode="indeterminate"></mat-progress-spinner>
-                  <ng-container *ngIf="doc.name.split('/')[0] === card.typfile">
-                    <button type="submit"  (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-                      <img alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-                      <span>{{ doc.name.split('/')[1] }}</span>
-                    </button>
-                  </ng-container>
-                </div>
-                
-              </div>
-            </div>
-          </ng-container>
-        </div>
-        
-<!--         
-        <mat-grid-list cols="3" gutterSize="16px">
-
-              <div class="flat-card">
-                <div class="card-header">
-                  <h2 style="color: black;">Mes Attestations</h2>
-                  <span class="body-2 cursor-pointer">
-                    <a (click)="Solution1('ATT',0)">
-                      <p class="mt-1 mb-4 flex items-center"  *ngIf="!detailsTab[0]">
-                        <mat-icon
-                          class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                          svgIcon="mat:arrow_drop_down" ></mat-icon>
-                      </p>
-                      <p class="mt-1 mb-4 flex items-center" *ngIf="detailsTab[0]">
-                        <mat-icon
-                          class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                          svgIcon="mat:arrow_drop_up"></mat-icon>
-                      </p>
-                    </a>
-                  </span>
-                </div>
-                <div class="card-content " *ngIf="detailsTab[0]"> 
-                  <div *ngFor="let doc of documentsNor">
-                        
-                    <button type="submit" *ngIf="doc.name.split('/')[0]=='ATTEST'" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-                      <img  alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-                        <span >{{ doc.name.split('/')[1] }}</span>
-                  </button> 
-                </div>
-                </div>
-                
-              </div>
-        
-          
-               <div class="flat-card">
-                <div class="card-header">
-                  <h2 style="color: black;">Certificat</h2>
-                  <span class="body-2 cursor-pointer">
-                    <a (click)="Solution1('CAD',1)">
-                      <p class="mt-1 mb-4 flex items-center"  *ngIf="!detailsTab[1]">
-                        <mat-icon
-                          class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                          svgIcon="mat:arrow_drop_down" ></mat-icon>
-                      </p>
-                      <p class="mt-1 mb-4 flex items-center" *ngIf="detailsTab[1]">
-                        <mat-icon
-                          class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                          svgIcon="mat:arrow_drop_up"></mat-icon>
-                      </p>
-                    </a>
-                  </span>
-                </div>
-                <div class="card-content" *ngIf="detailsTab[1]"> 
-                  <div *ngFor="let doc of documentsNor">
-                        
-                    <button type="submit" *ngIf="doc.name.split('/')[0]=='CERTIFAD'" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-                      <img  alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-                        <span >{{ doc.name.split('/')[1] }}</span>
-                  </button> 
-                </div>
-                </div>
-              </div>
-         -->
-          <!-- Card 3 -->
-              <!-- <div class="flat-card">
-                <div class="card-header">
-                  <h2 style="color: black;">Echéancier anuel</h2>
-                  <span class="body-2 cursor-pointer">
-                    <a (click)="Solution1('LAU',2)">
-                      <p class="mt-1 mb-4 flex items-center"  *ngIf="!detailsTab[2]">
-                        <mat-icon
-                          class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                          svgIcon="mat:arrow_drop_down" ></mat-icon>
-                      </p>
-                      <p class="mt-1 mb-4 flex items-center" *ngIf="detailsTab[2]">
-                        <mat-icon
-                          class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                          svgIcon="mat:arrow_drop_up"></mat-icon>
-                      </p>
-                    </a>
-                  </span>
-                </div>
-                <div class="card-content" *ngIf="detailsTab[2]"> 
-                  <div *ngFor="let doc of documentsNor">
-                        
-                    <button type="submit" *ngIf="doc.name.split('/')[0]=='COURAUGM'" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-                      <img  alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-                        <span >{{ doc.name.split('/')[1] }}</span>
-                  </button> 
-                </div>
-                </div>
-              </div> -->
-          
-
-          <!-- <mat-grid-tile>
-            <mat-card class="mat-card">
-          <div class="flat-card">
-            <div class="card-header">
-              <h2 style="color: black;">Lettres Types</h2>
-              <span class="body-2 cursor-pointer">
-                <a (click)="Solution1('LET',3)">
-                  <p class="mt-1 mb-4 flex items-center"  *ngIf="!detailsTab[3]">
-                    <mat-icon
-                      class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                      svgIcon="mat:arrow_drop_down" ></mat-icon>
-                  </p>
-                  <p class="mt-1 mb-4 flex items-center" *ngIf="detailsTab[3]">
-                    <mat-icon
-                      class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                      svgIcon="mat:arrow_drop_up"></mat-icon>
-                  </p>
-                </a>
-              </span>
-            </div>
-            <div class="card-content" *ngIf="detailsTab[3]"> 
-              <div *ngFor="let doc of documentsNor">
-                
-                <button type="submit" *ngIf="doc.name.split('/')[0]=='LETTYP'" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-                  <img  alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-                    <span >{{ doc.name.split('/')[1] }}</span>
-              </button> 
-            </div>
-            </div>
-          </div>
-          </mat-card>
-          </mat-grid-tile>
-    
-          <mat-grid-tile>
-            <mat-card class="mat-card">
-          <div class="flat-card">
-            <div class="card-header">
-              <h2 style="color: black;">Rejet CEPAM </h2>
-              <span class="body-2 cursor-pointer">
-                <a (click)="Solution1('RNO',4)">
-                  <p class="mt-1 mb-4 flex items-center"  *ngIf="!detailsTab[4]">
-                    <mat-icon
-                      class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                      svgIcon="mat:arrow_drop_down" ></mat-icon>
-                  </p>
-                  <p class="mt-1 mb-4 flex items-center" *ngIf="detailsTab[4]">
-                    <mat-icon
-                      class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                      svgIcon="mat:arrow_drop_up"></mat-icon>
-                  </p>
-                </a>
-              </span>
-            </div>
-            <div class="card-content" *ngIf="detailsTab[4]"> 
-              <div *ngFor="let doc of documentsNor">
-                
-                <button type="submit" *ngIf="doc.name.split('/')[0]=='SIGNANOE'" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-                  <img  alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-                    <span >{{ doc.name }}</span>
-              </button> 
-            </div>
-            </div>
-          </div>
-          </mat-card>
-          </mat-grid-tile>
-    
-          <mat-grid-tile>
-          <mat-card class="mat-card">
-          <div class="flat-card">
-            <div class="card-header">
-              <h2 style="color: black;">Documents signé</h2>
-              <span class="body-2 cursor-pointer">
-                <a (click)="Solution1('ADH',5)">
-                  <p class="mt-1 mb-4 flex items-center"  *ngIf="!detailsTab[5]">
-                    <mat-icon
-                      class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                      svgIcon="mat:arrow_drop_down" ></mat-icon>
-                  </p>
-                  <p class="mt-1 mb-4 flex items-center" *ngIf="detailsTab[5]">
-                    <mat-icon
-                      class="mat-icon  notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
-                      svgIcon="mat:arrow_drop_up"></mat-icon>
-                  </p>
-                </a>
-              </span>
-            </div>
-            <div class="card-content" *ngIf="detailsTab[5]"> 
-              <div *ngFor="let doc of documentsNor">
-                
-                <button type="submit" *ngIf="doc.name.split('/')[0]=='ADH'" (click)="downloadDocumentNormal(doc)" style="cursor: pointer;">
-                  <img  alt="pdf file" loading="lazy" width="20" height="30" decoding="async" data-nimg="1" src="assets/img/avatars/pdf.svg" style="color: transparent;">
-                    <span >{{ doc.name }}</span>
-              </button> 
-            </div>
-            </div>
-          </div>
-          </mat-card>
-          </mat-grid-tile>
-        </mat-grid-list> -->
-
-     
-       
-      
-      </mat-expansion-panel>
-
-
-    </mat-accordion>
-  </div>
-  
-
 </div>
-
-
-
-
-
-

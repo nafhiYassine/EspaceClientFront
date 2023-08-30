@@ -5,6 +5,7 @@ import { TokenStorageService } from 'src/app/services/token-storage-service';
 import { DocumentResponse } from 'src/app/models/DocumentsResponse';
 import jwt_decode from 'jwt-decode';
 import { LayoutService } from 'src/@vex/services/layout.service';
+import { Document } from 'src/app/models/Document';
 
 
 @Component({
@@ -19,15 +20,10 @@ export class HomeGettingStartedComponent implements OnInit {
   DocEcheancier: { base64: string, name: string }[] = [];
   documents: string[]
   // resultToken :string[]
-  detailsTab: boolean[] = [false, false, false,false,false,false]; 
-  cardData = [
-    { title: 'Mes Attestations', type: 'ATT',typfile :'ATTEST' },
-    { title: 'Certificat', type: 'CAD' ,typfile :'CERTIFAD' },
-    { title: 'Echéancier annuel', type: 'LAU', typfile :'COURAUGM' },
-    { title: 'Lettres Types', type: 'LET', typfile :'LETTYP' }, 
-    { title: 'Rejet CEPAM', type: 'RNO', typfile :'SIGNANOE' },  
-    { title: 'Documents signés', type: 'ADH', typfile :'ADH' } 
-  ];
+   numberOfTabs = 9; 
+  detailsTab: boolean[] = Array.from({ length: this.numberOfTabs }, () => false);
+  cardData : Document[];
+  isDuplicate: boolean[] = [];
   constructor(private documentService: DocumentsService, private tokenStorage: TokenStorageService, private layoutService: LayoutService) { }
   isDesktop$ = this.layoutService.isDesktop$;
 
@@ -36,6 +32,8 @@ export class HomeGettingStartedComponent implements OnInit {
      idfass = this.resultToken.jti
      idfpol = this.resultToken.idfpol
   ngOnInit(): void {
+
+  
     console.log("idfpolll->",this.idfass)
     this.isDesktop$.pipe(
     ).subscribe(isDesktop => {
@@ -45,6 +43,20 @@ export class HomeGettingStartedComponent implements OnInit {
         this.isBool = false;
       }
     });
+
+    
+    this.documentService.getDocumentsFromback(this.envir,this.idfass).subscribe(
+      (cardData : Document[] ) => {
+          this.cardData = cardData;
+          for (const item of cardData) {
+            console.log(item.enviro);
+          }
+
+      },
+      (error) => {
+        console.error('Error fetching documents:', error);
+      }
+    );
 
   //   const resultToken = this.getDecodedAccessToken(this.tokenStorage.getToken());
   //   const envir = resultToken.aud
@@ -108,8 +120,10 @@ export class HomeGettingStartedComponent implements OnInit {
         console.error('Error fetching documents:', error);
       }
     );
-
+  
   }
+
+  
 
   downloadDocumentNormal(documentsNor: any): void {
     const byteCharacters = atob(documentsNor.base64);

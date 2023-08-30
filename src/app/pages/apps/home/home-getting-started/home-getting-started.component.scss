@@ -82,7 +82,24 @@ button:hover {
   padding: 10px;
   background-color: ghostwhite;
 }
+.flex {
+  display: flex;
+  /* justify-content: center; Center horizontally */
+  /* align-items: center; Center vertically */
+  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+}
 
+.card-spacing {
+  margin-right: 40px;
+  width: 299px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .card-spacing {
+    width: calc(50% - 20px); /* 50% width minus margin for two cards in a row */
+  }
+}
 /* .iconCom {
   font-size: 2.5rem;
     height: 1.5rem;

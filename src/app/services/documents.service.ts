@@ -6,6 +6,7 @@ import { TokenStorageService } from './token-storage-service';
 import { DocumentResponse } from '../models/DocumentsResponse';
 import { catchError, throwError, Observable, map, tap } from 'rxjs';
 import { WebConf } from '../models/WebConf';
+import { Document } from '../models/Document';
 
 
 
@@ -19,6 +20,14 @@ export class DocumentsService {
   base64Document: string;
   webConf : WebConf
   constructor(private http: HttpClient ,private tokenStorageService: TokenStorageService) { }
+  
+ getDocumentsFromback(envir: string ,idfass : string): Observable<Document[]> {
+    // const headers = this.getHeaders();
+    const params = new HttpParams()
+      .set('param1', envir)
+      .set('param2', idfass);
+      return this.http.get<Document[]>(`${this.apiUrl}/Soluction1`, { params });
+  }
 
   getDocuments(param1: string, param2: string): Observable<DocumentResponse> {
     // const headers = this.getHeaders();
@@ -34,7 +43,7 @@ export class DocumentsService {
       .set('param1', param1)
       .set('param2', param2)
       .set('typDoc', typDoc);
-      return this.http.get<DocumentResponse>(`${this.apiUrl}/Soluction1`, { params });
+      return this.http.get<DocumentResponse>(`${this.apiUrl}/getdocbytag`, { params });
   }
 
   private getHeaders() {
