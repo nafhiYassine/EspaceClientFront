@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { SuccessSendComponent } from './pages/pages/auth/success-send/success-send.component';
+import { DecimalTransformerPipe } from './pages/apps/home/home-guides/cotisations/decimal-transformer.pipe';
 
 @NgModule({
   declarations: [AppComponent, ResetPasswordComponent, SuccessSendComponent],

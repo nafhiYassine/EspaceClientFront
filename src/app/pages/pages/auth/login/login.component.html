@@ -36,12 +36,12 @@
         <mat-checkbox class="caption" color="primary">Rester connecté</mat-checkbox>
         <a [routerLink]="['/forgot-password']" class="caption">Mot de passe oublié</a>
       </div>
-      
-      <app-captcha (eventEmitter)="logInFormOpen($event)"></app-captcha>
 
-      <!-- <button (click)="logInFormOpen()" color="primary" mat-raised-button type="button">
+      <!-- <app-captcha (eventEmitter)="logInFormOpen($event)"></app-captcha> -->
+
+      <button (click)="logInFormOpen()" color="primary" mat-raised-button type="button">
         Se connecter
-      </button> -->
+      </button>
 
       <p class="text-secondary text-center">
         <br>

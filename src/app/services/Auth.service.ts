@@ -7,6 +7,7 @@ import { User } from '../models/User';
 import { of } from 'rxjs';
 import { TokenStorageService } from './token-storage-service';
 import { API_HOST } from '../commons/url.constants';
+import { SharedDataService } from './shared-data.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -24,12 +25,13 @@ export class AuthService {
 	constructor(
 		private tokenStorageService: TokenStorageService,
 		private router: Router,
-		private http: HttpClient
+		private http: HttpClient,
+    private sharedDataService:SharedDataService
 	) {}
 
 	public getBibBySouscripteur(souscripteur: any): Observable<string> {
 		const apiEndpoint = API_HOST + '/api/auth/bib';
-	  
+
 		return this.http.post(apiEndpoint, souscripteur, { responseType: 'text' }).pipe(
 		  tap((response: string) => {
 			// Handle the retrieved string data
@@ -82,8 +84,11 @@ export class AuthService {
 	logOut() {
 		this.tokenStorageService.signOut();
 		localStorage.removeItem("userProfileData");
+		localStorage.removeItem("data");
+    localStorage.removeItem("authObj");
 		this.isLoggedIn = false;
 		this.router.navigate(['/session/login']);
+    window.location = window.location ;
 	}
 
 	setLocalUserProfile(value) {

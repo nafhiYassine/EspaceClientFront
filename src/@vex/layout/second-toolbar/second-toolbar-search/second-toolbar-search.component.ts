@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'vex-toolbar-search',
+  selector: 'vex-sc-toolbar-search',
   templateUrl: './second-toolbar-search.component.html',
   styleUrls: ['./second-toolbar-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

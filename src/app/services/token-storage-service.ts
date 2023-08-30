@@ -37,6 +37,8 @@ export class TokenStorageService {
   }
 
   public signOut() {
+
+    console.log('clearing auth obj in shared Service')
     window.sessionStorage.clear();
     window.localStorage.clear()
   }

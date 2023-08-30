@@ -1,5 +1,5 @@
 <div *ngFor="let contrat of listeContrats;"
-class="card bg-primary flex flex-col sm:flex-row sm:items-center sm:justify-between sm:space-x-4"
+  class="card bg-primary flex flex-col sm:flex-row sm:items-center sm:justify-between sm:space-x-4"
   style="background-color: rgba(var(--color-primary), 0.1);">
 
 
@@ -7,38 +7,38 @@ class="card bg-primary flex flex-col sm:flex-row sm:items-center sm:justify-betw
     <div class="mt-4">
       <div class="grid grid-cols-12 grid-cols-12 gap-1 sm:gap-5">
         <div class="sm:col-span-1 col-span-4   text-black">
-          <img *ngIf="contrat.animal.genre === 'Chien' " style="height: 80px"
-          src="assets/img/animaux/chat.png" alt="Animal Image" >
-          <img *ngIf="contrat.animal.genre === 'Chat' || contrat.animal.genre === 'chat'"  style="height: 80px"
-          src="assets/img/animaux/chat.png" alt="Animal Image" >
-          <div  style="width: 100%;" class="mt-2 sm-pl-17">{{contrat.animal.nom}}</div>
+          <img *ngIf="contrat?.animal.genre === 'Chien' " style="height: 80px" src="assets/img/animaux/chien.png"
+            alt="Animal Image">
+          <img *ngIf="contrat?.animal.genre === 'Chat' || contrat?.animal.genre === 'chat'" style="height: 80px"
+            src="assets/img/animaux/chat.png" alt="Animal Image">
+          <div style="width: 100%;" class="mt-2 sm-pl-17">{{contrat.animal.nom}}</div>
         </div>
         <div class="sm:col-span-2 col-span-8   text-black">
-            <div *ngFor="let formule of contrat.formules" class="tag">{{formule}}</div>
+          <div *ngFor="let formule of contrat.formules" class="tag">{{formule}}</div>
         </div>
         <div class="sm:col-span-2 col-span-4   text-black">
           <strong>Numero de contrat</strong><br>
-          {{contrat.numeroContrat}}
+          {{contrat?.numeroContrat}}
         </div>
         <div class="sm:col-span-1 col-span-4  text-black">
           <strong>Type</strong><br>
-          {{contrat.animal.genre}}
+          {{contrat?.animal.genre}}
         </div>
         <div class="sm:col-span-1 col-span-4   text-black">
           <strong>Sexe</strong><br>
-          {{contrat.animal.sexe}}
+          {{contrat?.animal.sexe}}
         </div>
         <div class="sm:col-span-2  col-span-4 text-black">
           <strong>Vaccination</strong><br>
-          {{contrat.animal.statutVacc}}
+          {{contrat?.animal.statutVacc}}
         </div>
         <div class="sm:col-span-2 col-span-4  text-black">
           <strong>Date Naissance</strong><br>
-          {{contrat.animal.dateNaissance}}
+          {{contrat?.animal.dateNaissance}}
         </div>
         <div class="sm:col-span-1 col-span-4 text-black">
           <strong>Statut</strong><br>
-          {{contrat.statut}}
+          {{contrat?.statut}}
         </div>
       </div>
     </div>

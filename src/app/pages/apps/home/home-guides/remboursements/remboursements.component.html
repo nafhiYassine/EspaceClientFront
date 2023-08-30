@@ -1,0 +1,91 @@
+<!-- <div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
+  <div class="card p-6 flex-auto">
+    <div>
+      <table class="mb-6">
+        <tr>
+          <td>
+            <p class="vertical-bar "></p>
+          </td>
+          <td>
+            <h2 class="mb-2 headline mt-0"><strong>Mes Remboursements</strong></h2>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <div *ngFor="let prestation of listePrestations ;"
+        class="card bg-primary flex flex-col sm:flex-row sm:items-center sm:justify-between sm:space-x-4"
+        style="background-color: rgba(var(--color-primary), 0.1);">
+        <div class="p-4 ml-4 left  sm:block">
+          <img src="assets/img/insurance/bonhomme.png" style="height: 80px">
+        </div>
+
+        <div class="sm:col-span-2 col-span-2  text-black">
+          Dossier N°: {{prestation?.numeroSinistre}}
+        </div>
+        <div class="sm:col-span-10 col-span-10   text-black">
+          <table>
+            <tr>
+              <td>
+                Total Remboursé:
+              </td>
+              <td>
+                {{prestation?.total}}
+              </td>
+              <td>
+                <a (click)="getDetails()">
+                  <p *ngIf="!displayDetails">
+                    <mat-icon class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
+                      svgIcon="mat:arrow_drop_down"></mat-icon>
+                  </p>
+                  <p *ngIf="displayDetails">
+                    <mat-icon class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
+                      svgIcon="mat:arrow_drop_up"></mat-icon>
+                  </p>
+                </a>
+              </td>
+
+            </tr>
+          </table>
+        </div>
+
+        <div    class="flex-none" *ngIf="displayDetails">
+          <vex-remboursements-card-down></vex-remboursements-card-down>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div> -->
+
+<div class="my-12 container flex flex-col sm:flex-row items-stretch sm:items-start gap-6">
+  <div class="card p-6 flex-auto">
+
+    <table class="mb-6">
+      <tr>
+        <td>
+          <p class="vertical-bar "></p>
+        </td>
+        <td>
+          <h2 class="mb-2 headline mt-0">Mes Remboursements</h2>
+        </td>
+      </tr>
+    </table>
+    <div class="sm:col-span-4 col-span-4  pt-2 text-black">
+
+      <mat-button-toggle-group class="mt-6">
+        <mat-button-toggle *ngFor="let annee of annees" [value]="annee"
+          (change)="chargerByAnnee($event)">{{annee}}</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <mat-progress-spinner [diameter]="70" style="margin: auto; margin-top: 10%;  margin-bottom: 10%;"
+      *ngIf="listePrestations?.length == 0" mode="indeterminate"></mat-progress-spinner>
+
+    <div *ngFor="let prestation of listePrestations" style="padding-top : 20px;">
+
+      <vex-remboursements-card [prestation]="prestation"></vex-remboursements-card>
+    </div>
+  </div>
+</div>

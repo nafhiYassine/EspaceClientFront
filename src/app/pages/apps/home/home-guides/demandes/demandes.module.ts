@@ -19,6 +19,9 @@ import { CardComponent } from './card/card.component';
 import { DropdownCardComponent } from './card/dropdown-card/dropdown-card.component';
 import { NouvelleDemandeComponent } from './nouvelle-demande/nouvelle-demande.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+import { SecondaryToolbarModule } from 'src/@vex/components/secondary-toolbar/secondary-toolbar.module';
+import { PageLayoutDemoModule } from 'src/app/pages/ui/page-layouts/page-layout-demo/page-layout-demo.module';
 
 
 @NgModule({
@@ -41,6 +44,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSelectModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
+    SecondaryToolbarModule,
+    PageLayoutDemoModule
   ]
 })
 export class DemandesModule {

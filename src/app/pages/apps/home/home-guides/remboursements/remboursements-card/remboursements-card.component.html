@@ -1,0 +1,53 @@
+<div class="card bg-primary flex flex-col sm:flex-row sm:items-center sm:justify-between sm:space-x-4"
+  style="background-color: rgba(var(--color-primary), 0.1);">
+
+
+  <div class="sm:p-6 text-primary-contrast">
+    <div class="grid grid-cols-12 grid-cols-12 gap-1 sm:gap-5">
+      <div class="sm:col-span-1 col-span-4   text-black">
+        <img *ngIf="prestation?.santeBenef?.type=='individu' && authObject.typeContrat!='A'" src="assets/img/insurance/bonhomme.png" style="height: 80px">
+        <img *ngIf="prestation?.santeBenef?.type=='conjoint' && authObject.typeContrat!='A'" src="assets/img/insurance/bague.png" style="height: 80px">
+        <img *ngIf="prestation?.santeBenef?.type=='enfant' && authObject.typeContrat!='A'"  src="assets/img/insurance/childd.png" style="height: 80px">
+        <img *ngIf="prestation?.santeBenef?.type=='ayantDroit' && authObject.typeContrat!='A'" src="assets/img/insurance/child.png" style="height: 80px">
+        <img *ngIf="prestation?.animal?.genre =='02' && authObject.typeContrat=='A'" src="assets/img/animaux/chat.png" style="height: 80px">
+        <img *ngIf="prestation?.animal?.genre =='03' && authObject.typeContrat=='A'" src="assets/img/animaux/chien.png" style="height: 80px">
+
+
+      </div>
+      <div *ngIf="authObject.typeContrat=='I'" class="sm:col-span-2 col-span-2  pt-6 text-black">
+
+       {{prestation?.santeBenef?.prenom}} {{prestation?.santeBenef?.nom}}
+      </div>
+      <div *ngIf="authObject.typeContrat=='A'"class="sm:col-span-2 col-span-2  pt-6 text-black">
+
+        {{prestation?.animal?.nom}}
+       </div>
+      <div class="sm:col-span-4 col-span-4  pt-6 text-black">
+
+        Dossier N° : {{prestation.numeroSinistre}}
+      </div>
+      <div class="sm:col-span-4 col-span-4 pt-6 text-black">
+
+        Total de Remboursements: <span style="color:blue">{{prestation.total}}</span>
+      </div>
+      <div pt-6>
+        <span class="body-2 cursor-pointer">
+          <a (click)="getDetails(prestation)">
+            <p class="mt-1 mb-4 flex items-center" *ngIf="!displayDetails">
+              <mat-icon class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
+                svgIcon="mat:add_circle"></mat-icon>
+
+            </p>
+            <p class="mt-1 mb-4 flex items-center" *ngIf="displayDetails">
+              <mat-icon class="mat-icon notranslate trans-ease-out icon-3xl text-primary mat-icon-no-color"
+                svgIcon="mat:remove_circle"></mat-icon>
+
+            </p>
+          </a>
+        </span>
+      </div>
+
+    </div>
+  </div>
+</div>
+<vex-remboursements-card-down *ngIf="displayDetails" [prestation]="prestation"></vex-remboursements-card-down>

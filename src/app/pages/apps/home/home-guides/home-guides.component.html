@@ -1,12 +1,14 @@
+
+
 <mat-progress-spinner *ngIf="!data" style="margin-left: 46%; margin-top: 140px;" mode="indeterminate"
   color="accent"></mat-progress-spinner>
 <div *ngIf="data" class="my-12 container grid grid-cols-1 sm:grid-cols-2 gap-6">
   <div class="card max-w-full overflow-hidden p-3">
     <mat-nav-list >
     <!-- <vex-contrats *ngIf="data?.listeContrats && data?.listeContrats?.length" [authObj]="authObj" [data]="data" ></vex-contrats> -->
-   
-    <vex-contrat-sante *ngIf ="data?.listeContrats && data?.listeContrats?.length && authObj.typeContrat !='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-sante> 
-    <vex-infos-bancaires  *ngIf ="authObj.typeContrat =='A'"  [data]="data"></vex-infos-bancaires> 
+
+    <vex-contrat-sante *ngIf ="data?.listeContrats && data?.listeContrats?.length && authObj.typeContrat !='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-sante>
+    <vex-infos-bancaires  *ngIf ="authObj.typeContrat =='A'"  [data]="data"></vex-infos-bancaires>
 
   </mat-nav-list>
   </div>
@@ -18,7 +20,7 @@
 
 
   </div>
-  <vex-contrat-animal *ngIf ="authObj.typeContrat =='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-animal> 
+  <vex-contrat-animal *ngIf ="authObj.typeContrat =='A'" [authObj]="authObj"  [data]="data" ></vex-contrat-animal>
 
   <vex-assures *ngIf ="authObj.typeContrat =='I' && data?.listeContrats && data?.listeContrats?.length"[authObj]="authObj" [data]="data"></vex-assures>
 

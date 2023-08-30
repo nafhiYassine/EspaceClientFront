@@ -20,11 +20,17 @@ import { CardAssuresComponent } from './assures/card-assures/card-assures.compon
 import { InfosBancairesComponent } from './infos-bancaires/infos-bancaires.component';
 import { CardAnimalComponent } from './contrat-animal/card-animal/card-animal.component';
 import { CardDownAssuresComponent } from './assures/card-assures/card-down-assures/card-down-assures.component';
+import { RemboursementsComponent } from './remboursements/remboursements.component';
+import { RemboursementsCardDownComponent } from './remboursements/remboursements-card-down/remboursements-card-down.component';
+import { RemboursementsCardComponent } from './remboursements/remboursements-card/remboursements-card.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { DecimalTransformerPipe } from './cotisations/decimal-transformer.pipe';
 
 
 
 @NgModule({
-  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent, ContratsComponent, SouscripteurComponent, ContratSanteComponent, ContratAnimalComponent, AssuresComponent, CotisationsComponent, InfosBancairesComponent, CardAnimalComponent,CardDownAssuresComponent,DocumentHomeComponent,CardAssuresComponent],
+  declarations: [HomeGuidesComponent, HomeGuidesGuideComponent, ContratsComponent, SouscripteurComponent, ContratSanteComponent, ContratAnimalComponent, AssuresComponent, CotisationsComponent, InfosBancairesComponent, CardAnimalComponent,CardDownAssuresComponent,DocumentHomeComponent,CardAssuresComponent
+  ,RemboursementsComponent, RemboursementsCardDownComponent, RemboursementsCardComponent, DecimalTransformerPipe],
   imports: [
     CommonModule,
     HomeGuidesRoutingModule,
@@ -34,7 +40,7 @@ import { CardDownAssuresComponent } from './assures/card-assures/card-down-assur
     MatIconModule,
     MatProgressSpinnerModule,
     MatDialogModule ,
-
+    MatButtonToggleModule
 
   ],
   schemas: [NO_ERRORS_SCHEMA]

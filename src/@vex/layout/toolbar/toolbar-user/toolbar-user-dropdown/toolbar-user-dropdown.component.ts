@@ -2,6 +2,14 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { MenuItem } from '../interfaces/menu-item.interface';
 import { trackById } from '../../../../utils/track-by';
 import { PopoverRef } from '../../../../components/popover/popover-ref';
+import { SharedDataService } from 'src/app/services/shared-data.service';
+
+export interface OnlineStatus {
+  id: 'online' | 'away' | 'dnd' | 'offline';
+  label: string;
+  icon: string;
+  colorClass: string;
+}
 import { TokenStorageService } from 'src/app/services/token-storage-service';
 
 @Component({
@@ -27,8 +35,10 @@ export class ToolbarUserDropdownComponent implements OnInit {
 
   trackById = trackById;
 
-  constructor(private popoverRef: PopoverRef<ToolbarUserDropdownComponent>,
-              private tokenStorage : TokenStorageService) { }
+  constructor(private cd: ChangeDetectorRef,
+              private popoverRef: PopoverRef<ToolbarUserDropdownComponent>,
+              private tokenStorage : TokenStorageService,
+              private sharedDataService:SharedDataService) { }
 
   ngOnInit() {
     this.fullName = this.tokenStorage.getFullName();
@@ -39,6 +49,7 @@ export class ToolbarUserDropdownComponent implements OnInit {
   }
 
   logout() {
+    this.sharedDataService.clearAuthObj();
     this.tokenStorage.signOut();
   }
 }

@@ -21,7 +21,6 @@
 
   <div class="section">
     <h5 class="subheading">THEME COLORS</h5>
-
     <div (click)="selectColor(color.value)" *ngFor="let color of colorVariables | keyvalue"
          [class.selected]="isSelectedColor(color.value)"
          [style.backgroundColor]="color.value.light"

@@ -84,6 +84,7 @@ export class HomeGuidesComponent implements OnInit {
     this.authObj.compo = this.decodedToken.compo;
     this.authObj.typeContrat = this.decodedToken.typcrm;
     this.authObj.username = this.decodedToken.iss;
+    this.authObj.idfpol=this.decodedToken.idfpol;
     if (localStorage.getItem('data')) {
       const serializedData: string = localStorage.getItem('data');
       const decryptedBytes = CryptoJS.AES.decrypt(serializedData, SECRET_KEY);
